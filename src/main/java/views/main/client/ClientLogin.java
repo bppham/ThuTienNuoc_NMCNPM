@@ -16,6 +16,7 @@ public class ClientLogin extends javax.swing.JFrame {
     /**
      * Creates new form ClientLogin
      */
+    public static String currentEmail;
 
     public ClientLogin() {
         initComponents();
@@ -176,22 +177,26 @@ public class ClientLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_cbShowPasswordActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        try {
-            // TODO add your handling code here:
-            String email = txtEmail.getText();
-            char[] passwordChars = txtPassword.getPassword();
-            String password = String.valueOf(passwordChars);
-            if (email.isEmpty() || password.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không được để trống!", "Thông báo", JOptionPane.ERROR_MESSAGE);
-            } else if (!ClientCtrl.kiemTraEmailCoTonTai(email)) {
+        // TODO add your handling code here:
+        currentEmail = txtEmail.getText();
+        char[] passwordChars = txtPassword.getPassword();
+        String password = String.valueOf(passwordChars);
+        if (currentEmail.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không được để trống!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        } else try {
+            if (!ClientCtrl.kiemTraEmailCoTonTai(currentEmail)) {
                 JOptionPane.showMessageDialog(this, "Email không có trong hệ thống!", "Thông báo", JOptionPane.ERROR_MESSAGE);
             } else {
-                
-                
-                ClientInfomation.currentEmail = email;
-                new ClientInfomation().setVisible(true);
-                this.dispose();
-                
+                ClientCtrl.currentEmail = currentEmail;
+                boolean flag = ClientCtrl.dangNhap(password);
+                if (flag) {
+                    
+                    new MainClient().setVisible(true);
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không chính xác!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                }
+
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClientLogin.class.getName()).log(Level.SEVERE, null, ex);
