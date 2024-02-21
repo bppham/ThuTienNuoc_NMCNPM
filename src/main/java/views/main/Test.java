@@ -9,7 +9,6 @@ package views.main;
  * @author Phu Bao
  */
 public class Test extends javax.swing.JPanel {
-
     /**
      * Creates new form Test
      */
