@@ -1,64 +1,98 @@
 package models.Client;
 
+import java.sql.Date;
+
 
 public class ClientBillModel {
-    private int collectMoneyId, employCollectID, userID, preIndex, currentIndex, moneyCategoryID, moneyToPay, addressCollectID;
-    private String timeCollect, nameEmployee;
+    private String collectMoneyId, employCollectID, userID, moneyCategoryID, addressCollectID, nameAddressCollect, nameEmployee, nameMoneyCategory;
+    private int preIndex, currentIndex, moneyToPay;
+    private Date timeCollect;
 
     public ClientBillModel() {
-    }   
-
-    public ClientBillModel(int collectMoneyId, int employCollectID, int userID, int preIndex, int currentIndex, int moneyCategoryID, int moneyToPay, int addressCollectID, String timeCollect) {
-        this.collectMoneyId = collectMoneyId;
-        this.employCollectID = employCollectID;
-        this.userID = userID;
-        this.preIndex = preIndex;
-        this.currentIndex = currentIndex;
-        this.moneyCategoryID = moneyCategoryID;
-        this.moneyToPay = moneyToPay;
-        this.addressCollectID = addressCollectID;
-        this.timeCollect = timeCollect;
     }
-      
-    public ClientBillModel(int collectMoneyId, int employCollectID, int userID, int preIndex, int currentIndex, int moneyCategoryID, int moneyToPay, int addressCollectID, String timeCollect, String nameEmployee) {
+
+    public ClientBillModel(String collectMoneyId, String employCollectID, String userID, String moneyCategoryID, String addressCollectID, String nameAddressCollect, String nameEmployee, String nameMoneyCategory, int preIndex, int currentIndex, int moneyToPay, Date timeCollect) {
         this.collectMoneyId = collectMoneyId;
         this.employCollectID = employCollectID;
         this.userID = userID;
-        this.preIndex = preIndex;
-        this.currentIndex = currentIndex;
         this.moneyCategoryID = moneyCategoryID;
-        this.moneyToPay = moneyToPay;
         this.addressCollectID = addressCollectID;
-        this.timeCollect = timeCollect;
+        this.nameAddressCollect = nameAddressCollect;
         this.nameEmployee = nameEmployee;
+        this.nameMoneyCategory = nameMoneyCategory;
+        this.preIndex = preIndex;
+        this.currentIndex = currentIndex;
+        this.moneyToPay = moneyToPay;
+        this.timeCollect = timeCollect;
     }
-    
-    
 
-    public int getCollectMoneyId() {
+    
+    
+    
+    public String getCollectMoneyId() {
         return collectMoneyId;
     }
 
-    public void setCollectMoneyId(int collectMoneyId) {
+    public void setCollectMoneyId(String collectMoneyId) {
         this.collectMoneyId = collectMoneyId;
     }
 
-    public int getEmployCollectID() {
+    public String getEmployCollectID() {
         return employCollectID;
     }
 
-    public void setEmployCollectID(int employCollectID) {
+    public void setEmployCollectID(String employCollectID) {
         this.employCollectID = employCollectID;
     }
 
-    public int getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 
+    public String getMoneyCategoryID() {
+        return moneyCategoryID;
+    }
+
+    public void setMoneyCategoryID(String moneyCategoryID) {
+        this.moneyCategoryID = moneyCategoryID;
+    }
+
+    public String getAddressCollectID() {
+        return addressCollectID;
+    }
+
+    public void setAddressCollectID(String addressCollectID) {
+        this.addressCollectID = addressCollectID;
+    }
+
+    public String getNameAddressCollect() {
+        return nameAddressCollect;
+    }
+
+    public void setNameAddressCollect(String nameAddressCollect) {
+        this.nameAddressCollect = nameAddressCollect;
+    }
+
+    public String getNameEmployee() {
+        return nameEmployee;
+    }
+
+    public void setNameEmployee(String nameEmployee) {
+        this.nameEmployee = nameEmployee;
+    }
+
+    public String getNameMoneyCategory() {
+        return nameMoneyCategory;
+    }
+
+    public void setNameMoneyCategory(String nameMoneyCategory) {
+        this.nameMoneyCategory = nameMoneyCategory;
+    }
+    
     public int getPreIndex() {
         return preIndex;
     }
@@ -75,14 +109,6 @@ public class ClientBillModel {
         this.currentIndex = currentIndex;
     }
 
-    public int getMoneyCategoryID() {
-        return moneyCategoryID;
-    }
-
-    public void setMoneyCategoryID(int moneyCategoryID) {
-        this.moneyCategoryID = moneyCategoryID;
-    }
-
     public int getMoneyToPay() {
         return moneyToPay;
     }
@@ -91,28 +117,12 @@ public class ClientBillModel {
         this.moneyToPay = moneyToPay;
     }
 
-    public int getAddressCollectID() {
-        return addressCollectID;
-    }
-
-    public void setAddressCollectID(int addressCollectID) {
-        this.addressCollectID = addressCollectID;
-    }
-
-    public String getTimeCollect() {
+    public Date getTimeCollect() {
         return timeCollect;
     }
 
-    public void setTimeCollect(String timeCollect) {
+    public void setTimeCollect(Date timeCollect) {
         this.timeCollect = timeCollect;
     }
-
-    public String getNameEmployee() {
-        return nameEmployee;
-    }
-
-    public void setNameEmployee(String nameEmployee) {
-        this.nameEmployee = nameEmployee;
-    }
-      
+  
 }
