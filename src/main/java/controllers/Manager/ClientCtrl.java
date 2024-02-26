@@ -34,12 +34,11 @@ public class ClientCtrl {
             String sql = "INSERT INTO Person (PasswordAcc, NamePerson, Email, PhoneNumber, AddressPerson) VALUES (?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(sql);
             statement.setString(1, "0123456789");
-            statement.setString(3, person.getNamePerson());
-            statement.setString(4, person.getEmail());
-            statement.setString(5, person.getPhoneNumber());
-            statement.setString(6, person.getAddressPerson());
+            statement.setString(2, person.getNamePerson());
+            statement.setString(3, person.getEmail());
+            statement.setString(4, person.getPhoneNumber());
+            statement.setString(5, person.getAddressPerson());
 
-//            String hashedPassword = PasswordHashing.hashPassword(nv.getMatKhau());
             statement.executeUpdate();
 
         } catch (SQLException ex) {
@@ -69,7 +68,7 @@ public class ClientCtrl {
 
         try {
             connection = ConnectDB.getConnection();
-            String sql = "SELECT * FROM Person where RolePerson = 'R1' OR RolePerson = 'R2'";
+            String sql = "SELECT * FROM Person where RolePerson = 'R3'";
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
 
