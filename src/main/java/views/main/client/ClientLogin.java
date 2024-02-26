@@ -219,7 +219,7 @@ public class ClientLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         verifyCode = GenerateVerifyCode.generateRandomCode();
         String email = txtEmail.getText();
-
+        
         if (email.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Email không được để trống!", "Thông báo", JOptionPane.ERROR_MESSAGE);
         } else try {
@@ -227,6 +227,7 @@ public class ClientLogin extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Email không có trong hệ thông!", "Thông báo", JOptionPane.ERROR_MESSAGE);
             } else {
                 try {
+                    currentEmail = email;
                     SendEmail.sendEmail(verifyCode, email);
                 } catch (MessagingException | UnsupportedEncodingException ex) {
                     Logger.getLogger(ClientLogin.class.getName()).log(Level.SEVERE, null, ex);

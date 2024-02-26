@@ -164,6 +164,7 @@ public class ClientCreateNewPassword extends javax.swing.JFrame {
         } else {
             if (retypePassword.equals(newPassword)) {
                 try {
+                    System.out.println(ClientCtrl.currentEmail);
                     ClientCtrl.doiMatKhau(newPassword);
                     JOptionPane.showMessageDialog(this, "Đổi mật khẩu thành công, đăng nhập lại vào hệ thống!");
                     this.setVisible(false);

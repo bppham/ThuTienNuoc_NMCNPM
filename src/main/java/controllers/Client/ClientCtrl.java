@@ -22,14 +22,15 @@ public class ClientCtrl {
     // Home
     public static List<ClientBillModel> hienThiCacHoaDonChuaTra() throws ClassNotFoundException {
         List<ClientBillModel> dsHoaDon = new ArrayList<>();
-        String sql = "SELECT CM.CollectMoneyId, EMP.PersonId, CM.UserId, CM.PrevIndex, CM.CurrentIndex, DA.NameDetailAddress, "
-                    + "CM.TimeCollect, MC.MoneyCategoryId, CM.MoneyToPay, CM.AddressCollectId, EMP.NamePerson, MC.NameCategoryMoney  "
+        String sql = "SELECT CM.CollectMoneyId, CM.UserId, CM.PrevIndex, CM.CurrentIndex, CM.TimeCollect, RC.ValueRole, "
+                    + "CM.MoneyToPay, DA.DetailAddressId, DA.NameDetailAddress, EMP.PersonId, EMP.NamePerson, DA.RoleMoneyCategory "
                     + "FROM Person AS P "
-                    + "JOIN MoneyCategory AS MC ON P.CategoryMoneyId = MC.MoneyCategoryId "
-                    + "JOIN CollectMoney AS CM ON CM.UserId = P.PersonId "
-                    + "JOIN PERSON AS EMP ON CM.EmployCollectId = EMP.PersonId "
-                    + "JOIN DetailAddress AS DA ON DA.DetailAddressId = CM.AddressCollectId AND DA.PersonId = P.PersonId "
-                    + "WHERE P.Email = ? AND CM.StatusCollect = 0 "
+                    + "JOIN DetailAddress AS DA ON P.PersonId = DA.PersonId "
+                    + "JOIN CollectMoney AS CM ON CM.UserId = P.PersonId AND CM.AddressCollectId = DA.DetailAddressId "
+                    + "JOIN RoleCode AS RC ON DA.RoleMoneyCategory = RC.KeyCode "
+                    + "JOIN Person AS EMP ON CM.EmployCollectId = EMP.PersonId "
+                    + "WHERE P.RolePerson = 'R3' AND CM.StatusCollect = 0 "
+                    + "AND P.Email = ? "
                     + "ORDER BY CM.TimeCollect ";
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, currentEmail);
@@ -39,11 +40,11 @@ public class ClientCtrl {
                         resultSet.getString("CollectMoneyId"),
                         resultSet.getString("PersonId"),
                         resultSet.getString("UserId"), 
-                        resultSet.getString("MoneyCategoryId"),
-                        resultSet.getString("AddressCollectID"),
+                        resultSet.getString("RoleMoneyCategory"),
+                        resultSet.getString("DetailAddressId"),
                         resultSet.getString("NameDetailAddress"),
                         resultSet.getString("NamePerson"),
-                        resultSet.getString("NameCategoryMoney"),
+                        resultSet.getString("ValueRole"),
                         resultSet.getInt("PrevIndex"),
                         resultSet.getInt("CurrentIndex"),
                         resultSet.getInt("MoneyToPay"),
@@ -59,23 +60,21 @@ public class ClientCtrl {
     
     //Info
     public static ClientInfoModel hienThiChuHo() throws ClassNotFoundException {
-        String sql = "SELECT PS.PersonId, PS.NamePerson, PS.AddressPerson, PS.PhoneNumber, PS.Email, MC.NameCategoryMoney "
+        String sql = "SELECT PS.PersonId, PS.NamePerson, PS.AddressPerson, PS.PhoneNumber, PS.Email "
                     + "FROM Person AS PS "
-                    + "JOIN MoneyCategory AS MC ON PS.CategoryMoneyId = MC.MoneyCategoryId "
                     + "JOIN RoleCode AS RC ON RC.KeyCode = PS.RolePerson "
-                    + "WHERE RC.KeyCode = 'CH' AND PS.Email =?";
+                    + "WHERE RC.KeyCode = 'R3' AND PS.Email =?";
         ClientInfoModel ch = null;
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, currentEmail);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 ch = new ClientInfoModel(
-                        resultSet.getString("PersonId"), 
+                        resultSet.getString("PersonId"),
                         resultSet.getString("NamePerson"),
-                        resultSet.getString("Email"), 
-                        resultSet.getString("PhoneNumber"), 
-                        resultSet.getString("AddressPerson"),
-                        resultSet.getString("NameCategoryMoney")); 
+                        resultSet.getString("Email"),
+                        resultSet.getString("PhoneNumber"),
+                        resultSet.getString("AddressPerson"));
                 return ch;              
             }
         } catch (SQLException ex) {
@@ -106,7 +105,7 @@ public class ClientCtrl {
     public static boolean kiemTraEmailCoTonTai(String email) throws ClassNotFoundException {
         boolean flag = false;
         String sql = "SELECT Email FROM Person  "
-                    + "WHERE RolePerson = 'CH' AND Email = ? ";
+                    + "WHERE RolePerson = 'R3' AND Email = ? ";
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
 
             statement.setString(1, email);
@@ -123,7 +122,7 @@ public class ClientCtrl {
     }
     
     public static void taoMatKhauMoi(String password, String email) throws ClassNotFoundException {
-        String sql = "UPDATE Person SET PasswordAcc=? WHERE Email=? AND RolePerson='CH' ";
+        String sql = "UPDATE Person SET PasswordAcc=? WHERE Email=? AND RolePerson='R3' ";
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){                  
             statement.setString(1, password);
             statement.setString(2, email);  
@@ -137,14 +136,15 @@ public class ClientCtrl {
     //Bill
     public static List<ClientBillModel> hienThiHoaDon() throws ClassNotFoundException {
         List<ClientBillModel> dsHoaDon = new ArrayList<>();
-        String sql = "SELECT CM.CollectMoneyId, EMP.PersonId, CM.UserId, CM.PrevIndex, CM.CurrentIndex, DA.NameDetailAddress, "
-                    + "CM.TimeCollect, MC.MoneyCategoryId, CM.MoneyToPay, CM.AddressCollectId, EMP.NamePerson, MC.NameCategoryMoney  "
+        String sql = "SELECT CM.CollectMoneyId, CM.UserId, CM.PrevIndex, CM.CurrentIndex, CM.TimeCollect, RC.ValueRole, "
+                    + "CM.MoneyToPay, DA.DetailAddressId, DA.NameDetailAddress, EMP.PersonId, EMP.NamePerson, DA.RoleMoneyCategory "
                     + "FROM Person AS P "
-                    + "JOIN MoneyCategory AS MC ON P.CategoryMoneyId = MC.MoneyCategoryId "
-                    + "JOIN CollectMoney AS CM ON CM.UserId = P.PersonId "
-                    + "JOIN PERSON AS EMP ON CM.EmployCollectId = EMP.PersonId "
-                    + "JOIN DetailAddress AS DA ON DA.DetailAddressId = CM.AddressCollectId AND DA.PersonId = P.PersonId "
-                    + "WHERE P.Email = ? AND CM.StatusCollect = 1 "
+                    + "JOIN DetailAddress AS DA ON P.PersonId = DA.PersonId "
+                    + "JOIN CollectMoney AS CM ON CM.UserId = P.PersonId AND CM.AddressCollectId = DA.DetailAddressId "
+                    + "JOIN RoleCode AS RC ON DA.RoleMoneyCategory = RC.KeyCode "
+                    + "JOIN Person AS EMP ON CM.EmployCollectId = EMP.PersonId "
+                    + "WHERE P.RolePerson = 'R3' AND CM.StatusCollect = 1 "
+                    + "AND P.Email = ? "
                     + "ORDER BY CM.TimeCollect ";
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, currentEmail);
@@ -154,11 +154,11 @@ public class ClientCtrl {
                         resultSet.getString("CollectMoneyId"),
                         resultSet.getString("PersonId"),
                         resultSet.getString("UserId"), 
-                        resultSet.getString("MoneyCategoryId"),
-                        resultSet.getString("AddressCollectID"),
+                        resultSet.getString("RoleMoneyCategory"),
+                        resultSet.getString("DetailAddressId"),
                         resultSet.getString("NameDetailAddress"),
                         resultSet.getString("NamePerson"),
-                        resultSet.getString("NameCategoryMoney"),
+                        resultSet.getString("ValueRole"),
                         resultSet.getInt("PrevIndex"),
                         resultSet.getInt("CurrentIndex"),
                         resultSet.getInt("MoneyToPay"),
@@ -175,7 +175,7 @@ public class ClientCtrl {
     public static boolean kiemTraMatKhauHienTai(String password) throws ClassNotFoundException {
         boolean flag = false;
         String sql = "SELECT PasswordAcc FROM Person  "
-                    + "WHERE RolePerson = 'CH' AND Email = ? AND PasswordAcc = ?";
+                    + "WHERE RolePerson = 'R3' AND Email = ? AND PasswordAcc = ?";
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
 
             statement.setString(1, currentEmail);
@@ -192,7 +192,7 @@ public class ClientCtrl {
     }
     
     public static void doiMatKhau(String password) throws ClassNotFoundException {
-        String sql = "UPDATE Person SET PasswordAcc=? WHERE Email=? AND RolePerson='CH' ";
+        String sql = "UPDATE Person SET PasswordAcc=? WHERE Email=? AND RolePerson='R3' ";
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){                  
             statement.setString(1, password);
             statement.setString(2, currentEmail);  
