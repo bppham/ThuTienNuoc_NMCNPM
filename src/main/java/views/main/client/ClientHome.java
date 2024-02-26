@@ -280,7 +280,7 @@ public class ClientHome extends javax.swing.JPanel {
             int currIndex = bill.getCurrentIndex();
             int soNuoc = currIndex - prevIndex;
             txtSoNuoc.setText(String.valueOf(soNuoc));
-            txtSoNuoc.setText(String.valueOf(bill.getMoneyToPay()));
+            txtSoTien.setText(String.valueOf(bill.getMoneyToPay()));
         } else {
             System.out.println("Chưa có dòng nào được chọn");
         }

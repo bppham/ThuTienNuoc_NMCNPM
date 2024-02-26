@@ -31,7 +31,6 @@ public class ClientInfo extends javax.swing.JPanel {
         lblAddress.setText(client.getAddressPerson());
         lblContact.setText(client.getPhoneNumber());
         lblEmail.setText(client.getEmail());
-        lblCategoryMoney.setText(client.getNameCategoryMoney());
     }
 
     /**
@@ -51,13 +50,11 @@ public class ClientInfo extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
         lblContact = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
         lblAddress = new javax.swing.JLabel();
-        lblCategoryMoney = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
 
@@ -82,9 +79,6 @@ public class ClientInfo extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setText("Email:");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Loại tiền nước:");
-
         lblId.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblId.setText("_________");
 
@@ -99,9 +93,6 @@ public class ClientInfo extends javax.swing.JPanel {
 
         lblAddress.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblAddress.setText("_________");
-
-        lblCategoryMoney.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblCategoryMoney.setText("_________");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -123,39 +114,32 @@ public class ClientInfo extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel2))
-                .addGap(78, 78, 78)
+                    .addComponent(jLabel5))
+                .addGap(87, 87, 87)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblContact)
-                    .addComponent(lblEmail)
-                    .addComponent(lblCategoryMoney))
+                    .addComponent(lblEmail))
                 .addGap(66, 66, 66))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(lblCategoryMoney))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(lblId)
-                            .addComponent(jLabel5)
-                            .addComponent(lblContact))
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(lblName)
-                            .addComponent(jLabel7)
-                            .addComponent(lblEmail))
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(lblAddress))))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(lblId)
+                    .addComponent(jLabel5)
+                    .addComponent(lblContact))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(lblName)
+                    .addComponent(jLabel7)
+                    .addComponent(lblEmail))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblAddress))
                 .addContainerGap(263, Short.MAX_VALUE))
         );
 
@@ -233,7 +217,6 @@ public class ClientInfo extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -244,7 +227,6 @@ public class ClientInfo extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblAddress;
-    private javax.swing.JLabel lblCategoryMoney;
     private javax.swing.JLabel lblContact;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblId;
