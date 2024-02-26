@@ -8,7 +8,7 @@ public class PersonModel {
     private Integer PersonId, CategoryMoneyId;
     private String PassworrdAcc, RolePerson, NamePerson, Email, PhoneNumber, AddressPerson;
     
-    public PersonModel(Integer PersonId, String PasswordAcc, String RolePerson, String NamePerson, String Email, String PhoneNumber, String AddressPerson, Integer CategoryMoneyId) {
+    public PersonModel(String PasswordAcc, String RolePerson, String NamePerson, String Email) {
         this.PersonId = PersonId;
         this.PassworrdAcc = PasswordAcc;
         this.RolePerson = RolePerson;
