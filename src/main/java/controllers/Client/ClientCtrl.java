@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.Client.ClientBillModel;
 import models.Client.ClientInfoModel;
+import models.PersonData;
+import models.PersonModel;
 
 /**
  *
@@ -84,28 +86,28 @@ public class ClientCtrl {
     }
     
     //Log in
-    public static boolean dangNhap(String password) throws ClassNotFoundException {
-        boolean flag = false;
-        String sql = "SELECT PasswordAcc FROM Person WHERE Email = ?";
+    public static String dangNhap(String password) throws ClassNotFoundException {
+        String sql = "SELECT PasswordAcc,RolePerson FROM Person WHERE Email = ?";
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){           
             statement.setString(1, currentEmail);           
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 String rightPassword = resultSet.getString("PasswordAcc");
                 if(rightPassword.equals(password)){
-                    flag = true;
+                    return resultSet.getString("RolePerson");
                 }
             }
         } catch (SQLException ex) {
             Logger.getLogger(ClientCtrl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return flag;
+        return null;
     }
     
     public static boolean kiemTraEmailCoTonTai(String email) throws ClassNotFoundException {
         boolean flag = false;
+        //  RolePerson = 'R3' AND
         String sql = "SELECT Email FROM Person  "
-                    + "WHERE RolePerson = 'R3' AND Email = ? ";
+                    + "WHERE Email = ? ";
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
 
             statement.setString(1, email);
@@ -202,5 +204,36 @@ public class ClientCtrl {
             Logger.getLogger(ClientCtrl.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
-    
+    //----------
+    public static PersonModel getInforPersonbyEmail(String email) throws ClassNotFoundException{
+        String sql = """
+                     select p.PersonId,p.NamePerson,p.RolePerson, p.Email,p.PhoneNumber, p.AddressPerson, p.PasswordAcc, rc.ValueRole
+                     from Person as p
+                     join Assignment as a
+                     on p.PersonId = a.EmployId
+                     join RoleCode as rc
+                     on rc.KeyCode = a.RoleArea
+                     where Email = ?
+                     """;
+        try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                PersonModel personModel = new PersonModel(
+                        resultSet.getString("PersonId"), 
+                        resultSet.getString("PasswordAcc"), 
+                        resultSet.getString("RolePerson"), 
+                        resultSet.getString("NamePerson"),
+                        resultSet.getString("Email"), 
+                        resultSet.getString("PhoneNumber"), 
+                        resultSet.getString("AddressPerson")); 
+                PersonData.getInstance().setBranch(resultSet.getString("ValueRole"));
+                return personModel;              
+            }
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(ClientCtrl.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        return null;
+    }
 }

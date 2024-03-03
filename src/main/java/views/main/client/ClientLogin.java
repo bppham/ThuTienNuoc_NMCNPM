@@ -8,8 +8,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
+import models.PersonData;
+import models.PersonModel;
 import utils.GenerateVerifyCode;
 import utils.SendEmail;
+import views.worker.workerMain;
 
 /**
  *
@@ -22,6 +25,7 @@ public class ClientLogin extends javax.swing.JFrame {
      */
     public static String currentEmail;
     public static String verifyCode;
+    public PersonModel personModel;
 
     public ClientLogin() {
         initComponents();
@@ -199,15 +203,25 @@ public class ClientLogin extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Email không có trong hệ thống!", "Thông báo", JOptionPane.ERROR_MESSAGE);
             } else {
                 
-                boolean flag = ClientCtrl.dangNhap(password);
-                if (flag) {
-                    
-                    new ClientMain().setVisible(true);
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không chính xác!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                String flag = ClientCtrl.dangNhap(password);
+                switch (flag) {
+                    case "R3" -> {
+                        //Đăng nhập cho Chủ hộ
+                        new ClientMain().setVisible(true);
+                        this.dispose();
+                    }
+                    case "R2" -> {
+                        // Đăng nhập cho Nhân viên
+                        PersonData.getInstance().setPersonInfo(ClientCtrl.getInforPersonbyEmail(currentEmail));
+                        new workerMain().setVisible(true);
+                        this.dispose();
+                    }
+                    case "R1" -> {
+                        // đăng nhập cho Quản Lý
+                    }
+                    default -> JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không chính xác!", "Thông báo", JOptionPane.ERROR_MESSAGE);
                 }
-
+                
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClientLogin.class.getName()).log(Level.SEVERE, null, ex);
