@@ -8,7 +8,16 @@ public class PersonModel {
     private String PersonId, RoleValue;
     private String PassworrdAcc, RolePerson, NamePerson, Email, PhoneNumber, AddressPerson;
     
+    public PersonModel( String NamePerson, String Email,String AddressPerson,String PhoneNumber){
+        this.NamePerson = NamePerson;
+        this.Email = Email;
+        this.AddressPerson = AddressPerson;
+        this.PhoneNumber = PhoneNumber;
+    }
+    
+    
     public PersonModel(String PersonId, String PasswordAcc, String RolePerson, String NamePerson, String Email, String PhoneNumber, String AddressPerson) {
+
         this.PersonId = PersonId;
         this.PassworrdAcc = PasswordAcc;
         this.RolePerson = RolePerson;
