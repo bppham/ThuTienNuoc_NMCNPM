@@ -15,7 +15,8 @@ public class workerMain extends javax.swing.JFrame {
     private final home_worker home_worker2 = new home_worker();
     private final managerUser_worker managerUser_worker1 = new managerUser_worker(this);
     private final profile_worker profile_worker1 = new  views.worker.profile_worker(this);
-    private GhiDienSoNuoc dienSoNuoc = new views.worker.GhiDienSoNuoc(this);
+    private GhiDienSoNuoc ghiDienSoNuoc = new views.worker.GhiDienSoNuoc(this);
+    private DienSoNuoc dienSoNuoc = new views.worker.DienSoNuoc(this);
 
     public workerMain() {
         initComponents();
@@ -23,6 +24,7 @@ public class workerMain extends javax.swing.JFrame {
         jLayeredPane1.add(managerUser_worker1);
         jLayeredPane1.add(profile_worker1);
         jLayeredPane1.add(editPassword_worker1);
+        jLayeredPane1.add(ghiDienSoNuoc);
         jLayeredPane1.add(dienSoNuoc);
     }
 
@@ -31,6 +33,7 @@ public class workerMain extends javax.swing.JFrame {
         profile_worker1.setVisible(false);
         managerUser_worker1.setVisible(false);
         editPassword_worker1.setVisible(false);
+        ghiDienSoNuoc.setVisible(false);
         dienSoNuoc.setVisible(false);
     }
     public void setVisibleEditPassword(){
@@ -39,16 +42,30 @@ public class workerMain extends javax.swing.JFrame {
     public void setVisibleProfileUser(){
         profile_worker1.setVisible(true);
     }
+    public void setVisibleGhiDienSoNuoc(boolean check){
+        if(check == true){
+            ghiDienSoNuoc.setDefault();
+            ghiDienSoNuoc.setVisible(true);
+            
+        }
+        else{
+            ghiDienSoNuoc.setVisible(false);
+        }
+        
+    }
+    
     public void setVisibleDienSoNuoc(boolean check){
         if(check == true){
-            dienSoNuoc.setVisible(true);
             dienSoNuoc.setDefault();
+            dienSoNuoc.setVisible(true);
+            
         }
         else{
             dienSoNuoc.setVisible(false);
         }
         
     }
+    
     public void setVisibleManagerUser(){
         managerUser_worker1.setVisible(true);
     }
@@ -201,17 +218,15 @@ public class workerMain extends javax.swing.JFrame {
         button_home.setBackground(new Color(67, 24, 255));
         button_managerUser.setBackground(new Color(123,150,212));
         button_profile.setBackground(new Color(123,150,212));
+        setVisibleAllFalse();
         home_worker2.setVisible(true);
-        profile_worker1.setVisible(false);
-        managerUser_worker1.setVisible(false);
     }//GEN-LAST:event_button_homeActionPerformed
 
     private void button_managerUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_managerUserActionPerformed
         button_home.setBackground(new Color(123,150,212));
         button_managerUser.setBackground(new Color(67, 24, 255));
         button_profile.setBackground(new Color(123,150,212));
-        home_worker2.setVisible(false);
-        profile_worker1.setVisible(false);
+        setVisibleAllFalse();
         managerUser_worker1.setVisible(true);
     }//GEN-LAST:event_button_managerUserActionPerformed
 
@@ -219,9 +234,8 @@ public class workerMain extends javax.swing.JFrame {
         button_home.setBackground(new Color(123,150,212));
         button_managerUser.setBackground(new Color(123,150,212));
         button_profile.setBackground(new Color(67, 24, 255));
-        home_worker2.setVisible(false);
+        setVisibleAllFalse();
         profile_worker1.setVisible(true);
-        managerUser_worker1.setVisible(false);
     }//GEN-LAST:event_button_profileActionPerformed
 
     public profile_worker getProfile_worker1() {
@@ -230,6 +244,10 @@ public class workerMain extends javax.swing.JFrame {
 
 
     public void setUserInfor_DienSoNuoc(PersonModel personModel_dsn){
+        ghiDienSoNuoc.setPersonModel(personModel_dsn);
+    }
+    
+    public void setBillsUser_DienSoNuoc(PersonModel personModel_dsn){
         dienSoNuoc.setPersonModel(personModel_dsn);
     }
     

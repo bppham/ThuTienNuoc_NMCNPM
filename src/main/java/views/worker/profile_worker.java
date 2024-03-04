@@ -5,6 +5,7 @@ import controllers.Worker.WorkerController;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import models.PersonData;
 import models.PersonModel;
 
@@ -21,12 +22,13 @@ public class profile_worker extends javax.swing.JPanel {
     }
 
     public void setDefault(){
-        
+        lb_avatar.setIcon(new ImageIcon("src\\main\\java\\images\\Worker\\user.png"));
         lb_id.setText(personModel.getPersonId());
         lb_name.setText(personModel.getNamePerson());
         lb_address.setText(personModel.getAddressPerson());
         lb_phoneNo.setText(personModel.getPhoneNumber());
         lb_email.setText(personModel.getEmail());
+        
         //---set chi nhanh nhan vien----
         try {
             lb_branch2.setText("Chi nhánh " + workerController.getBranchWork(personModel.getPersonId()));
@@ -58,7 +60,7 @@ public class profile_worker extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         lb_email = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
+        lb_avatar = new javax.swing.JLabel();
         button_changePassword = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 400));
@@ -213,8 +215,6 @@ public class profile_worker extends javax.swing.JPanel {
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
 
-        jLabel14.setIcon(new javax.swing.ImageIcon("D:\\code\\Java\\project_qlTienNuoc\\main\\ThuTienNuoc_NMCNPM\\src\\main\\java\\images\\Worker\\user.png")); // NOI18N
-
         button_changePassword.setBackground(new java.awt.Color(67, 24, 255));
         button_changePassword.setForeground(new java.awt.Color(255, 255, 255));
         button_changePassword.setText("Thay đổi mật khẩu");
@@ -233,7 +233,7 @@ public class profile_worker extends javax.swing.JPanel {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(button_changePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
+                        .addComponent(lb_avatar)
                         .addGap(15, 15, 15)))
                 .addGap(40, 40, 40))
         );
@@ -241,7 +241,7 @@ public class profile_worker extends javax.swing.JPanel {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel14)
+                .addComponent(lb_avatar)
                 .addGap(18, 18, 18)
                 .addComponent(button_changePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -301,7 +301,6 @@ public class profile_worker extends javax.swing.JPanel {
     private javax.swing.JButton button_changePassword;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -314,6 +313,7 @@ public class profile_worker extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JLabel lb_address;
+    private javax.swing.JLabel lb_avatar;
     private javax.swing.JLabel lb_branch2;
     private javax.swing.JLabel lb_email;
     private javax.swing.JLabel lb_id;

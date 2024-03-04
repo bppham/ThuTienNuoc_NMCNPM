@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -18,6 +19,8 @@ import views.worker.JTableCustom.Table.TableCustom;
 import views.worker.JTableCustomButton.TableActionCellEditor;
 import views.worker.JTableCustomButton.TableActionCellRender;
 import views.worker.JTableCustomButton.TableActionEvent;
+import views.worker.JtextFieldCustom.SearchOptinEvent;
+import views.worker.JtextFieldCustom.SearchOption;
 
 public class managerUser_worker extends javax.swing.JPanel {
     private PersonModel personModel = PersonData.getInstance().getPersonInfo();
@@ -44,7 +47,7 @@ public class managerUser_worker extends javax.swing.JPanel {
     private void setDefault(){
         // table
         initTable();
-        fillTableInforUser();
+        fillTableInforUser("");
         setingUITable();
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
         try {
@@ -52,6 +55,16 @@ public class managerUser_worker extends javax.swing.JPanel {
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(home_worker.class.getName()).log(Level.SEVERE, null, ex);
         }
+        txt_search.addEventOptionSelected(new SearchOptinEvent() {
+            @Override
+            public void optionSelected(SearchOption option, int index) {
+                txt_search.setHint("Tìm kiếm theo " + option.getName() + "...");
+            }
+        });
+        txt_search.addOption(new SearchOption("Tên Chủ Hộ", new ImageIcon(("src\\main\\java\\images\\Worker\\user_1.png"))));
+        txt_search.addOption(new SearchOption("Số điện thoại", new ImageIcon(("src\\main\\java\\images\\Worker\\tel.png"))));
+        txt_search.addOption(new SearchOption("Email", new ImageIcon(("src\\main\\java\\images\\Worker\\email.png"))));
+        txt_search.addOption(new SearchOption("Địa chỉ", new ImageIcon(("src\\main\\java\\images\\Worker\\address.png"))));
     }
     
     private void setingUITable(){
@@ -78,11 +91,11 @@ public class managerUser_worker extends javax.swing.JPanel {
         table.getTableHeader().setFont(new Font("Times New Roman",Font.PLAIN, 18));
     }
     
-    private void fillTableInforUser(){
+    private void fillTableInforUser(String where, Object ... text){
         tblModel.setRowCount(0);
         List<PersonModel> lsPesonInfor;
         try {
-            lsPesonInfor = workerController.getInforUsersByBranch(PersonData.getInstance().getBranch());
+            lsPesonInfor = workerController.getInforUsersByBranch(PersonData.getInstance().getBranch(),where,text);
             PersonData.getInstance().setLsPersonInfor(lsPesonInfor);
             for (PersonModel pm : lsPesonInfor) {
             tblModel.addRow(new String[]{String.valueOf(pm.getPersonId()),pm.getNamePerson(),pm.getAddressPerson(),
@@ -108,7 +121,7 @@ public class managerUser_worker extends javax.swing.JPanel {
                     }
                 }
                 wMain.setVisibleAllFalse();
-                wMain.setVisibleDienSoNuoc(true);
+                wMain.setVisibleGhiDienSoNuoc(true);
             }
 
             @Override
@@ -122,7 +135,15 @@ public class managerUser_worker extends javax.swing.JPanel {
 
             @Override
             public void onView(int row) {
-                System.out.println(row);
+                String idUserSelected = String.valueOf(table.getValueAt(row, 0));
+                for(PersonModel pm: PersonData.getInstance().getLsPersonInfor()){
+                    if(pm.getPersonId().equals(idUserSelected)){
+                        wMain.setBillsUser_DienSoNuoc(pm);
+                        break;
+                    }
+                }
+                wMain.setVisibleAllFalse();
+                wMain.setVisibleDienSoNuoc(true);
             }
         };
         table.getColumnModel().getColumn(6).setCellRenderer(new TableActionCellRender());
@@ -138,7 +159,7 @@ public class managerUser_worker extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lb_branch = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        txt_search = new views.worker.JtextFieldCustom.TextFieldSearchOption();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -178,8 +199,11 @@ public class managerUser_worker extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Tìm kiếm bằng ID, Tên, Địa chỉ,...");
+        txt_search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_searchKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -188,19 +212,17 @@ public class managerUser_worker extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 419, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(77, 77, 77))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -263,16 +285,30 @@ public class managerUser_worker extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txt_searchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_searchKeyReleased
+        if(txt_search.isSelected()){
+            int option = txt_search.getSelectedIndex();
+            String text = "%" + txt_search.getText().trim() +"%";
+            switch (option) {
+                case 0 -> fillTableInforUser("and NamePerson like ?", text);
+                case 1 -> fillTableInforUser("and PhoneNumber like ?", text);
+                case 2 -> fillTableInforUser("and Email like ?", text);
+                case 3 -> fillTableInforUser("and NameDetailAddress like ?", text);
+                default -> {
+                }
+            }
+        }
+    }//GEN-LAST:event_txt_searchKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -280,5 +316,6 @@ public class managerUser_worker extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lb_branch;
     private javax.swing.JTable table;
+    private views.worker.JtextFieldCustom.TextFieldSearchOption txt_search;
     // End of variables declaration//GEN-END:variables
 }

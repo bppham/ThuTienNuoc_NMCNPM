@@ -126,7 +126,7 @@
         </Container>
         <Component class="javax.swing.JButton" name="button_back">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Back"/>
+            <Property name="text" type="java.lang.String" value="Quay l&#x1ea1;i"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button_backActionPerformed"/>
@@ -285,9 +285,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="text_currentIndex">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="200"/>
-              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="text_currentIndexActionPerformed"/>
               </Events>
