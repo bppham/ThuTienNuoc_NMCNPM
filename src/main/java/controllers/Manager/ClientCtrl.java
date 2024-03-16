@@ -31,13 +31,14 @@ public class ClientCtrl {
         PreparedStatement statement = null;
         try {
             connection = ConnectDB.getConnection();
-            String sql = "INSERT INTO Person (PasswordAcc, NamePerson, Email, PhoneNumber, AddressPerson) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Person (PasswordAcc, RolePerson, NamePerson, Email, PhoneNumber, AddressPerson) VALUES (?, ?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(sql);
             statement.setString(1, "0123456789");
-            statement.setString(2, person.getNamePerson());
-            statement.setString(3, person.getEmail());
-            statement.setString(4, person.getPhoneNumber());
-            statement.setString(5, person.getAddressPerson());
+            statement.setString(2, person.getRolePerson());
+            statement.setString(3, person.getNamePerson());
+            statement.setString(4, person.getEmail());
+            statement.setString(5, person.getPhoneNumber());
+            statement.setString(6, person.getAddressPerson());
 
             statement.executeUpdate();
 
@@ -80,7 +81,7 @@ public class ClientCtrl {
                 String phoneNumber = resultSet.getString("PhoneNumber");
                 String addressPerson = resultSet.getString("AddressPerson");
                 
-                PersonModel personClient = new PersonModel(personId,name, roleCode, email, addressPerson, phoneNumber);
+                PersonModel personClient = new PersonModel(personId, name, roleCode, email, addressPerson, phoneNumber);
                 dsChuHo.add(personClient);
             }
         } catch (SQLException ex) {

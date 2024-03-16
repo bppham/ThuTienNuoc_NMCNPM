@@ -46,10 +46,18 @@ public class ManagerClient extends javax.swing.JFrame {
         
         tableModel.setRowCount(0);
 
+
         listClient.forEach(person -> {
-            tableModel.addRow(new Object[]{person.getPersonId(), person.getRolePerson(), person.getNamePerson(),
-                person.getEmail(), person.getPhoneNumber(), person.getAddressPerson()});
+            tableModel.addRow(new Object[]{
+                person.getPersonId(),
+                person.getRolePerson(),
+                person.getNamePerson(),
+                person.getEmail(),
+                person.getPhoneNumber(),
+                person.getAddressPerson()
+            });
         });
+
     }
 
     /**
@@ -129,13 +137,13 @@ public class ManagerClient extends javax.swing.JFrame {
 
         listClientTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã chủ hộ", "Tên chủ hộ", "Email", "Số điện thoại", "Địa chỉ"
+                "Mã chủ hộ", "Tên chủ hộ", "Role", "Email", "Số điện thoại", "Địa chỉ"
             }
         ));
         listClientTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -267,7 +275,7 @@ public class ManagerClient extends javax.swing.JFrame {
                     ClientCtrl.XoaChuHo(person.getPersonId());
                     hienThiDSChuHo();
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(ManagerWorker.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ManagerClient.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -279,15 +287,15 @@ public class ManagerClient extends javax.swing.JFrame {
 
         int selectedIndex = listClientTable.getSelectedRow();
 
-        // Kiểm tra xem người dùng đã chọn một dòng hợp lệ hay không
+        
         if (selectedIndex >= 0) {
             try {
-                // Lấy đối tượng PersonModel từ danh sách listWorker
+                
                 PersonModel person = listClient.get(selectedIndex);
 
-                PersonModel personWorker = new PersonModel(person.getPersonId(),person.getNamePerson(), person.getRolePerson(), person.getEmail(), person.getAddressPerson(), person.getPhoneNumber());
+                PersonModel personClient = new PersonModel(person.getPersonId(),person.getNamePerson(), person.getRolePerson(), person.getEmail(), person.getAddressPerson(), person.getPhoneNumber());
 
-                DataGlobal.getDataGLobal.dataGlobal.setCurrentEditPerson(personWorker);
+                DataGlobal.getDataGLobal.dataGlobal.setCurrentEditPerson(personClient);
 
             } catch (IndexOutOfBoundsException ex) {
                 // Xử lý ngoại lệ IndexOutOfBoundsException nếu chỉ số không hợp lệ
@@ -336,6 +344,7 @@ public class ManagerClient extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new ManagerClient().setVisible(true);
             }
@@ -344,37 +353,17 @@ public class ManagerClient extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddClient;
-    private javax.swing.JButton AddWorker;
-    private javax.swing.JButton AddWorker1;
     private javax.swing.JButton DeleteClient;
-    private javax.swing.JButton DeleteWorker;
-    private javax.swing.JButton DeleteWorker1;
     private javax.swing.JButton ReloadClientPage;
-    private javax.swing.JButton ReloadPage;
-    private javax.swing.JButton ReloadPage1;
     private javax.swing.JButton UpdateInfoClient;
-    private javax.swing.JButton UpdateInfoWorker;
-    private javax.swing.JButton UpdateInfoWorker1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTable listClientTable;
-    private javax.swing.JTable listWorkerTable;
-    private javax.swing.JTable listWorkerTable1;
     // End of variables declaration//GEN-END:variables
 }
