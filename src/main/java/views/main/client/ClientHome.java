@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import models.Client.ClientBillModel;
 
@@ -33,9 +34,9 @@ public class ClientHome extends javax.swing.JPanel {
         dsHoaDon = ClientCtrl.hienThiCacHoaDonChuaTra();
         tableModel.setRowCount(0);
         dsHoaDon.forEach(hd -> {
-            tableModel.addRow(new Object[]{hd.getCollectMoneyId(), hd.getUserID(), hd.getPreIndex(),
-                hd.getCurrentIndex(), hd.getTimeCollect(), hd.getMoneyCategoryID(), hd.getMoneyToPay(), 
-                hd.getAddressCollectID(), hd.getNameAddressCollect()});
+            tableModel.addRow(new Object[]{hd.getCollectMoneyId(), hd.getEmployCollectID(), hd.getNameEmployee(),
+                hd.getPreIndex(), hd.getCurrentIndex(), hd.getTimeCollect(), hd.getNameMoneyCategory(), 
+                hd.getMoneyToPay(), hd.getNameAddressCollect()});
         });
     }
 
@@ -59,13 +60,14 @@ public class ClientHome extends javax.swing.JPanel {
         txtSoTien = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtSoNuoc = new javax.swing.JTextField();
-        btnRefresh = new javax.swing.JButton();
+        btnPayTheBill = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDanhSachHoaDonChuaTra = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        btnRefresh = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -98,13 +100,13 @@ public class ClientHome extends javax.swing.JPanel {
         txtSoNuoc.setEditable(false);
         txtSoNuoc.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        btnRefresh.setBackground(new java.awt.Color(51, 102, 255));
-        btnRefresh.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnRefresh.setForeground(new java.awt.Color(255, 255, 255));
-        btnRefresh.setText("Làm mới");
-        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+        btnPayTheBill.setBackground(new java.awt.Color(0, 153, 153));
+        btnPayTheBill.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnPayTheBill.setForeground(new java.awt.Color(255, 255, 255));
+        btnPayTheBill.setText("Thanh toán");
+        btnPayTheBill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshActionPerformed(evt);
+                btnPayTheBillActionPerformed(evt);
             }
         });
 
@@ -115,26 +117,30 @@ public class ClientHome extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNgayGhiNuoc, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-                            .addComponent(txtMaHoaDon))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSoNuoc, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                            .addComponent(txtSoTien)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4))
+                                .addGap(50, 50, 50)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNgayGhiNuoc, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                                    .addComponent(txtMaHoaDon))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtSoNuoc, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                                    .addComponent(txtSoTien)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnPayTheBill)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(153, 153, 153))
         );
         jPanel2Layout.setVerticalGroup(
@@ -160,9 +166,9 @@ public class ClientHome extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtSoTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))))
-                .addGap(18, 18, 18)
-                .addComponent(btnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPayTheBill, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
 
         jPanel3.setBackground(new java.awt.Color(134, 140, 255));
@@ -197,7 +203,7 @@ public class ClientHome extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã hóa đơn", "Mã chủ hộ", "Chỉ số trước", "Chỉ số sau", "Ngày ghi nước", "Loại tiền nước", "Số tiền", "Mã địa chỉ", "Địa chỉ"
+                "Mã hóa đơn", "Mã nhân viên", "Tên nhân viên", "Chỉ số trước", "Chỉ số sau", "Ngày ghi nước", "Loại tiền nước", "Số tiền", "Địa chỉ"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -222,6 +228,16 @@ public class ClientHome extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel7.setText("Các hóa đơn");
 
+        btnRefresh.setBackground(new java.awt.Color(51, 102, 255));
+        btnRefresh.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnRefresh.setForeground(new java.awt.Color(255, 255, 255));
+        btnRefresh.setText("Làm mới");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -235,7 +251,10 @@ public class ClientHome extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel7))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -248,10 +267,12 @@ public class ClientHome extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(btnRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -270,7 +291,6 @@ public class ClientHome extends javax.swing.JPanel {
     
     private void tblDanhSachHoaDonChuaTraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhSachHoaDonChuaTraMouseClicked
         // TODO add your handling code here:
-        refresh();
         int selectedIndex = tblDanhSachHoaDonChuaTra.getSelectedRow();
         if (selectedIndex >= 0) {
             ClientBillModel bill = dsHoaDon.get(selectedIndex);
@@ -292,20 +312,37 @@ public class ClientHome extends javax.swing.JPanel {
         txtNgayGhiNuoc.setText("");
         txtSoNuoc.setText("");
         txtSoTien.setText("");
-    }
-    
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        // TODO add your handling code here:
-        refresh();
         try {
             hienThiHoaDon();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClientHome.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // TODO add your handling code here:
+        refresh();
     }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void btnPayTheBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayTheBillActionPerformed
+        // TODO add your handling code here:
+        String maHoaDon = txtMaHoaDon.getText();
+        if(maHoaDon.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Chưa có hóa đơn nào được chọn!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                ClientCtrl.thanhToan(maHoaDon);
+                JOptionPane.showMessageDialog(this, "Thanh toán thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                refresh();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ClientHome.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnPayTheBillActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPayTheBill;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
