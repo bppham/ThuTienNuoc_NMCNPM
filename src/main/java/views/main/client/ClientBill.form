@@ -138,16 +138,14 @@
                 <Component class="javax.swing.JTable" name="tblDanhSachHoaDon">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="10" rowCount="4">
+                      <Table columnCount="8" rowCount="4">
                         <Column editable="false" title="M&#xe3; h&#xf3;a &#x111;&#x1a1;n" type="java.lang.Object"/>
                         <Column editable="false" title="M&#xe3; nh&#xe2;n vi&#xea;n" type="java.lang.Object"/>
                         <Column editable="false" title="M&#xe3; ch&#x1ee7; h&#x1ed9;" type="java.lang.Object"/>
                         <Column editable="false" title="Ch&#x1ec9; s&#x1ed1; tr&#x1b0;&#x1edb;c" type="java.lang.Object"/>
                         <Column editable="false" title="Ch&#x1ec9; s&#x1ed1; sau" type="java.lang.Object"/>
                         <Column editable="false" title="Ng&#xe0;y thu ti&#x1ec1;n" type="java.lang.Object"/>
-                        <Column editable="false" title="Lo&#x1ea1;i ti&#x1ec1;n n&#x1b0;&#x1edb;c" type="java.lang.Object"/>
                         <Column editable="false" title="S&#x1ed1; ti&#x1ec1;n" type="java.lang.Object"/>
-                        <Column editable="false" title="M&#xe3; &#x111;&#x1ecb;a ch&#x1ec9;" type="java.lang.Object"/>
                         <Column editable="false" title="&#x110;&#x1ecb;a ch&#x1ec9;" type="java.lang.Object"/>
                       </Table>
                     </Property>
@@ -169,55 +167,57 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                      <Component id="txtEmployeeName" min="-2" pref="218" max="-2" attributes="0"/>
-                                      <Component id="txtPrevIndex" min="-2" pref="218" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="txtCurrentIndex" alignment="0" min="-2" pref="218" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="txtCollectMoneyID" alignment="0" min="-2" pref="218" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtNameAddressCollect" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                              <Component id="txtEmployeeName" min="-2" pref="218" max="-2" attributes="0"/>
+                                              <Component id="txtPrevIndex" min="-2" pref="218" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="txtCurrentIndex" alignment="0" min="-2" pref="218" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="txtCollectMoneyID" alignment="0" min="-2" pref="218" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="txtNameAddressCollect" pref="286" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                          <Component id="txtMoneyToPay" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="txtMoneyCategory" max="32767" attributes="0"/>
+                                              <Component id="txtTimeCollect" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Component id="txtMoneyToPay" min="-2" pref="218" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtTimeCollect" min="-2" pref="218" max="-2" attributes="0"/>
-                                          <Component id="txtMoneyCategory" min="-2" pref="218" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="btnRefresh" min="-2" pref="114" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="63" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="btnRefresh" min="-2" pref="114" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -254,7 +254,7 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnRefresh" min="-2" pref="42" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="38" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
