@@ -74,7 +74,6 @@ public class ClientCtrl {
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                //int personId = resultSet.getInt("PersonId");
                 String personId = resultSet.getString("PersonId");
                 String roleCode = resultSet.getString("RolePerson");
                 String name = resultSet.getString("NamePerson");
@@ -107,7 +106,7 @@ public class ClientCtrl {
         return dsChuHo;
     }
     
-      public static void XoaChuHo(int PersonId) throws ClassNotFoundException {
+      public static void XoaChuHo(String PersonId) throws ClassNotFoundException {
         Connection connection = null;
         PreparedStatement statement = null;
         try {

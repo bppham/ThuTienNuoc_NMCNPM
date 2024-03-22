@@ -107,7 +107,7 @@ public class WorkerCtrl {
         return dsNhanvien;
     }
     
-      public static void XoaNhanVien(int PersonId) throws ClassNotFoundException {
+      public static void XoaNhanVien(String PersonId) throws ClassNotFoundException {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
