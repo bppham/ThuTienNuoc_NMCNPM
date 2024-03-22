@@ -79,9 +79,9 @@ public class ManagerClient extends javax.swing.JFrame {
         DeleteClient = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        listClientTable = new javax.swing.JTable();
         ReloadClientPage = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listClientTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,6 +135,13 @@ public class ManagerClient extends javax.swing.JFrame {
 
         jLabel8.setText("Tìm kiếm");
 
+        ReloadClientPage.setText("Làm mới");
+        ReloadClientPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReloadClientPageActionPerformed(evt);
+            }
+        });
+
         listClientTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -143,22 +150,10 @@ public class ManagerClient extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã chủ hộ", "Tên chủ hộ", "Role", "Email", "Số điện thoại", "Địa chỉ"
+                "Mã chủ hộ", "Role", "Tên chủ hộ", "Email", "Số điện thoại", "Địa chỉ"
             }
         ));
-        listClientTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listClientTableMouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(listClientTable);
-
-        ReloadClientPage.setText("Làm mới");
-        ReloadClientPage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReloadClientPageActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(listClientTable);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -173,20 +168,20 @@ public class ManagerClient extends javax.swing.JFrame {
                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 289, Short.MAX_VALUE)
-                                .addComponent(AddClient)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(UpdateInfoClient)
-                                .addGap(18, 18, 18)
-                                .addComponent(DeleteClient)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ReloadClientPage)
-                                .addGap(9, 9, 9)))
-                        .addGap(18, 18, 18))))
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 289, Short.MAX_VALUE)
+                        .addComponent(AddClient)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(UpdateInfoClient)
+                        .addGap(18, 18, 18)
+                        .addComponent(DeleteClient)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ReloadClientPage)
+                        .addGap(27, 27, 27))))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,9 +197,8 @@ public class ManagerClient extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,15 +232,12 @@ public class ManagerClient extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         AddClient addClientWindow = new AddClient();
-
-       
         addClientWindow.setVisible(true);
     }//GEN-LAST:event_AddClientActionPerformed
 
     private void UpdateInfoClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateInfoClientActionPerformed
         // TODO add your handling code here:
         UpdateClient updateClientWindow = new UpdateClient();
-
         updateClientWindow.setVisible(true);
 
     }//GEN-LAST:event_UpdateInfoClientActionPerformed
@@ -281,28 +272,6 @@ public class ManagerClient extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_DeleteClientActionPerformed
-
-    private void listClientTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listClientTableMouseClicked
-        // TODO add your handling code here:
-
-        int selectedIndex = listClientTable.getSelectedRow();
-
-        
-        if (selectedIndex >= 0) {
-            try {
-                
-                PersonModel person = listClient.get(selectedIndex);
-
-                PersonModel personClient = new PersonModel(person.getPersonId(),person.getNamePerson(), person.getRolePerson(), person.getEmail(), person.getAddressPerson(), person.getPhoneNumber());
-
-                DataGlobal.getDataGLobal.dataGlobal.setCurrentEditPerson(personClient);
-
-            } catch (IndexOutOfBoundsException ex) {
-                // Xử lý ngoại lệ IndexOutOfBoundsException nếu chỉ số không hợp lệ
-                Logger.getLogger(ManagerClient.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_listClientTableMouseClicked
 
     private void ReloadClientPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReloadClientPageActionPerformed
         // TODO add your handling code here:
@@ -362,7 +331,7 @@ public class ManagerClient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTable listClientTable;
     // End of variables declaration//GEN-END:variables
