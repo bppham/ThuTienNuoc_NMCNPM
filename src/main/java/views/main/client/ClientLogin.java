@@ -201,8 +201,9 @@ public class ClientLogin extends javax.swing.JFrame {
         } else try {
             if (!ClientCtrl.kiemTraEmailCoTonTai(currentEmail)) {
                 JOptionPane.showMessageDialog(this, "Email không có trong hệ thống!", "Thông báo", JOptionPane.ERROR_MESSAGE);
-            } else {
-                
+            } else if (!ClientCtrl.kiemTraMatKhauHienTai(password)){
+                JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không đúng!!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            } else {              
                 String flag = ClientCtrl.dangNhap(password);
                 switch (flag) {
                     case "R3" -> {
@@ -219,7 +220,7 @@ public class ClientLogin extends javax.swing.JFrame {
                     case "R1" -> {
                         // đăng nhập cho Quản Lý
                     }
-                    default -> JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không chính xác!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                    default -> JOptionPane.showMessageDialog(this, "Lỗi đăng nhập!", "Thông báo", JOptionPane.ERROR_MESSAGE);
                 }
                 
             }
