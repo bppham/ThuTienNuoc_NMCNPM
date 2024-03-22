@@ -28,6 +28,7 @@ public class UpdateClient extends javax.swing.JFrame {
         initComponents();
         
         NameUser.setText(person.getNamePerson());
+        RoleCodeUser.setText(person.getRolePerson());
         EmailUser.setText(person.getEmail());
         DetailAddressUser.setText(person.getAddressPerson());
         PhoneNumberUser.setText(person.getPhoneNumber());
@@ -54,6 +55,8 @@ public class UpdateClient extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         DetailAddressUser = new javax.swing.JTextField();
         UpdateUserBtn = new javax.swing.JButton();
+        RoleCodeUser = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -76,25 +79,31 @@ public class UpdateClient extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setText("Chức vụ");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                    .addComponent(NameUser)
-                    .addComponent(jLabel6)
-                    .addComponent(PhoneNumberUser))
-                .addGap(102, 102, 102)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DetailAddressUser, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UpdateUserBtn, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                            .addComponent(NameUser)
+                            .addComponent(jLabel6)
+                            .addComponent(PhoneNumberUser)
+                            .addComponent(DetailAddressUser))
+                        .addGap(102, 102, 102)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EmailUser, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                            .addComponent(UpdateUserBtn, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(RoleCodeUser)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -112,15 +121,23 @@ public class UpdateClient extends javax.swing.JFrame {
                     .addComponent(EmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6))
-                .addGap(28, 28, 28)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DetailAddressUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PhoneNumberUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addComponent(UpdateUserBtn)
-                .addContainerGap(48, Short.MAX_VALUE))
+                    .addComponent(PhoneNumberUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RoleCodeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jLabel7)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(DetailAddressUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(49, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(UpdateUserBtn)
+                        .addGap(34, 34, 34))))
         );
 
         jLabel1.setText("Quản lí chủ hộ");
@@ -175,16 +192,16 @@ public class UpdateClient extends javax.swing.JFrame {
     private void UpdateUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateUserBtnActionPerformed
         // TODO add your handling code here:
         String nameUser = NameUser.getText();
-        //String roleUser = RoleCodeUser.getText();
+        String roleUser = RoleCodeUser.getText();
         String emailUser = EmailUser.getText();
         String addressUser = DetailAddressUser.getText();
         String phoneNumber = PhoneNumberUser.getText();
 
-        if (nameUser.isEmpty() || emailUser.isEmpty() || addressUser.isEmpty() || phoneNumber.isEmpty()) {
+        if (nameUser.isEmpty() || roleUser.isEmpty() || emailUser.isEmpty() || addressUser.isEmpty() || phoneNumber.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Trường dữ liệu không được để trống", "Thông báo", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
-                 PersonModel person = new PersonModel( nameUser, emailUser, addressUser, phoneNumber);
+                PersonModel person = new PersonModel(this.person.getPersonId(),nameUser, roleUser, emailUser, addressUser, phoneNumber);
 
                 ClientCtrl.CapNhatChuHo(person);
 
@@ -242,6 +259,7 @@ public class UpdateClient extends javax.swing.JFrame {
     private javax.swing.JTextField EmailUser;
     private javax.swing.JTextField NameUser;
     private javax.swing.JTextField PhoneNumberUser;
+    private javax.swing.JTextField RoleCodeUser;
     private javax.swing.JButton UpdateUserBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -250,6 +268,7 @@ public class UpdateClient extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
