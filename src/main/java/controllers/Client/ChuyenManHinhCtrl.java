@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import models.Client.DanhMucModel;
 import views.main.client.ClientBill;
 import views.main.client.ClientChangePassword;
+import views.main.client.ClientChart;
 import views.main.client.ClientHome;
 import views.main.client.ClientInfo;
 import views.main.client.ClientLogin;
@@ -78,6 +79,9 @@ public class ChuyenManHinhCtrl {
                 case "LogOut":
                     node = new ClientHome();
                     break;
+                case "Chart":
+                    node = new ClientChart();
+                    break;                 
                 default:
                     node = new ClientHome();
                     break;

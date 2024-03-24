@@ -282,6 +282,7 @@ public class ManagerWorker extends javax.swing.JFrame {
                 try {
                     PersonModel person = listWorker.get(selectedIndex);
                     System.out.println(person);
+                    //WorkerCtrl.XoaNhanVien(person.getPersonId());
                     WorkerCtrl.XoaNhanVien(person.getPersonId());
                     hienThiDSNhanVien();
                 } catch (ClassNotFoundException ex) {
