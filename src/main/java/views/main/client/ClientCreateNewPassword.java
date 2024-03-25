@@ -16,6 +16,7 @@ public class ClientCreateNewPassword extends javax.swing.JFrame {
      */
     public ClientCreateNewPassword() {
         initComponents();
+        setTitle("QUÊN MẬT KHẨU");
     }
 
     /**
