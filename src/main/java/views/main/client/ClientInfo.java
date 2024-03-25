@@ -31,8 +31,8 @@ public class ClientInfo extends javax.swing.JPanel {
         lblAddress.setText(client.getAddressPerson());
         lblContact.setText(client.getPhoneNumber());
         lblEmail.setText(client.getEmail());
-        lblCategoryMoney.setText(client.getNameCategoryMoney());
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

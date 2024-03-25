@@ -1,4 +1,8 @@
-package controllers.Client;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package controllers.Manager;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,10 +16,12 @@ import views.main.client.ClientBill;
 import views.main.client.ClientChangePassword;
 import views.main.client.ClientHome;
 import views.main.client.ClientInfo;
-import views.main.client.ClientLogin;
+import views.main.Manager.ManagerProfile;
+import views.main.Manager.ManagerWorker;
+
 /**
  *
- * @author Phu Bao
+ * @author GIANG
  */
 public class ChuyenManHinhCtrl {
 

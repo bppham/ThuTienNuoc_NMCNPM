@@ -115,6 +115,11 @@ public class ClientLogin extends javax.swing.JFrame {
         });
 
         txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -227,6 +232,7 @@ public class ClientLogin extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Email không có trong hệ thông!", "Thông báo", JOptionPane.ERROR_MESSAGE);
             } else {
                 try {
+                    currentEmail = email;
                     SendEmail.sendEmail(verifyCode, email);
                 } catch (MessagingException | UnsupportedEncodingException ex) {
                     Logger.getLogger(ClientLogin.class.getName()).log(Level.SEVERE, null, ex);
@@ -240,6 +246,10 @@ public class ClientLogin extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_lblForgetPasswordMouseClicked
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
     /**
      * @param args the command line arguments

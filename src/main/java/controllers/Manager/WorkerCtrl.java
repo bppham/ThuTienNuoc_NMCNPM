@@ -4,6 +4,7 @@
  */
 package controllers.Manager;
 
+import java.util.Random;
 import database.ConnectDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +18,7 @@ import java.util.logging.Logger;
 import models.DataGlobal;
 
 import models.PersonModel;
+import models.RoleCodeModel;
 
 /**
  *
@@ -26,19 +28,54 @@ public class WorkerCtrl {
     
     PersonModel personModel = DataGlobal.getDataGLobal.dataGlobal.getCurrentEditPerson();
 
-    public static void themNhanVien(PersonModel person) throws ClassNotFoundException {
+    public static void themNhanVien(PersonModel person, String keyCode) throws ClassNotFoundException {
         Connection connection = null;
         PreparedStatement statement = null;
+        
+        Random random = new Random();
+        int randomNumber = random.nextInt(9000) + 1000;
+
+        String maNV = "NV" + randomNumber;
         try {
             connection = ConnectDB.getConnection();
-            String sql = "INSERT INTO Person (PasswordAcc, RolePerson, NamePerson, Email, PhoneNumber, AddressPerson) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Person (PersonId, PasswordAcc, RolePerson, NamePerson, Email, PhoneNumber, AddressPerson) VALUES (?, ?, ?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(sql);
-            statement.setString(1, "0972652335");
-            statement.setString(2, person.getRolePerson());
-            statement.setString(3, person.getNamePerson());
-            statement.setString(4, person.getEmail());
-            statement.setString(5, person.getPhoneNumber());
-            statement.setString(6, person.getAddressPerson());
+            statement.setString(1, maNV);
+            statement.setString(2, person.getPhoneNumber());
+            statement.setString(3, person.getRolePerson());
+            statement.setString(4, person.getNamePerson());
+            statement.setString(5, person.getEmail());
+            statement.setString(6, person.getPhoneNumber());
+            statement.setString(7, person.getAddressPerson());
+
+//            String hashedPassword = PasswordHashing.hashPassword(nv.getMatKhau());
+            statement.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonModel.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(PersonModel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(PersonModel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+        try {
+            connection = ConnectDB.getConnection();
+            String sql = "INSERT INTO AreaEmployer (EmployId, RoleArea) VALUES (?, ?)";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, maNV);
+            statement.setString(2, keyCode);
 
 //            String hashedPassword = PasswordHashing.hashPassword(nv.getMatKhau());
             statement.executeUpdate();
@@ -62,7 +99,7 @@ public class WorkerCtrl {
             }
         }
     }
-
+    
     public static List<PersonModel> timTatCaNhanVien() throws ClassNotFoundException {
         List<PersonModel> dsNhanvien = new ArrayList<>();
         Connection connection = null;
@@ -75,14 +112,15 @@ public class WorkerCtrl {
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                int personId = resultSet.getInt("PersonId");
+                String personId = resultSet.getString("PersonId");
                 String roleCode = resultSet.getString("RolePerson");
                 String name = resultSet.getString("NamePerson");
                 String email = resultSet.getString("Email");
                 String phoneNumber = resultSet.getString("PhoneNumber");
                 String addressPerson = resultSet.getString("AddressPerson");
+                String PasswordAcc = resultSet.getString("PasswordAcc");
                 
-                PersonModel personWorker = new PersonModel(personId,name, roleCode, email, addressPerson, phoneNumber);
+                PersonModel personWorker = new PersonModel(personId, PasswordAcc, roleCode, name, email, phoneNumber, addressPerson);
                 dsNhanvien.add(personWorker);
             }
         } catch (SQLException ex) {
@@ -107,7 +145,48 @@ public class WorkerCtrl {
         return dsNhanvien;
     }
     
-      public static void XoaNhanVien(Integer PersonId) throws ClassNotFoundException {
+    public static List<RoleCodeModel> timTatCaKhuvuc() throws ClassNotFoundException {
+        List<RoleCodeModel> dsKhuvuc = new ArrayList<>();
+        Connection connection = null;
+        Statement statement = null;
+
+        try {
+            connection = ConnectDB.getConnection();
+            String sql = "SELECT * FROM RoleCode  where TypeCode = 'RoleArea' ";
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                String valueRole = resultSet.getString("ValueRole");
+                String keyCode = resultSet.getString("KeyCode");
+                String TypeCode = resultSet.getString("TypeCode");
+                
+                RoleCodeModel roleCodeModel = new RoleCodeModel(keyCode, TypeCode, valueRole);
+                dsKhuvuc.add(roleCodeModel);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(WorkerCtrl.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(WorkerCtrl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(WorkerCtrl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return dsKhuvuc;
+    }
+    
+      public static void XoaNhanVien(String PersonId) throws ClassNotFoundException {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
@@ -115,7 +194,7 @@ public class WorkerCtrl {
             String sql = "DELETE FROM Person WHERE PersonId=?";
             statement = connection.prepareStatement(sql);
 
-            statement.setInt(1, PersonId);
+            statement.setString(1, PersonId);
 
             statement.executeUpdate();
 
@@ -152,7 +231,7 @@ public class WorkerCtrl {
             statement.setString(3, person.getEmail());
             statement.setString(4, person.getPhoneNumber());
             statement.setString(5, person.getAddressPerson());
-            statement.setInt(6, person.getPersonId());
+            statement.setString(6, person.getPersonId());
 
             statement.executeUpdate();
         } catch (SQLException ex) {

@@ -11,9 +11,18 @@ package models;
 public class DataGlobal {
     private PersonModel currentEditPerson;
     
+    private RoleCodeModel currentRoleCodeModel;
+    
+    private AssignmentEmpoylerModel assignmentEmpoylerModel;
+    
+    private String TimeAssign;
+    
     public DataGlobal() {
         // Khởi tạo một đối tượng PersonModel trống
         currentEditPerson = new PersonModel();
+        currentRoleCodeModel = new RoleCodeModel();
+        assignmentEmpoylerModel = new AssignmentEmpoylerModel();
+        TimeAssign = "";
     }
 
     public void setCurrentEditPerson(PersonModel currentEditPerson) {
@@ -23,6 +32,32 @@ public class DataGlobal {
     public PersonModel getCurrentEditPerson() {
         return currentEditPerson;
     }
+
+    public void setRoleCodeModel(RoleCodeModel currentRoleCodeModel) {
+        this.currentRoleCodeModel = currentRoleCodeModel;
+    }
+
+    public RoleCodeModel getRoleCodeModel() {
+        return currentRoleCodeModel;
+    }
+
+    public void setAssignmentEmpoylerModel(AssignmentEmpoylerModel assignmentEmpoylerModel) {
+        this.assignmentEmpoylerModel = assignmentEmpoylerModel;
+    }
+
+    public AssignmentEmpoylerModel getAssignmentEmpoylerModel() {
+        return assignmentEmpoylerModel;
+    }
+
+    public void setTimeAssign(String TimeAssign) {
+        this.TimeAssign = TimeAssign;
+    }
+
+    public String getTimeAssign() {
+        return TimeAssign;
+    }
+    
+    
     
     public class getDataGLobal {
         public static DataGlobal dataGlobal = new DataGlobal();

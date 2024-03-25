@@ -5,10 +5,10 @@
 package models;
 
 public class PersonModel {
-    private Integer PersonId, CategoryMoneyId;
-    private String PassworrdAcc, RolePerson, NamePerson, Email, PhoneNumber, AddressPerson;
+
+    private String PersonId,PassworrdAcc, RolePerson, NamePerson, Email, PhoneNumber, AddressPerson;
     
-    public PersonModel(Integer PersonId, String PasswordAcc, String RolePerson, String NamePerson, String Email, String PhoneNumber, String AddressPerson, Integer CategoryMoneyId) {
+    public PersonModel(String PersonId, String PasswordAcc, String RolePerson, String NamePerson, String Email, String PhoneNumber, String AddressPerson) {
         this.PersonId = PersonId;
         this.PassworrdAcc = PasswordAcc;
         this.RolePerson = RolePerson;
@@ -16,7 +16,7 @@ public class PersonModel {
         this.Email = Email;
         this.PhoneNumber = PhoneNumber;
         this.AddressPerson = AddressPerson;
-        this.CategoryMoneyId = CategoryMoneyId;
+
     }
     
     public PersonModel (String NamePerson, String RolePeson, String EmailPerson, String AddressPerson, String PhoneNumberPerson, String PasswordAcc)  {
@@ -28,15 +28,15 @@ public class PersonModel {
         this.PassworrdAcc = PasswordAcc;
     }
     
-    public PersonModel (Integer PersonId ,String NamePerson, String RolePeson, String EmailPerson, String AddressPerson, String PhoneNumberPerson)  {
-        this.PersonId = PersonId;
-        this.NamePerson = NamePerson;
-        this.RolePerson = RolePeson;
-        this.Email = EmailPerson;
-        this.AddressPerson = AddressPerson;
-        this.PhoneNumber = PhoneNumberPerson;
-    }
-    
+//    public PersonModel (String PersonId ,String NamePerson, String RolePeson, String EmailPerson, String AddressPerson, String PhoneNumberPerson)  {
+//        this.PersonId = PersonId;
+//        this.NamePerson = NamePerson;
+//        this.RolePerson = RolePeson;
+//        this.Email = EmailPerson;
+//        this.AddressPerson = AddressPerson;
+//        this.PhoneNumber = PhoneNumberPerson;
+//    }
+//    
     public  PersonModel (String NamePerson, String RolePeson, String EmailPerson, String AddressPerson, String PhoneNumberPerson)  {
         this.NamePerson = NamePerson;
         this.RolePerson = RolePeson;
@@ -45,12 +45,18 @@ public class PersonModel {
         this.PhoneNumber = PhoneNumberPerson;
     }
     
+    public PersonModel(String PersonId, String NamePerson, String AddressPerson) {
+        this.PersonId = PersonId;
+        this.NamePerson = NamePerson;
+        this.AddressPerson = AddressPerson;
+    }
+    
     public PersonModel () {
         
     }
     
     // Getter methods
-    public Integer getPersonId() {
+    public String getPersonId() {
         return PersonId;
     }
     
@@ -58,9 +64,6 @@ public class PersonModel {
         return PassworrdAcc;
     }
 
-    public Integer getCategoryMoneyId() {
-        return CategoryMoneyId;
-    }
 
     public String getRolePerson() {
         return RolePerson;
@@ -83,16 +86,12 @@ public class PersonModel {
     }
     
     // Setter methods
-    public void setPersonId(Integer personId) {
+    public void setPersonId(String personId) {
         this.PersonId = personId;
     }
     
     public void setPasswordAcc (String PasswordAcc) {
         this.PassworrdAcc = PasswordAcc;
-    }
-
-    public void setCategoryMoneyId(Integer categoryMoneyId) {
-        this.CategoryMoneyId = categoryMoneyId;
     }
 
     public void setRolePerson(String rolePerson) {
