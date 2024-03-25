@@ -175,7 +175,7 @@ public class ClientBill extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã hóa đơn", "Mã nhân viên", "Mã chủ hộ", "Chỉ số trước", "Chỉ số sau", "Ngày thu tiền", "Số tiền", "Địa chỉ"
+                "Mã hóa đơn", "Mã nhân viên", "Mã chủ hộ", "Chỉ số trước", "Chỉ số sau", "Ngày ghi nước", "Số tiền", "Địa chỉ"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -231,7 +231,7 @@ public class ClientBill extends javax.swing.JPanel {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cboSapXep, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -325,6 +325,7 @@ public class ClientBill extends javax.swing.JPanel {
 
         txtNameAddressCollect.setEditable(false);
         txtNameAddressCollect.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNameAddressCollect.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtNameAddressCollect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameAddressCollectActionPerformed(evt);
@@ -363,11 +364,13 @@ public class ClientBill extends javax.swing.JPanel {
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)))
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtMoneyToPay, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtMoneyCategory, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtAmountWater, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtNameAddressCollect, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtMoneyCategory)
+                    .addComponent(txtAmountWater)
+                    .addComponent(txtMoneyToPay)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(txtNameAddressCollect, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(

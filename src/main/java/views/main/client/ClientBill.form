@@ -196,7 +196,7 @@
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace pref="281" max="32767" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
                                               <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="cboSapXep" min="-2" pref="321" max="-2" attributes="0"/>
@@ -252,7 +252,7 @@
                                 <Column editable="false" title="M&#xe3; ch&#x1ee7; h&#x1ed9;" type="java.lang.Object"/>
                                 <Column editable="false" title="Ch&#x1ec9; s&#x1ed1; tr&#x1b0;&#x1edb;c" type="java.lang.Object"/>
                                 <Column editable="false" title="Ch&#x1ec9; s&#x1ed1; sau" type="java.lang.Object"/>
-                                <Column editable="false" title="Ng&#xe0;y thu ti&#x1ec1;n" type="java.lang.Object"/>
+                                <Column editable="false" title="Ng&#xe0;y ghi n&#x1b0;&#x1edb;c" type="java.lang.Object"/>
                                 <Column editable="false" title="S&#x1ed1; ti&#x1ec1;n" type="java.lang.Object"/>
                                 <Column editable="false" title="&#x110;&#x1ecb;a ch&#x1ec9;" type="java.lang.Object"/>
                               </Table>
@@ -379,11 +379,14 @@
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtMoneyToPay" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtMoneyCategory" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtAmountWater" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtNameAddressCollect" alignment="1" min="-2" pref="274" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtMoneyCategory" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtAmountWater" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtMoneyToPay" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtNameAddressCollect" min="-2" pref="371" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -582,6 +585,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="14" style="0"/>
                         </Property>
+                        <Property name="horizontalAlignment" type="int" value="2"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNameAddressCollectActionPerformed"/>

@@ -314,7 +314,7 @@ public class ClientHome extends javax.swing.JPanel {
         });
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel11.setForeground(new java.awt.Color(51, 51, 51));
         jLabel11.setText("Chọn hộ:");
 
         lblThongBao.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
