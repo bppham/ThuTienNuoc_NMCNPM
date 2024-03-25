@@ -17,6 +17,7 @@ public class ClientVerifyEmail extends javax.swing.JFrame {
      */
     public ClientVerifyEmail() {
         initComponents();
+        setTitle("QUÊN MẬT KHẨU");
     }
 
     /**
@@ -70,7 +71,7 @@ public class ClientVerifyEmail extends javax.swing.JFrame {
             }
         });
 
-        btnCancel.setBackground(new java.awt.Color(0, 153, 255));
+        btnCancel.setBackground(new java.awt.Color(255, 102, 102));
         btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnCancel.setText("Hủy");

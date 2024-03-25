@@ -29,6 +29,7 @@ public class ClientLogin extends javax.swing.JFrame {
 
     public ClientLogin() {
         initComponents();
+        setTitle("ĐĂNG NHẬP");
         txtEmail.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
