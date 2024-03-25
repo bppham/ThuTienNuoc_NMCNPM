@@ -12,7 +12,7 @@ import views.main.client.ClientLogin;
 public class workerMain extends javax.swing.JFrame {
     
     private final editPassword_worker editPassword_worker1 = new views.worker.editPassword_worker(this);
-    private final home_worker home_worker2 = new home_worker();
+    private home_worker home_worker2 = new home_worker();
     private final managerUser_worker managerUser_worker1 = new managerUser_worker(this);
     private final profile_worker profile_worker1 = new  views.worker.profile_worker(this);
     private GhiDienSoNuoc ghiDienSoNuoc = new views.worker.GhiDienSoNuoc(this);
@@ -84,14 +84,15 @@ public class workerMain extends javax.swing.JFrame {
         jLayeredPane1 = new javax.swing.JLayeredPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1024, 600));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(200, 600));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Client/logoWater.png"))); // NOI18N
 
         button_home.setBackground(new java.awt.Color(67, 24, 255));
-        button_home.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        button_home.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         button_home.setForeground(new java.awt.Color(255, 255, 255));
         button_home.setText("Trang chủ");
         button_home.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +102,7 @@ public class workerMain extends javax.swing.JFrame {
         });
 
         button_managerUser.setBackground(new java.awt.Color(123, 150, 212));
-        button_managerUser.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        button_managerUser.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         button_managerUser.setForeground(new java.awt.Color(255, 255, 255));
         button_managerUser.setText("Quản lý chủ hộ");
         button_managerUser.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +112,7 @@ public class workerMain extends javax.swing.JFrame {
         });
 
         button_logout.setBackground(new java.awt.Color(134, 140, 255));
-        button_logout.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        button_logout.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         button_logout.setForeground(new java.awt.Color(255, 255, 255));
         button_logout.setText("Đăng xuất");
         button_logout.addActionListener(new java.awt.event.ActionListener() {
@@ -121,7 +122,7 @@ public class workerMain extends javax.swing.JFrame {
         });
 
         button_profile.setBackground(new java.awt.Color(123, 150, 212));
-        button_profile.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        button_profile.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         button_profile.setForeground(new java.awt.Color(255, 255, 255));
         button_profile.setText("Hồ sơ");
         button_profile.setPreferredSize(new java.awt.Dimension(72, 55));
@@ -137,7 +138,7 @@ public class workerMain extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,9 +180,9 @@ public class workerMain extends javax.swing.JFrame {
                 .addComponent(button_managerUser, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(button_profile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 380, Short.MAX_VALUE)
                 .addComponent(button_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(55, 55, 55))
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -194,14 +195,14 @@ public class workerMain extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 765, Short.MAX_VALUE))
+                .addGap(1, 1, 1)
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
+                .addGap(1, 1, 1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1)
         );
 
         pack();
@@ -219,6 +220,7 @@ public class workerMain extends javax.swing.JFrame {
         button_managerUser.setBackground(new Color(123,150,212));
         button_profile.setBackground(new Color(123,150,212));
         setVisibleAllFalse();
+        home_worker2.setDefault();
         home_worker2.setVisible(true);
     }//GEN-LAST:event_button_homeActionPerformed
 

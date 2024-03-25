@@ -148,6 +148,7 @@ public class DienSoNuoc extends javax.swing.JPanel {
         table = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(235, 239, 254));
+        setPreferredSize(new java.awt.Dimension(1000, 720));
 
         jPanel1.setBackground(new java.awt.Color(235, 239, 254));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
@@ -155,8 +156,12 @@ public class DienSoNuoc extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(43, 54, 116));
         jLabel1.setText("Hóa đơn chủ hộ");
 
+        lb_branch.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
+        lb_branch.setForeground(new java.awt.Color(5, 205, 153));
         lb_branch.setText("Chi nhánh Tân Phú");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -180,6 +185,9 @@ public class DienSoNuoc extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        button_back.setBackground(new java.awt.Color(134, 140, 255));
+        button_back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        button_back.setForeground(new java.awt.Color(255, 255, 255));
         button_back.setText("Quay lại");
         button_back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,8 +220,12 @@ public class DienSoNuoc extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(235, 239, 254));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Hóa Đơn Chi Tiết");
 
+        button_rendarBill.setBackground(new java.awt.Color(134, 140, 255));
+        button_rendarBill.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        button_rendarBill.setForeground(new java.awt.Color(255, 255, 255));
         button_rendarBill.setText("Ghi số nước mới");
         button_rendarBill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,12 +233,16 @@ public class DienSoNuoc extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel2.setText("Tên Chủ Hộ:");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel3.setText("Nhóm:");
 
+        lb_name.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         lb_name.setText("jLabel5");
 
+        lb_group.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         lb_group.setText("lb_group");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -295,18 +311,18 @@ public class DienSoNuoc extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
