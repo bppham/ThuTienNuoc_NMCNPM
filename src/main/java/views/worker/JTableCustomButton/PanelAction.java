@@ -3,6 +3,7 @@ package views.worker.JTableCustomButton;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 
 
 public class PanelAction extends javax.swing.JPanel {
@@ -10,6 +11,8 @@ public class PanelAction extends javax.swing.JPanel {
  
     public PanelAction() {
         initComponents();
+        cmdEdit.setIcon(new ImageIcon("src\\main\\java\\images\\Worker\\icons8-pencil-24.png"));
+        cmdView.setIcon(new ImageIcon("src\\main\\java\\images\\Worker\\icons8-view-24.png"));
     }
 
     public void initEvent(TableActionEvent event, int row){

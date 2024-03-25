@@ -107,7 +107,7 @@ public class ClientCtrl {
         return dsChuHo;
     }
     
-      public static void XoaChuHo(int PersonId) throws ClassNotFoundException {
+      public static void XoaChuHo(String PersonId) throws ClassNotFoundException {
         Connection connection = null;
         PreparedStatement statement = null;
         try {

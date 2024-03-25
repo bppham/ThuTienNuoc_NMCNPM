@@ -2,16 +2,23 @@
 package views.worker;
 
 import controllers.Worker.WorkerController;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import models.BillModel;
 import models.PersonData;
 import models.PersonModel;
+import models.worker.DetailPrice;
 
 
 public class GhiDienSoNuoc extends javax.swing.JPanel {
     
     private workerMain wMain;
     private PersonModel personModel;
+    private WorkerController workerController = new WorkerController();
 
     public GhiDienSoNuoc(workerMain wMain) {
         this.wMain = wMain;
@@ -21,15 +28,17 @@ public class GhiDienSoNuoc extends javax.swing.JPanel {
 
     public void setDefault(){
         lb_branch.setText("Chi nhánh "+PersonData.getInstance().getBranch());
+        jDateChooser1.setDate(new Date());
         if(personModel != null){
             lb_idUser.setText(personModel.getPersonId());
             lb_nameUser.setText(personModel.getNamePerson());
             lb_address.setText(personModel.getAddressPerson());
             lb_phoneNo.setText(personModel.getPhoneNumber());
+            text_currentIndex.setText("");
             //----- set value of PrevIndex ----
             try {
-            
-                text_preIndex.setText(String.valueOf(new WorkerController().getPrevIndex(personModel.getPersonId())));
+                String addressCollectId = workerController.getDetailAddressIdbyNameAddress(personModel.getAddressPerson());
+                text_preIndex.setText(String.valueOf(new WorkerController().getCurrentIndex(personModel.getPersonId(),addressCollectId)));
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(GhiDienSoNuoc.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -104,7 +113,7 @@ public class GhiDienSoNuoc extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        button_back.setText("Back");
+        button_back.setText("Quay lại");
         button_back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 button_backActionPerformed(evt);
@@ -152,7 +161,6 @@ public class GhiDienSoNuoc extends javax.swing.JPanel {
 
         jLabel9.setText("Số nước mới:");
 
-        text_currentIndex.setText("200");
         text_currentIndex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 text_currentIndexActionPerformed(evt);
@@ -288,9 +296,97 @@ public class GhiDienSoNuoc extends javax.swing.JPanel {
         wMain.setVisibleAllFalse();
         wMain.setVisibleManagerUser();
     }//GEN-LAST:event_button_backActionPerformed
+    
+    private String renderIdBill(){
+        String id_bill = "";
+        try {
+            id_bill = workerController.getIdBill();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GhiDienSoNuoc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(id_bill.equals("")){
+            id_bill = "MD1";
+        }else{
+            int newNumber = Integer.parseInt(id_bill.substring(2)) + 1;
+            id_bill = "MD" + String.valueOf(newNumber);
+        }
+        return id_bill;
+    }
+    private boolean checkInput(){
+        if(text_currentIndex.equals("")){
+            JOptionPane.showMessageDialog(this, "Mã số nước mới không được để trống!", "Thông báo",JOptionPane.OK_OPTION);
+            return false;
+        }
 
-    private void button_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_saveActionPerformed
+        if (!(text_currentIndex.getText().matches("[0-9]+(\\.[0-9]+)?"))) {
+            JOptionPane.showMessageDialog(this, "Số nước nhập vào phải là số!", "Thông báo", JOptionPane.OK_OPTION);
+            return false;
+        }
         
+        if(Integer.parseInt(String.valueOf(text_preIndex.getText())) >= Integer.parseInt(String.valueOf(text_currentIndex.getText()))){
+            JOptionPane.showMessageDialog(this, "Số nước mới không hợp lệ!", "Thông báo", JOptionPane.OK_OPTION);
+            return false;
+        }
+        Date newestDate = null;
+        try {
+            newestDate = workerController.getDateNewest(personModel.getPersonId(),workerController.getDetailAddressIdbyNameAddress(personModel.getAddressPerson()));
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GhiDienSoNuoc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if( newestDate != null && jDateChooser1.getDate().compareTo(newestDate) <0 ){
+            JOptionPane.showMessageDialog(this, "Ngày chọn không hợp lệ!", "Thông báo", JOptionPane.OK_OPTION);
+            return false;
+        }
+        
+        return true;
+    }
+    
+    private int calculateMoney(){
+        List<DetailPrice> lsDetailPrices = new ArrayList<>();
+        try {
+            lsDetailPrices = workerController.getDetailPrices(personModel.getPersonId(), personModel.getAddressPerson());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GhiDienSoNuoc.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int soGia = Integer.parseInt(String.valueOf(text_currentIndex.getText())) - Integer.parseInt(String.valueOf(text_preIndex.getText()));
+        for(DetailPrice dp: lsDetailPrices){
+            if(dp.getStartIndex() <= (soGia) && dp.getEndIndex() > (soGia)){
+                return (int)(soGia * (dp.getPrice()));
+            }
+        }
+        return -1;
+    }
+    
+    private void button_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_saveActionPerformed
+        if(checkInput()){
+            String addressCollectID = "";
+            try {
+                addressCollectID = workerController.getDetailAddressIdbyNameAddress(personModel.getAddressPerson());
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(GhiDienSoNuoc.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            BillModel billModel = new BillModel(
+                    renderIdBill(),
+                    PersonData.getInstance().getPersonInfo().getPersonId(),
+                    personModel.getPersonId(),
+                    Integer.parseInt(String.valueOf(text_preIndex.getText())),
+                    Integer.parseInt(String.valueOf(text_currentIndex.getText())),
+                    jDateChooser1.getDate(),
+                    calculateMoney(),
+                    addressCollectID,
+                    false,
+                    null
+            );
+            try {
+                workerController.recordBillUser(billModel);
+                setDefault();
+                wMain.setBillsUser_DienSoNuoc(personModel);
+                wMain.setVisibleAllFalse();
+                wMain.setVisibleDienSoNuoc(true);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(GhiDienSoNuoc.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_button_saveActionPerformed
 
 

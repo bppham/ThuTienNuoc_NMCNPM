@@ -10,7 +10,7 @@ public class BillModel {
     private String userId;
     private int preIndex;
     private int currentIndex;
-    private Date timeCollect;
+    private Date timeCollect, timePay;
     private double moneyToPay;
     private String AddressCollectId;
     private boolean statusCollect;
@@ -18,7 +18,7 @@ public class BillModel {
     public BillModel() {
     }
 
-    public BillModel(String collectMoneyId, String employCollectId, String userId, int preIndex, int currentIndex, Date timeCollect, double moneyToPay, String AddressCollectId, boolean statusCollect) {
+    public BillModel(String collectMoneyId, String employCollectId, String userId, int preIndex, int currentIndex, Date timeCollect, double moneyToPay, String AddressCollectId, boolean statusCollect, Date timePay) {
         this.collectMoneyId = collectMoneyId;
         this.employCollectId = employCollectId;
         this.userId = userId;
@@ -28,6 +28,7 @@ public class BillModel {
         this.moneyToPay = moneyToPay;
         this.AddressCollectId = AddressCollectId;
         this.statusCollect = statusCollect;
+        this.timePay = timePay;
     }
 
     public String getCollectMoneyId() {
@@ -100,6 +101,14 @@ public class BillModel {
 
     public void setStatusCollect(boolean statusCollect) {
         this.statusCollect = statusCollect;
+    }
+
+    public Date getTimePay() {
+        return timePay;
+    }
+
+    public void setTimePay(Date timePay) {
+        this.timePay = timePay;
     }
     
     

@@ -363,7 +363,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="button_changePassword" min="-2" pref="152" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                              <Component id="lb_avatar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -375,7 +375,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                      <Component id="lb_avatar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="button_changePassword" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -384,12 +384,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel14">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\code\Java\project_qlTienNuoc\main\ThuTienNuoc_NMCNPM\src\main\java\images\Worker\user.png"/>
-                </Property>
-              </Properties>
+            <Component class="javax.swing.JLabel" name="lb_avatar">
             </Component>
             <Component class="javax.swing.JButton" name="button_changePassword">
               <Properties>
