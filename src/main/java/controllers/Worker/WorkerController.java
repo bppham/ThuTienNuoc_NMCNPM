@@ -17,7 +17,13 @@ import models.worker.DetailPrice;
 
 public class WorkerController {
     public PersonModel getInforPersonbyID(String id) throws SQLException, ClassNotFoundException{
-        String sql = "select * from Person where PersonId = ?";
+        String sql = """
+                     select * 
+                     from Person as p
+                     join Account as a
+                     on p.Email = a.Email
+                     where p.PersonId = ?
+                     """;
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, id);
             ResultSet resultSet = statement.executeQuery();
@@ -39,7 +45,15 @@ public class WorkerController {
         return null;
     }
     public void changePassword(String newPassword, String id_person) throws ClassNotFoundException, SQLException{
-        String sql = "Update Person set PasswordAcc = ? where PersonId = ?";
+        String sql = """
+                     Update Account 
+                     set PasswordAcc = ? 
+                     where Email = (
+                     	select Email
+                     	from Person
+                     	where Person.PersonId = ?
+                     )
+                     """;
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, newPassword);
             statement.setString(2, id_person);
@@ -69,10 +83,10 @@ public class WorkerController {
     public String getBranchWork(String personId) throws ClassNotFoundException,SQLException{
         String sql = """
                      select *
-                     from Assignment as a
+                     from AreaEmployer as ae
                      join RoleCode as rc
-                     on a.RoleArea = rc.KeyCode
-                     where a.EmployId = ?;
+                     on ae.RoleArea = rc.KeyCode
+                     where ae.EmployId = ?;
                      """;
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, personId);
@@ -91,13 +105,15 @@ public class WorkerController {
         List<PersonModel> lsPersons = new ArrayList<>();
         branch = "%" + branch +"%";
         String sql = """
-                     select p.PersonId,p.NamePerson,p.RolePerson, p.Email,p.PhoneNumber, da.NameDetailAddress, p.PasswordAcc, rc.ValueRole
-                     from Person as p
-                     join DetailAddress as da
-                     on p.PersonId = da.PersonId
-                     join RoleCode as rc
-                     on rc.KeyCode = da.RoleMoneyCategory
-                     where da.NameDetailAddress like ?
+                    select p.PersonId,p.NamePerson,p.RolePerson, p.Email,p.PhoneNumber, da.NameDetailAddress, a.PasswordAcc, rc.ValueRole
+                    from Person as p
+                    join Account as a
+                    on p.Email = a.Email
+                    join DetailAddress as da
+                    on p.PersonId = da.PersonId
+                    join RoleCode as rc
+                    on rc.KeyCode = da.RoleMoneyCategory
+                    where da.NameDetailAddress like ?
                      """ + where;
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, branch);

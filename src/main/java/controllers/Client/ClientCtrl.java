@@ -331,7 +331,7 @@ public class ClientCtrl {
         boolean flag = false;
         String sql = "SELECT PasswordAcc FROM Person AS PS "
                 + "JOIN Account AS AC ON PS.Email = AC.Email "
-                + "WHERE PS.RolePerson = 'R3' AND PS.Email = ? AND AC.PasswordAcc = ?";
+                + "WHERE PS.Email = ? AND AC.PasswordAcc = ?";
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, currentEmail);
             statement.setString(2, password);
@@ -360,13 +360,15 @@ public class ClientCtrl {
     //----------
     public static PersonModel getInforPersonbyEmail(String email) throws ClassNotFoundException {
         String sql = """
-                     select p.PersonId,p.NamePerson,p.RolePerson, p.Email,p.PhoneNumber, p.AddressPerson, p.PasswordAcc, rc.ValueRole
-                     from Person as p
-                     join Assignment as a
-                     on p.PersonId = a.EmployId
-                     join RoleCode as rc
-                     on rc.KeyCode = a.RoleArea
-                     where Email = ?
+                     select p.PersonId,p.NamePerson,p.RolePerson, p.Email,p.PhoneNumber, p.AddressPerson, a.PasswordAcc, rc.ValueRole
+                    from Person as p
+                    join AreaEmployer as ae
+                    on p.PersonId = ae.EmployId
+                    join Account as a
+                    on a.Email = p.Email
+                    join RoleCode as rc
+                    on rc.KeyCode = ae.RoleArea
+                    where p.Email = ?
                      """;
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, email);
