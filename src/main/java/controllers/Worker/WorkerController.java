@@ -8,7 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.BillModel;
@@ -208,7 +210,7 @@ public class WorkerController {
                     where cm.UserId = ? and AddressCollectId =? and cm.TimeCollect = (
                     select MAX(cm1.TimeCollect)
                     from CollectMoney as cm1
-                    where cm.UserId = ? and AddressCollectId =?
+                    where cm1.UserId = ? and AddressCollectId =?
                     )
                      """;
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
@@ -258,18 +260,25 @@ public class WorkerController {
     
     public String getIdBill() throws ClassNotFoundException{
         String idBill = "";
+        int numflag = -1;
         String sql = """
-                     SELECT TOP 1 cm.CollectMoneyId
+                     SELECT cm.CollectMoneyId
                      FROM CollectMoney AS cm
-                     order by cm.TimeCollect DESC, PrevIndex  DESC
+                     
                     """;
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
 
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
+                
                 idBill = resultSet.getString("CollectMoneyId");
-                              
+                
+                int number = Integer.parseInt(idBill.substring(2));
+                if(numflag < number){
+                    numflag = number;
+                }          
             }
+            idBill = "MD" + numflag;
         }
         catch (SQLException ex) {
             Logger.getLogger(WorkerController.class.getName()).log(Level.SEVERE, null, ex);
@@ -327,5 +336,117 @@ public class WorkerController {
         } 
         return null;
         
+    }
+    public Map<Integer, Double> getSumPricePerMonth(String area){
+        Map<Integer, Double> pricePerMonthMap = new HashMap<>();
+        String sql = """
+                    select SUM(cm.MoneyToPay) as TotalPayPerMonth, MONTH(cm.TimeCollect) as month
+                    from CollectMoney as cm
+                    join DetailAddress as da
+                    on cm.AddressCollectId = da.DetailAddressId
+                    where da.NameDetailAddress like ? and cm.StatusCollect = 1 and YEAR(cm.TimeCollect) = YEAR(GETDATE())
+                    group by MONTH(cm.TimeCollect)
+                     """;
+        try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, "%"+area +"%");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {        
+                pricePerMonthMap.put(resultSet.getInt("month"), resultSet.getDouble("TotalPayPerMonth"));
+            }
+            return pricePerMonthMap;
+        }
+        catch (SQLException | ClassNotFoundException ex) { 
+            Logger.getLogger(WorkerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    public Map<String, Double> getPayDone(String area){
+        Map<String, Double> payDoneMap = new HashMap<>();
+        String sql = """
+                     select COUNT(cm.StatusCollect) as DonePay
+                     from CollectMoney as cm
+                     join DetailAddress as da
+                     on cm.AddressCollectId = da.DetailAddressId
+                     where da.NameDetailAddress like ? and cm.StatusCollect = 1
+                     """;
+        try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, "%"+area +"%");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {        
+                payDoneMap.put("DonePay", resultSet.getDouble("DonePay"));
+            }
+            return payDoneMap;
+        }
+        catch (SQLException | ClassNotFoundException ex) { 
+            Logger.getLogger(WorkerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public Map<String, Double> getPayPending(String area){
+        Map<String, Double> payDoneMap = new HashMap<>();
+        String sql = """
+                     select COUNT(cm.StatusCollect) as PendingPay
+                     from CollectMoney as cm
+                     join DetailAddress as da
+                     on cm.AddressCollectId = da.DetailAddressId
+                     where da.NameDetailAddress like ? and cm.StatusCollect = 0
+                     """;
+        try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, "%"+area +"%");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {        
+                payDoneMap.put("PendingPay", resultSet.getDouble("PendingPay"));
+            }
+            return payDoneMap;
+        }
+        catch (SQLException | ClassNotFoundException ex) { 
+            Logger.getLogger(WorkerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    public int getTotalUser(String area){
+        int totalUser = 0;
+        String sql ="""
+                    select COUNT(p.PersonId) as TotalUser
+                    from  DetailAddress as da
+                    join Person as p
+                    on p.PersonId = da.PersonId
+                    where da.NameDetailAddress like ? and da.StatusService = 1
+                    """;
+        try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, "%"+area +"%");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {        
+                totalUser = resultSet.getInt("TotalUser");
+            }
+            return totalUser;
+        }
+        catch (SQLException | ClassNotFoundException ex) { 
+            Logger.getLogger(WorkerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+    public Double getTotalPriceYear(String area){
+        Double totalPrice = 0.0;
+        String sql = """
+                     select SUM(cm.MoneyToPay) as TotalPayYear
+                     from CollectMoney as cm
+                     join DetailAddress as da
+                     on cm.AddressCollectId = da.DetailAddressId
+                     where da.NameDetailAddress like ? and cm.StatusCollect = 0 and YEAR(cm.TimeCollect) = YEAR(GETDATE())
+                     """;
+        try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, "%"+area +"%");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {        
+                totalPrice = resultSet.getDouble("TotalPayYear");
+            }
+            return totalPrice;
+        }
+        catch (SQLException | ClassNotFoundException ex) { 
+            Logger.getLogger(WorkerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1.0;
     }
 }
