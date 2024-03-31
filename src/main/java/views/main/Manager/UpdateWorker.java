@@ -13,7 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import java.awt.Component;
 import java.awt.Window;
+import java.util.HashMap;
+import java.util.Map;
 import models.DataGlobal;
+
 /**
  *
  * @author GIANG
@@ -23,21 +26,25 @@ public class UpdateWorker extends javax.swing.JFrame {
     /**
      * Creates new form UpdateWorker
      */
-    
-    
 //    private PersonModel person;
-   PersonModel person = DataGlobal.getDataGLobal.dataGlobal.getCurrentEditPerson();
-    
+    PersonModel person = DataGlobal.getDataGLobal.dataGlobal.getCurrentEditPerson();
+
+    Map<String, String> mapRole = new HashMap<String, String>();
+
     public UpdateWorker() {
         initComponents();
-        
-        
-        
+        roleUser.addItem("Quản lí");
+        roleUser.addItem("Nhân viên");
+
         NameUser.setText(person.getNamePerson());
-        RoleCodeUser.setText(person.getRolePerson());
         EmailUser.setText(person.getEmail());
         DetailAddressUser.setText(person.getAddressPerson());
         PhoneNumberUser.setText(person.getPhoneNumber());
+
+        System.out.println(person.getPersonId());
+        
+        
+
     }
 
     /**
@@ -61,8 +68,8 @@ public class UpdateWorker extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         DetailAddressUser = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        RoleCodeUser = new javax.swing.JTextField();
         UpdateUserBtn = new javax.swing.JButton();
+        roleUser = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -97,6 +104,13 @@ public class UpdateWorker extends javax.swing.JFrame {
             }
         });
 
+        roleUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
+        roleUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roleUserActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -113,12 +127,11 @@ public class UpdateWorker extends javax.swing.JFrame {
                     .addComponent(PhoneNumberUser, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
                 .addGap(102, 102, 102)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(DetailAddressUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
-                        .addComponent(RoleCodeUser, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(UpdateUserBtn, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DetailAddressUser, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UpdateUserBtn)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(roleUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(144, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -133,7 +146,7 @@ public class UpdateWorker extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NameUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RoleCodeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(roleUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -206,23 +219,28 @@ public class UpdateWorker extends javax.swing.JFrame {
     private void UpdateUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateUserBtnActionPerformed
         // TODO add your handling code here:
         String nameUser = NameUser.getText();
-        String roleUser = RoleCodeUser.getText();
+        String roleCodeUser;
         String emailUser = EmailUser.getText();
         String addressUser = DetailAddressUser.getText();
         String phoneNumber = PhoneNumberUser.getText();
+        
+        if (String.valueOf(roleUser.getSelectedItem()).equals("Quản lí")) {
+            roleCodeUser = "R1";
+        } else {
+            roleCodeUser = "R2";
+        }
 
-        if (nameUser.isEmpty() || roleUser.isEmpty() || emailUser.isEmpty() || addressUser.isEmpty() || phoneNumber.isEmpty()) {
+        if (nameUser.isEmpty() || emailUser.isEmpty() || addressUser.isEmpty() || phoneNumber.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Trường dữ liệu không được để trống", "Thông báo", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
-                PersonModel person = new PersonModel(this.person.getPersonId(),nameUser, roleUser, emailUser, addressUser, phoneNumber);
-
-                WorkerCtrl.CapNhatNhanVien(person);
+                PersonModel personv = new PersonModel(person.getPersonId(), person.getPasswordAcc(), roleCodeUser, nameUser, emailUser, phoneNumber, addressUser);
+                WorkerCtrl.CapNhatNhanVien(personv);
 
                 JOptionPane.showMessageDialog(null, "Cập nhật nhân viên thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 
                 // Đóng cửa sổ hiện tại
-                Window window = SwingUtilities.getWindowAncestor((Component)evt.getSource());
+                Window window = SwingUtilities.getWindowAncestor((Component) evt.getSource());
                 window.dispose();
 
             } catch (ClassNotFoundException ex) {
@@ -231,6 +249,10 @@ public class UpdateWorker extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_UpdateUserBtnActionPerformed
+
+    private void roleUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roleUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,7 +294,6 @@ public class UpdateWorker extends javax.swing.JFrame {
     private javax.swing.JTextField EmailUser;
     private javax.swing.JTextField NameUser;
     private javax.swing.JTextField PhoneNumberUser;
-    private javax.swing.JTextField RoleCodeUser;
     private javax.swing.JButton UpdateUserBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -284,5 +305,6 @@ public class UpdateWorker extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JComboBox<String> roleUser;
     // End of variables declaration//GEN-END:variables
 }

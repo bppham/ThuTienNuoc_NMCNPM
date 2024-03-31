@@ -44,20 +44,46 @@ public class UpdateAssignmentEmployDetail extends javax.swing.JFrame {
     }
 
     public void setLabelDisplay() {
-        try {
-            AssignmentEmpoylerModel assignmentEmpoylerModel = UpdateAssignmentEmployDetailCtrl.timThongTinHienThiUpdateAssignmentEmpoylerModel(DataGlobal.getDataGLobal.dataGlobal.getAssignmentEmpoylerModel().getPersonId(), DataGlobal.getDataGLobal.dataGlobal.getAssignmentEmpoylerModel().getEmployId(), DataGlobal.getDataGLobal.dataGlobal.getAssignmentEmpoylerModel().getDetailAddressId(), DataGlobal.getDataGLobal.dataGlobal.getTimeAssign());
-            currentNameUser.setText(assignmentEmpoylerModel.getNamePerson());
-            currentIDUser.setText(assignmentEmpoylerModel.getPersonId());
-            currentDetailAddressUser.setText(assignmentEmpoylerModel.getDetailAddress());
-            currentPhoneNumberUser.setText(assignmentEmpoylerModel.getPhoneNumberPerson());
-            currentUserEmail.setText(assignmentEmpoylerModel.getEmailPerson());
-            currentTypeWaterUser.setText(assignmentEmpoylerModel.getTypeWater());
-            currentNameEmployer.setText(assignmentEmpoylerModel.getNameEmploy());
-            currentIDEmployer.setText(assignmentEmpoylerModel.getEmployId());
-            currentEmailEmployer.setText(assignmentEmpoylerModel.getEmailEmploy());
-            currentPhoneNumberEmployer.setText(assignmentEmpoylerModel.getPhoneNumberEmploy());
-        } catch (Exception ex) {
-            Logger.getLogger(UpdateAssignmentEmployDetail.class.getName()).log(Level.SEVERE, null, ex);
+        String nonphancong = DataGlobal.getDataGLobal.dataGlobal.getEmployerNon();
+
+        if (nonphancong.equals("AC")) {
+            try {
+                AssignmentEmpoylerModel assignmentEmpoylerModel = UpdateAssignmentEmployDetailCtrl.timThongTinHienThiUpdateAssignmentEmpoylerModelChuaPhanCong(DataGlobal.getDataGLobal.dataGlobal.getAssignmentEmpoylerModel().getPersonId(), DataGlobal.getDataGLobal.dataGlobal.getAssignmentEmpoylerModel().getEmployId(), DataGlobal.getDataGLobal.dataGlobal.getAssignmentEmpoylerModel().getDetailAddressId(), DataGlobal.getDataGLobal.dataGlobal.getTimeAssign());
+
+                System.out.println("Id address " + DataGlobal.getDataGLobal.dataGlobal.getAssignmentEmpoylerModel().getDetailAddressId());
+
+                currentNameUser.setText(assignmentEmpoylerModel.getNamePerson());
+                currentIDUser.setText(assignmentEmpoylerModel.getPersonId());
+                currentDetailAddressUser.setText(assignmentEmpoylerModel.getDetailAddress());
+                currentPhoneNumberUser.setText(assignmentEmpoylerModel.getPhoneNumberPerson());
+                currentUserEmail.setText(assignmentEmpoylerModel.getEmailPerson());
+                currentTypeWaterUser.setText(assignmentEmpoylerModel.getTypeWater());
+                currentNameEmployer.setText(assignmentEmpoylerModel.getNameEmploy());
+                currentIDEmployer.setText(assignmentEmpoylerModel.getEmployId());
+                currentEmailEmployer.setText(assignmentEmpoylerModel.getEmailEmploy());
+                currentPhoneNumberEmployer.setText(assignmentEmpoylerModel.getPhoneNumberEmploy());
+            } catch (Exception ex) {
+                Logger.getLogger(UpdateAssignmentEmployDetail.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                AssignmentEmpoylerModel assignmentEmpoylerModel = UpdateAssignmentEmployDetailCtrl.timThongTinHienThiUpdateAssignmentEmpoylerModel(DataGlobal.getDataGLobal.dataGlobal.getAssignmentEmpoylerModel().getPersonId(), DataGlobal.getDataGLobal.dataGlobal.getAssignmentEmpoylerModel().getEmployId(), DataGlobal.getDataGLobal.dataGlobal.getAssignmentEmpoylerModel().getDetailAddressId(), DataGlobal.getDataGLobal.dataGlobal.getTimeAssign());
+
+                System.out.println("Id address " + DataGlobal.getDataGLobal.dataGlobal.getAssignmentEmpoylerModel().getDetailAddressId());
+
+                currentNameUser.setText(assignmentEmpoylerModel.getNamePerson());
+                currentIDUser.setText(assignmentEmpoylerModel.getPersonId());
+                currentDetailAddressUser.setText(assignmentEmpoylerModel.getDetailAddress());
+                currentPhoneNumberUser.setText(assignmentEmpoylerModel.getPhoneNumberPerson());
+                currentUserEmail.setText(assignmentEmpoylerModel.getEmailPerson());
+                currentTypeWaterUser.setText(assignmentEmpoylerModel.getTypeWater());
+                currentNameEmployer.setText(assignmentEmpoylerModel.getNameEmploy());
+                currentIDEmployer.setText(assignmentEmpoylerModel.getEmployId());
+                currentEmailEmployer.setText(assignmentEmpoylerModel.getEmailEmploy());
+                currentPhoneNumberEmployer.setText(assignmentEmpoylerModel.getPhoneNumberEmploy());
+            } catch (Exception ex) {
+                Logger.getLogger(UpdateAssignmentEmployDetail.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

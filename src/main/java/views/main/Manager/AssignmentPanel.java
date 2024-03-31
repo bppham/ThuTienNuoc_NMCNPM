@@ -1,14 +1,11 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package views.main.Manager;
 
 import controllers.Manager.AssignmentCtrl;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,21 +18,21 @@ import models.RoleCodeModel;
  *
  * @author GIANG
  */
-public class Assignment extends javax.swing.JFrame {
+public class AssignmentPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManagerArea
+     * Creates new form AssignmentPanel
      */
+    
     DefaultTableModel tableModel;
     List<RoleCodeModel> listRoleCode = new ArrayList<>();
 
     private String idArea;
-
-    // Lớp Singleton để lưu trữ thông tin của đối tượng PersonModel được chọn
-    public Assignment() {
-        try {
+    
+    public AssignmentPanel() {
+         try {
             initComponents();
-            
+
             tableModel = (DefaultTableModel) listAreaTable.getModel();
 
             hienThiDSKhuvuc();
@@ -44,7 +41,7 @@ public class Assignment extends javax.swing.JFrame {
             Logger.getLogger(ManagerWorker.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public void hienThiDSKhuvuc() throws ClassNotFoundException {
 
         listRoleCode = AssignmentCtrl.timTatCaKhuVuc();
@@ -55,7 +52,7 @@ public class Assignment extends javax.swing.JFrame {
             tableModel.addRow(new Object[]{area.getKeyCode(), area.getValuecode()});
         });
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,8 +79,6 @@ public class Assignment extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         fieldNameArea = new javax.swing.JTextField();
         detailAreaAssignment = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(134, 140, 255));
 
@@ -116,7 +111,7 @@ public class Assignment extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(134, 140, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Danh sách phường / xã / thị trấn Quận 9");
@@ -201,39 +196,32 @@ public class Assignment extends javax.swing.JFrame {
                 .addGap(64, 64, 64)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(47, 47, 47)
+                        .addComponent(addArea)
+                        .addGap(18, 18, 18)
+                        .addComponent(updateArea)
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(deleteArea)
+                        .addGap(18, 18, 18)
+                        .addComponent(detailAreaAssignment)
+                        .addGap(18, 18, 18)
+                        .addComponent(reloadArea)
+                        .addGap(10, 44, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField1))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(99, 99, 99)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(fieldNameArea, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(154, 154, 154))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addComponent(addArea)
-                                .addGap(18, 18, 18)
-                                .addComponent(updateArea)
-                                .addGap(18, 18, 18)
-                                .addComponent(deleteArea)
-                                .addGap(18, 18, 18)
-                                .addComponent(detailAreaAssignment)
-                                .addGap(18, 18, 18)
-                                .addComponent(reloadArea)
-                                .addGap(0, 0, Short.MAX_VALUE))))))
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(fieldNameArea, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(149, 149, 149)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 773, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,22 +234,21 @@ public class Assignment extends javax.swing.JFrame {
                     .addComponent(deleteArea)
                     .addComponent(detailAreaAssignment)
                     .addComponent(reloadArea))
+                .addGap(28, 28, 28)
+                .addComponent(jLabel5)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(fieldNameArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldNameArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -280,19 +267,7 @@ public class Assignment extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void reloadAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reloadAreaActionPerformed
-        // TODO add your handling code here:
-        try {
-            // TODO add your handling code here:
-            hienThiDSKhuvuc();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ManagerWorker.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_reloadAreaActionPerformed
 
     private void addAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAreaActionPerformed
         // TODO add your handling code here:
@@ -343,6 +318,16 @@ public class Assignment extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_deleteAreaActionPerformed
 
+    private void reloadAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reloadAreaActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            hienThiDSKhuvuc();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManagerWorker.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_reloadAreaActionPerformed
+
     private void listAreaTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listAreaTableMouseClicked
         // TODO add your handling code here:
         int selectedIndex = listAreaTable.getSelectedRow();
@@ -375,41 +360,6 @@ public class Assignment extends javax.swing.JFrame {
         detailAssignment.setVisible(true);
     }//GEN-LAST:event_detailAreaAssignmentActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Assignment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Assignment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Assignment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Assignment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Assignment().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addArea;

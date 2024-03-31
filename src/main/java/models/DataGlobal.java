@@ -17,12 +17,15 @@ public class DataGlobal {
     
     private String TimeAssign;
     
+    private String EmployerNon;
+    
     public DataGlobal() {
         // Khởi tạo một đối tượng PersonModel trống
         currentEditPerson = new PersonModel();
         currentRoleCodeModel = new RoleCodeModel();
         assignmentEmpoylerModel = new AssignmentEmpoylerModel();
         TimeAssign = "";
+        EmployerNon = "";
     }
 
     public void setCurrentEditPerson(PersonModel currentEditPerson) {
@@ -56,7 +59,15 @@ public class DataGlobal {
     public String getTimeAssign() {
         return TimeAssign;
     }
-    
+
+    public void setEmployerNon(String EmployerNon) {
+        this.EmployerNon = EmployerNon;
+    }
+
+    public String getEmployerNon() {
+        return EmployerNon;
+    }
+   
     
     
     public class getDataGLobal {

@@ -53,9 +53,14 @@ public class DetailAssignment extends javax.swing.JFrame {
 
     List<String> detailAddressId = new ArrayList<>();
 
+    List<String> detailAddressIdNone = new ArrayList<>();
+
     String resultTime;
 
     String TimeSelect;
+
+    String EmployerNon;
+   
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     Date currentDate = new Date();
@@ -140,6 +145,26 @@ public class DetailAssignment extends javax.swing.JFrame {
         assignmentEmpoylerModels.forEach(assign -> {
             detailAddressId.add(assign.getDetailAddressId());
         });
+        
+        EmployerNon = "";
+        
+        DataGlobal.getDataGLobal.dataGlobal.setEmployerNon(EmployerNon);
+
+    }
+
+    public void hienThiDSChuaPhanCong(String AreaId, String TimeLine) throws ClassNotFoundException {
+
+        assignmentEmpoylerModels = DetailAssignmentCtrl.timTatCaDuLieuThuocKhuVucChuaPhanCong(AreaId, TimeLine);
+
+        tableModel.setRowCount(0);
+
+        assignmentEmpoylerModels.forEach(assignmentEmployer -> {
+            tableModel.addRow(new Object[]{assignmentEmployer.getPersonId(), assignmentEmployer.getNamePerson(), assignmentEmployer.getTypeWater(), assignmentEmployer.getDetailAddress(), assignmentEmployer.getEmployId(), assignmentEmployer.getNameEmploy()});
+        });
+
+        assignmentEmpoylerModels.forEach(assign -> {
+            detailAddressIdNone.add(assign.getDetailAddressId());
+        });
 
     }
 
@@ -216,6 +241,7 @@ public class DetailAssignment extends javax.swing.JFrame {
         displayInfo = new javax.swing.JButton();
         resetButton = new javax.swing.JButton();
         applyButton = new javax.swing.JButton();
+        nonAssignment = new javax.swing.JButton();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -255,7 +281,7 @@ public class DetailAssignment extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nameArea, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,7 +295,7 @@ public class DetailAssignment extends javax.swing.JFrame {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(134, 140, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Danh sách phân công nhân viên");
@@ -342,6 +368,13 @@ public class DetailAssignment extends javax.swing.JFrame {
             }
         });
 
+        nonAssignment.setText("Người dùng chưa được phân công");
+        nonAssignment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nonAssignmentActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -350,26 +383,27 @@ public class DetailAssignment extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nonAssignment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(27, 27, 27)
-                                .addComponent(listTimeAssignment, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(displayInfo)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(resetButton)
                                 .addGap(26, 26, 26)
                                 .addComponent(applyButton)
                                 .addGap(27, 27, 27)
-                                .addComponent(updateAssignmentEmployUser)
-                                .addGap(26, 26, 26)
-                                .addComponent(autoAssign))))
+                                .addComponent(updateAssignmentEmployUser))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(listTimeAssignment, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(displayInfo)
+                            .addComponent(autoAssign)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(28, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 865, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(29, 29, 29))
         );
@@ -384,12 +418,13 @@ public class DetailAssignment extends javax.swing.JFrame {
                         .addComponent(updateAssignmentEmployUser)
                         .addComponent(resetButton)
                         .addComponent(applyButton)))
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(displayInfo)
                     .addComponent(listTimeAssignment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(displayInfo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                    .addComponent(jLabel5)
+                    .addComponent(nonAssignment))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -446,12 +481,12 @@ public class DetailAssignment extends javax.swing.JFrame {
 
         try {
 
-            if (DetailAssignmentCtrl.kiemTraLichPhanCong(TimeAutoAssign)) {
+            if (DetailAssignmentCtrl.kiemTraLichPhanCong(TimeAutoAssign, roleCodeModel.getKeyCode())) {
                 JOptionPane.showMessageDialog(null, "Tháng tiếp theo đã được phân công !", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 
             } else {
                 DetailAssignmentCtrl.autoPhanCongNhanVien(roleCodeModel.getKeyCode(), nextMonthDateTimeString, resultTime);
-
+                JOptionPane.showMessageDialog(null, "Phân công tháng tiếp theo thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (Exception ex) {
@@ -466,11 +501,11 @@ public class DetailAssignment extends javax.swing.JFrame {
         // TODO add your handling code here:
         selectTime();
         String[] parts = TimeSelect.split("/");
-        
+
         // Lấy tháng và năm từ mảng parts
         int month = Integer.parseInt(parts[0]);
         int year = Integer.parseInt(parts[1]);
-        
+
         if (month >= Integer.parseInt(String.valueOf(this.month)) && year >= Integer.parseInt(String.valueOf(this.year))) {
             DataGlobal.getDataGLobal.dataGlobal.setTimeAssign(TimeSelect);
             UpdateAssignmentEmployDetail updateAssignmentEmployDetail = new UpdateAssignmentEmployDetail();
@@ -502,37 +537,69 @@ public class DetailAssignment extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         selectTime();
-        
+
         String[] parts = TimeSelect.split("/");
-        
+
         // Lấy tháng và năm từ mảng parts
         int month = Integer.parseInt(parts[0]);
         int year = Integer.parseInt(parts[1]);
 
-        if (month >= Integer.parseInt(String.valueOf(this.month)) && year >= Integer.parseInt(String.valueOf(this.year))) {
-            for (int row = 0; row < areaAssignmentEmployer.getRowCount(); row++) {
-                String personId = (String) areaAssignmentEmployer.getValueAt(row, 0); // Giả sử cột đầu tiên là PersonId
-                String namePerson = (String) areaAssignmentEmployer.getValueAt(row, 1); // Giả sử cột thứ hai là NamePerson
-                String typeWater = (String) areaAssignmentEmployer.getValueAt(row, 2);
-                String detailAddress = (String) areaAssignmentEmployer.getValueAt(row, 3);
-                String employerId = (String) areaAssignmentEmployer.getValueAt(row, 4);
-                String nameEmployer = (String) areaAssignmentEmployer.getValueAt(row, 5);
+        if (EmployerNon.equals("AC")) {
+            if (month >= Integer.parseInt(String.valueOf(this.month)) && year >= Integer.parseInt(String.valueOf(this.year))) {
+                for (int row = 0; row < areaAssignmentEmployer.getRowCount(); row++) {
+                    String personId = (String) areaAssignmentEmployer.getValueAt(row, 0); // Giả sử cột đầu tiên là PersonId
+                    String namePerson = (String) areaAssignmentEmployer.getValueAt(row, 1); // Giả sử cột thứ hai là NamePerson
+                    String typeWater = (String) areaAssignmentEmployer.getValueAt(row, 2);
+                    String detailAddress = (String) areaAssignmentEmployer.getValueAt(row, 3);
+                    String employerId = (String) areaAssignmentEmployer.getValueAt(row, 4);
+                    String nameEmployer = (String) areaAssignmentEmployer.getValueAt(row, 5);
 
-                String detailAddressId = this.detailAddressId.get(row);
+                    String detailAddressId = this.detailAddressIdNone.get(row);
 
-                AssignmentEmpoylerModel changeAssignmentEmpoylerModel = new AssignmentEmpoylerModel(personId, namePerson, typeWater, detailAddress, employerId, nameEmployer, detailAddressId); // Thêm các thông tin còn lại của AssignmentEmpoylerModel
+                    AssignmentEmpoylerModel changeAssignmentEmpoylerModel = new AssignmentEmpoylerModel(personId, namePerson, typeWater, detailAddress, employerId, nameEmployer, detailAddressId); // Thêm các thông tin còn lại của AssignmentEmpoylerModel
 
-                // Thêm đối tượng AssignmentEmpoylerModel vào danh sách
-                changeAssignmentEmpoylerModels.add(changeAssignmentEmpoylerModel);
-            }
+                    // Thêm đối tượng AssignmentEmpoylerModel vào danh sách
+                    changeAssignmentEmpoylerModels.add(changeAssignmentEmpoylerModel);
+                }
 
-            try {
-                DetailAssignmentCtrl.capNhatTatCaDuLieuThuocKhuVuc(roleCodeModel.getKeyCode(), assignmentEmpoylerModels, changeAssignmentEmpoylerModels, TimeSelect);
-            } catch (Exception e) {
-                // Xử lý ngoại lệ nếu có
+                try {
+
+                    DetailAssignmentCtrl.capNhatTatCaDuLieuThuocKhuVucChuaPhanCong(roleCodeModel.getKeyCode(), assignmentEmpoylerModels, changeAssignmentEmpoylerModels, TimeSelect);
+
+                } catch (Exception e) {
+                    // Xử lý ngoại lệ nếu có
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Ngoài thời gian phân công, không được chỉnh sửa phân công !!!", "Thông báo", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Ngoài thời gian phân công, không được chỉnh sửa phân công !!!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            if (month >= Integer.parseInt(String.valueOf(this.month)) && year >= Integer.parseInt(String.valueOf(this.year))) {
+                for (int row = 0; row < areaAssignmentEmployer.getRowCount(); row++) {
+                    String personId = (String) areaAssignmentEmployer.getValueAt(row, 0); // Giả sử cột đầu tiên là PersonId
+                    String namePerson = (String) areaAssignmentEmployer.getValueAt(row, 1); // Giả sử cột thứ hai là NamePerson
+                    String typeWater = (String) areaAssignmentEmployer.getValueAt(row, 2);
+                    String detailAddress = (String) areaAssignmentEmployer.getValueAt(row, 3);
+                    String employerId = (String) areaAssignmentEmployer.getValueAt(row, 4);
+                    String nameEmployer = (String) areaAssignmentEmployer.getValueAt(row, 5);
+
+                    String detailAddressId = this.detailAddressId.get(row);
+
+                    AssignmentEmpoylerModel changeAssignmentEmpoylerModel = new AssignmentEmpoylerModel(personId, namePerson, typeWater, detailAddress, employerId, nameEmployer, detailAddressId); // Thêm các thông tin còn lại của AssignmentEmpoylerModel
+
+                    // Thêm đối tượng AssignmentEmpoylerModel vào danh sách
+                    changeAssignmentEmpoylerModels.add(changeAssignmentEmpoylerModel);
+                }
+
+                try {
+
+                    DetailAssignmentCtrl.capNhatTatCaDuLieuThuocKhuVuc(roleCodeModel.getKeyCode(), assignmentEmpoylerModels, changeAssignmentEmpoylerModels, TimeSelect);
+
+                } catch (Exception e) {
+                    // Xử lý ngoại lệ nếu có
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Ngoài thời gian phân công, không được chỉnh sửa phân công !!!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
     }//GEN-LAST:event_applyButtonActionPerformed
@@ -575,6 +642,21 @@ public class DetailAssignment extends javax.swing.JFrame {
     private void listTimeAssignmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listTimeAssignmentMouseClicked
 
     }//GEN-LAST:event_listTimeAssignmentMouseClicked
+
+    private void nonAssignmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nonAssignmentActionPerformed
+        // TODO add your handling code here:
+
+        EmployerNon = "AC";
+        
+        DataGlobal.getDataGLobal.dataGlobal.setEmployerNon(EmployerNon);
+
+        try {
+            hienThiDSChuaPhanCong(roleCodeModel.getKeyCode(), resultTime);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DetailAssignment.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_nonAssignmentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -634,6 +716,7 @@ public class DetailAssignment extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> listTimeAssignment;
     private javax.swing.JLabel nameArea;
+    private javax.swing.JButton nonAssignment;
     private javax.swing.JButton resetButton;
     private javax.swing.JButton updateAssignmentEmployUser;
     // End of variables declaration//GEN-END:variables

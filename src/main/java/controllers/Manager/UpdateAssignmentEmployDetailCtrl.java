@@ -58,7 +58,7 @@ public class UpdateAssignmentEmployDetailCtrl {
                     + "              JOIN \n"
                     + "                RoleCode RLC ON RLC.KeyCode = DA.RoleMoneyCategory\n"
                     + "               WHERE \n"
-                    + "                      DA.DetailAddressId = ? AND ASM.TimeAssign LIKE ?;";
+                    + "                      DA.DetailAddressId = ? AND ASM.TimeAssign LIKE ? OR ASM.TimeAssign IS NULL;";
             statement = connection.prepareStatement(sql);
             statement.setString(1, detailAddresId);
             statement.setString(2, "%" + TimeAssign + "%");
@@ -79,6 +79,87 @@ public class UpdateAssignmentEmployDetailCtrl {
 
                 String SoDienThoaiNhanVien = resultSet.getString("SoDienThoaiNhanVien");
 
+                assignmentEmpoylerModel = new AssignmentEmpoylerModel(IDNguoiSuDung, TenNguoiSuDung, TenDiaChiSuDung, LoaiNuocSuDung, IDNhanVien, TenNhanVien, IDDiaChiSuDung, EmailNguoiSuDung, SoDienThoaiNguoiSuDung, EmailNhanVien, SoDienThoaiNhanVien);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UpdateAssignmentEmployDetailCtrl.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UpdateAssignmentEmployDetailCtrl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UpdateAssignmentEmployDetailCtrl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UpdateAssignmentEmployDetailCtrl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        return assignmentEmpoylerModel;
+    }
+
+    public static AssignmentEmpoylerModel timThongTinHienThiUpdateAssignmentEmpoylerModelChuaPhanCong(String UserId, String EmployId, String detailAddresId, String TimeAssign) throws ClassNotFoundException {
+
+        AssignmentEmpoylerModel assignmentEmpoylerModel = new AssignmentEmpoylerModel();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = ConnectDB.getConnection();
+            String sql = "SELECT\n"
+                    + "    Us.PersonId AS IDNguoiSuDung,\n"
+                    + "    Us.NamePerson AS TenNguoiSuDung,\n"
+                    + "    DA.NameDetailAddress AS TenDiaChiSuDung,\n"
+                    + "    RLC.ValueRole AS LoaiNuocSuDung,\n"
+                    + "    DA.DetailAddressId AS IDDiaChiSuDung,\n"
+                    + "    Us.Email AS EmailNguoiSuDung,\n"
+                    + "    Us.PhoneNumber AS SoDienThoaiNguoiSuDung\n"
+                    + "FROM\n"
+                    + "    DetailAddress DA\n"
+                    + "JOIN\n"
+                    + "    Person Us ON Us.PersonId = DA.PersonId\n"
+                    + "JOIN\n"
+                    + "    RoleCode RC ON DA.RoleArea = RC.KeyCode\n"
+                    + "JOIN\n"
+                    + "    RoleCode RLC ON RLC.KeyCode = DA.RoleMoneyCategory\n"
+                    + "\n"
+                    + "join Assignment ASM on ASM.DetailAddressId = DA.DetailAddressId\n"
+                    + "\n"
+                    + "WHERE\n"
+                    + "    DA.DetailAddressId = ? AND (ASM.TimeAssign LIKE ? OR ASM.TimeAssign IS NULL);";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, detailAddresId);
+            statement.setString(2, "%" + TimeAssign + "%");
+
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String IDNguoiSuDung = resultSet.getString("IDNguoiSuDung");
+                String TenNguoiSuDung = resultSet.getString("TenNguoiSuDung");
+                String TenDiaChiSuDung = resultSet.getString("TenDiaChiSuDung");
+                String LoaiNuocSuDung = resultSet.getString("LoaiNuocSuDung");
+                String IDNhanVien = "";
+                String TenNhanVien = "";
+                String IDDiaChiSuDung = resultSet.getString("IDDiaChiSuDung");
+                String EmailNguoiSuDung = resultSet.getString("EmailNguoiSuDung");
+                String SoDienThoaiNguoiSuDung = resultSet.getString("SoDienThoaiNguoiSuDung");
+                String EmailNhanVien = "";
+
+                String SoDienThoaiNhanVien = "";
 
                 assignmentEmpoylerModel = new AssignmentEmpoylerModel(IDNguoiSuDung, TenNguoiSuDung, TenDiaChiSuDung, LoaiNuocSuDung, IDNhanVien, TenNhanVien, IDDiaChiSuDung, EmailNguoiSuDung, SoDienThoaiNguoiSuDung, EmailNhanVien, SoDienThoaiNhanVien);
 

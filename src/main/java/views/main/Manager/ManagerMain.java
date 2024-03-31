@@ -1,7 +1,7 @@
 package views.main.Manager;
 
 import views.main.client.*;
-import controllers.Client.ChuyenManHinhCtrl;
+import controllers.Manager.ChuyenManHinhCtrl;
 import java.util.ArrayList;
 import java.util.List;
 import models.Client.DanhMucModel;
@@ -22,11 +22,13 @@ public class ManagerMain extends javax.swing.JFrame {
         controller.setView(jpnHome, jlbHome);
         
         List<DanhMucModel> listItem = new ArrayList<>();
-        listItem.add(new DanhMucModel("Home", jpnHome, jlbHome));
-        listItem.add(new DanhMucModel("Bill", jpnBill, jlbBill));
-        listItem.add(new DanhMucModel("Info", jpnInfo, jlbInfo));
-        listItem.add(new DanhMucModel("ChangePassword", jpnChangePassword, jlbChangePassword));
-        listItem.add(new DanhMucModel("LogOut", jpnLogOut, jlbLogOut));
+        listItem.add(new DanhMucModel("Trang chủ", jpnHome, jlbHome));
+        
+        listItem.add(new DanhMucModel("Nhân viên", jpnBill, jlbBill));
+        listItem.add(new DanhMucModel("Phân công", jpnChangePassword, jlbChangePassword));
+//        listItem.add(new DanhMucModel("Info", jpnInfo, jlbInfo));
+//        listItem.add(new DanhMucModel("ChangePassword", jpnChangePassword, jlbChangePassword));
+//        listItem.add(new DanhMucModel("LogOut", jpnLogOut, jlbLogOut));
         controller.setEvent(listItem);
     }
 
@@ -204,11 +206,11 @@ public class ManagerMain extends javax.swing.JFrame {
         jpnView.setLayout(jpnViewLayout);
         jpnViewLayout.setHorizontalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 777, Short.MAX_VALUE)
+            .addGap(0, 931, Short.MAX_VALUE)
         );
         jpnViewLayout.setVerticalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 719, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpnRootLayout = new javax.swing.GroupLayout(jpnRoot);
@@ -218,16 +220,16 @@ public class ManagerMain extends javax.swing.JFrame {
             .addGroup(jpnRootLayout.createSequentialGroup()
                 .addComponent(jpnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jpnView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpnRootLayout.setVerticalGroup(
             jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnRootLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnRootLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jpnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
