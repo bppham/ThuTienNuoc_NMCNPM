@@ -6,12 +6,12 @@ import java.sql.Date;
 public class ClientBillModel {
     private String collectMoneyId, employCollectID, userID, moneyCategoryID, addressCollectID, nameAddressCollect, nameEmployee, nameMoneyCategory;
     private int preIndex, currentIndex, moneyToPay;
-    private Date timeCollect;
+    private Date timeCollect, timePay;
 
     public ClientBillModel() {
     }
 
-    public ClientBillModel(String collectMoneyId, String employCollectID, String userID, String moneyCategoryID, String addressCollectID, String nameAddressCollect, String nameEmployee, String nameMoneyCategory, int preIndex, int currentIndex, int moneyToPay, Date timeCollect) {
+    public ClientBillModel(String collectMoneyId, String employCollectID, String userID, String moneyCategoryID, String addressCollectID, String nameAddressCollect, String nameEmployee, String nameMoneyCategory, int preIndex, int currentIndex, int moneyToPay, Date timeCollect, Date timePay) {
         this.collectMoneyId = collectMoneyId;
         this.employCollectID = employCollectID;
         this.userID = userID;
@@ -24,11 +24,9 @@ public class ClientBillModel {
         this.currentIndex = currentIndex;
         this.moneyToPay = moneyToPay;
         this.timeCollect = timeCollect;
+        this.timePay = timePay;
     }
 
-    
-    
-    
     public String getCollectMoneyId() {
         return collectMoneyId;
     }
@@ -123,6 +121,14 @@ public class ClientBillModel {
 
     public void setTimeCollect(Date timeCollect) {
         this.timeCollect = timeCollect;
+    }
+
+    public Date getTimePay() {
+        return timePay;
+    }
+
+    public void setTimePay(Date timePay) {
+        this.timePay = timePay;
     }
   
 }
