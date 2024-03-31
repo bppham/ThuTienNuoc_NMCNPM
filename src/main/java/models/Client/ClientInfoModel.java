@@ -5,41 +5,28 @@ package models.Client;
  * @author Phu Bao
  */
 public class ClientInfoModel {
-    private String personId, rolePerson, namePerson, email, phoneNumber, addressPerson, nameCategoryMoney;
-    private int categoryMoneyId;
+    private String personId, rolePerson, namePerson, email, phoneNumber, addressPerson; //Person
 
-    public ClientInfoModel(String personId, String rolePerson, String namePerson, String email, String phoneNumber, String addressPerson, int categoryMoneyId) {
+    public ClientInfoModel() {
+    }
+        
+    public ClientInfoModel(String personId, String rolePerson, String namePerson, String email, String phoneNumber, String addressPerson) {
         this.personId = personId;
         this.rolePerson = rolePerson;
         this.namePerson = namePerson;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.addressPerson = addressPerson;
-        this.categoryMoneyId = categoryMoneyId;
     }
 
-    public ClientInfoModel(String personId, String namePerson, String email, String phoneNumber, String addressPerson, String nameCategoryMoney) {
+    public ClientInfoModel(String personId, String namePerson, String email, String phoneNumber, String addressPerson) {
         this.personId = personId;
         this.namePerson = namePerson;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.addressPerson = addressPerson;
-        this.nameCategoryMoney = nameCategoryMoney;
     }
     
-    public ClientInfoModel(String personId, String rolePerson, String namePerson, String email, String phoneNumber, String addressPerson, String nameCategoryMoney, int categoryMoneyId) {
-        this.personId = personId;
-        this.rolePerson = rolePerson;
-        this.namePerson = namePerson;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.addressPerson = addressPerson;
-        this.nameCategoryMoney = nameCategoryMoney;
-        this.categoryMoneyId = categoryMoneyId;
-    }
-    
-    
-
     public String getPersonId() {
         return personId;
     }
@@ -87,22 +74,5 @@ public class ClientInfoModel {
     public void setAddressPerson(String addressPerson) {
         this.addressPerson = addressPerson;
     }
-
-    public int getCategoryMoneyId() {
-        return categoryMoneyId;
-    }
-
-    public void setCategoryMoneyId(int categoryMoneyId) {
-        this.categoryMoneyId = categoryMoneyId;
-    }
-
-    public String getNameCategoryMoney() {
-        return nameCategoryMoney;
-    }
-
-    public void setNameCategoryMoney(String nameCategoryMoney) {
-        this.nameCategoryMoney = nameCategoryMoney;
-    }
-    
     
 }

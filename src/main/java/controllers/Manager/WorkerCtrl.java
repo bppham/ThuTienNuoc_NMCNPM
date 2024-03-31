@@ -75,7 +75,7 @@ public class WorkerCtrl {
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                int personId = resultSet.getInt("PersonId");
+                String personId = resultSet.getString("PersonId");
                 String roleCode = resultSet.getString("RolePerson");
                 String name = resultSet.getString("NamePerson");
                 String email = resultSet.getString("Email");
@@ -107,7 +107,7 @@ public class WorkerCtrl {
         return dsNhanvien;
     }
     
-      public static void XoaNhanVien(int PersonId) throws ClassNotFoundException {
+      public static void XoaNhanVien(String PersonId) throws ClassNotFoundException {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
@@ -115,7 +115,7 @@ public class WorkerCtrl {
             String sql = "DELETE FROM Person WHERE PersonId=?";
             statement = connection.prepareStatement(sql);
 
-            statement.setInt(1, PersonId);
+            statement.setString(1, PersonId);
 
             statement.executeUpdate();
 
@@ -152,7 +152,7 @@ public class WorkerCtrl {
             statement.setString(3, person.getEmail());
             statement.setString(4, person.getPhoneNumber());
             statement.setString(5, person.getAddressPerson());
-            statement.setInt(6, person.getPersonId());
+            statement.setString(6, person.getPersonId());
 
             statement.executeUpdate();
         } catch (SQLException ex) {

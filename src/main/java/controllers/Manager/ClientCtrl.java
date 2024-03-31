@@ -6,6 +6,7 @@ package controllers.Manager;
 
 import database.ConnectDB;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +27,66 @@ public class ClientCtrl {
     
     PersonModel personModel = DataGlobal.getDataGLobal.dataGlobal.getCurrentEditPerson();
 
+    // Thêm chủ hộ vào cơ sở dữ liệu
     public static void themChuHo(PersonModel person) throws ClassNotFoundException {
+        // Chuỗi SQL để chèn dữ liệu vào bảng Person
+        String insertPersonSQL = "INSERT INTO dbo.Person (PersonId, RolePerson, NamePerson, Email, PhoneNumber, AddressPerson) VALUES (?, ?, ?, ?, ?, ?)";
+
+        // Chuỗi SQL để chèn dữ liệu vào bảng Account
+        String insertAccountSQL = "INSERT INTO dbo.Account (Email, PasswordAcc) VALUES (?, ?)";
+
+        Connection connection = null;
+        try {
+            // Lấy kết nối từ lớp ConnectDB
+            connection = ConnectDB.getConnection();
+
+            // Tắt tự động commit để có thể quản lý giao dịch
+            connection.setAutoCommit(false);
+
+            // Thêm dữ liệu vào bảng Person
+            try (PreparedStatement psPerson = connection.prepareStatement(insertPersonSQL)) {
+                psPerson.setString(1, person.getPersonId());
+                psPerson.setString(2, person.getRolePerson());
+                psPerson.setString(3, person.getNamePerson());
+                psPerson.setString(4, person.getEmail());
+                psPerson.setString(5, person.getPhoneNumber());
+                psPerson.setString(6, person.getAddressPerson());
+                psPerson.executeUpdate();
+            }
+
+            // Thêm dữ liệu vào bảng Account
+            try (PreparedStatement psAccount = connection.prepareStatement(insertAccountSQL)) {
+                psAccount.setString(1, person.getEmail());
+                psAccount.setString(2, person.getPasswordAcc());
+                psAccount.executeUpdate();
+            }
+
+            // Commit giao dịch
+            connection.commit();
+        } catch (SQLException ex) {
+            // Xử lý lỗi SQL
+            ex.printStackTrace();
+            try {
+                // Rollback giao dịch nếu có lỗi
+                if (connection != null) {
+                    connection.rollback();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } finally {
+            // Đóng kết nối
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    /*public static void themChuHo(PersonModel person) throws ClassNotFoundException {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
@@ -61,7 +121,7 @@ public class ClientCtrl {
             }
         }
     }
-
+*/
     public static List<PersonModel> timTatCaChuHo() throws ClassNotFoundException {
         List<PersonModel> dsChuHo = new ArrayList<>();
         Connection connection = null;
@@ -107,7 +167,7 @@ public class ClientCtrl {
         return dsChuHo;
     }
     
-      public static void XoaChuHo(int PersonId) throws ClassNotFoundException {
+      public static void XoaChuHo(String PersonId) throws ClassNotFoundException {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
@@ -115,7 +175,7 @@ public class ClientCtrl {
             String sql = "DELETE FROM Person WHERE PersonId=?";
             statement = connection.prepareStatement(sql);
 
-            statement.setInt(1, PersonId);
+            statement.setString(1, PersonId);
 
             statement.executeUpdate();
 
@@ -152,7 +212,7 @@ public class ClientCtrl {
             statement.setString(3, person.getEmail());
             statement.setString(4, person.getPhoneNumber());
             statement.setString(5, person.getAddressPerson());
-            statement.setInt(6, person.getPersonId());
+            statement.setString(6, person.getPersonId());
 
             statement.executeUpdate();
         } catch (SQLException ex) {

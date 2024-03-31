@@ -3,9 +3,16 @@ package views.main.client;
 import controllers.Client.ClientCtrl;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
+import models.PersonData;
+import models.PersonModel;
+import utils.GenerateVerifyCode;
+import utils.SendEmail;
+import views.worker.workerMain;
 
 /**
  *
@@ -17,9 +24,12 @@ public class ClientLogin extends javax.swing.JFrame {
      * Creates new form ClientLogin
      */
     public static String currentEmail;
+    public static String verifyCode;
+    public PersonModel personModel;
 
     public ClientLogin() {
         initComponents();
+        setTitle("ĐĂNG NHẬP");
         txtEmail.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,7 +73,7 @@ public class ClientLogin extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 255));
-        jLabel1.setText("Login");
+        jLabel1.setText("Đăng nhập");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Email");
@@ -76,13 +86,13 @@ public class ClientLogin extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel3.setText("Password");
+        jLabel3.setText("Mật khẩu");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setText("Enter your email and password to log in!");
+        jLabel2.setText("Nhập email và mật khẩu để đăng nhập!");
 
         cbShowPassword.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        cbShowPassword.setText("Show password");
+        cbShowPassword.setText("Hiện mật khẩu");
         cbShowPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbShowPasswordActionPerformed(evt);
@@ -91,12 +101,17 @@ public class ClientLogin extends javax.swing.JFrame {
 
         lblForgetPassword.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lblForgetPassword.setForeground(new java.awt.Color(102, 102, 255));
-        lblForgetPassword.setText("Forget Password?");
+        lblForgetPassword.setText("Quên mật khẩu?");
+        lblForgetPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblForgetPasswordMouseClicked(evt);
+            }
+        });
 
         btnLogin.setBackground(new java.awt.Color(0, 153, 255));
         btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogin.setText("Login");
+        btnLogin.setText("Đăng nhập");
         btnLogin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,7 +130,7 @@ public class ClientLogin extends javax.swing.JFrame {
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 44, Short.MAX_VALUE)
+                .addGap(0, 52, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -151,10 +166,10 @@ public class ClientLogin extends javax.swing.JFrame {
                     .addComponent(lblForgetPassword))
                 .addGap(37, 37, 37)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 580, 560));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 580, 570));
 
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Client/LoginClient.png"))); // NOI18N
         getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 610));
@@ -179,6 +194,7 @@ public class ClientLogin extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         currentEmail = txtEmail.getText();
+        ClientCtrl.currentEmail = currentEmail;
         char[] passwordChars = txtPassword.getPassword();
         String password = String.valueOf(passwordChars);
         if (currentEmail.isEmpty() || password.isEmpty()) {
@@ -186,23 +202,61 @@ public class ClientLogin extends javax.swing.JFrame {
         } else try {
             if (!ClientCtrl.kiemTraEmailCoTonTai(currentEmail)) {
                 JOptionPane.showMessageDialog(this, "Email không có trong hệ thống!", "Thông báo", JOptionPane.ERROR_MESSAGE);
-            } else {
-                ClientCtrl.currentEmail = currentEmail;
-                boolean flag = ClientCtrl.dangNhap(password);
-                if (flag) {
-                    
-                    new MainClient().setVisible(true);
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không chính xác!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            } else if (!ClientCtrl.kiemTraMatKhauHienTai(password)){
+                JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không đúng!!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            } else {              
+                String flag = ClientCtrl.dangNhap(password);
+                switch (flag) {
+                    case "R3" -> {
+                        //Đăng nhập cho Chủ hộ
+                        new ClientMain().setVisible(true);
+                        this.dispose();
+                    }
+                    case "R2" -> {
+                        // Đăng nhập cho Nhân viên
+                        PersonData.getInstance().setPersonInfo(ClientCtrl.getInforPersonbyEmail(currentEmail));
+                        new workerMain().setVisible(true);
+                        this.dispose();
+                    }
+                    case "R1" -> {
+                        // đăng nhập cho Quản Lý
+                    }
+                    default -> JOptionPane.showMessageDialog(this, "Lỗi đăng nhập!", "Thông báo", JOptionPane.ERROR_MESSAGE);
                 }
-
+                
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClientLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void lblForgetPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgetPasswordMouseClicked
+        // TODO add your handling code here:
+        verifyCode = GenerateVerifyCode.generateRandomCode();
+        String email = txtEmail.getText();
+        
+        if (email.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Email không được để trống!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+        } else try {
+            if (!ClientCtrl.kiemTraEmailCoTonTai(email)) {
+                JOptionPane.showMessageDialog(this, "Email không có trong hệ thông!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            } else {
+                try {
+                    currentEmail = email;
+                    SendEmail.sendEmail(verifyCode, email);
+                } catch (MessagingException | UnsupportedEncodingException ex) {
+                    Logger.getLogger(ClientLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                new ClientVerifyEmail().setVisible(true);
+                this.setVisible(false);
+                System.out.println(verifyCode);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClientLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_lblForgetPasswordMouseClicked
 
     /**
      * @param args the command line arguments
