@@ -116,6 +116,7 @@ public class WorkerController {
                     join RoleCode as rc
                     on rc.KeyCode = da.RoleMoneyCategory
                     where da.NameDetailAddress like ?
+                    and da.StatusService = 1
                      """ + where;
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, branch);
@@ -143,6 +144,50 @@ public class WorkerController {
         } 
         return null;
     }
+    
+    public List<PersonModel> getInforUsersPendingByBranch(String branch, String where, Object ... search) throws ClassNotFoundException{
+        List<PersonModel> lsPersons = new ArrayList<>();
+        branch = "%" + branch +"%";
+        String sql = """
+                    select p.PersonId,p.NamePerson,p.RolePerson, p.Email,p.PhoneNumber, da.NameDetailAddress, rc.ValueRole, cm.TimeCollect
+                    from Person as p
+                    join DetailAddress as da
+                    on p.PersonId = da.PersonId
+                    join RoleCode as rc
+                    on rc.KeyCode = da.RoleMoneyCategory
+                    join CollectMoney as cm
+                    on cm.UserId = p.PersonId
+                    where da.NameDetailAddress like ?
+                    and da.StatusService = 1 and cm.StatusCollect = 0
+                     """ + where;
+        try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, branch);
+            for(int i = 0; i< search.length; i++){
+                statement.setObject(i+2, search[i]);
+            }
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                PersonModel personModel = new PersonModel(
+                        resultSet.getString("PersonId"), 
+                        "", 
+                        resultSet.getString("RolePerson"), 
+                        resultSet.getString("NamePerson"),
+                        resultSet.getString("Email"), 
+                        resultSet.getString("PhoneNumber"), 
+                        resultSet.getString("NameDetailAddress")); 
+                personModel.setRoleValue(resultSet.getString("ValueRole"));
+                personModel.setTimeCollect(resultSet.getDate("TimeCollect"));
+                lsPersons.add(personModel);
+                              
+            }
+            return lsPersons;
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(WorkerController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        return null;
+    }
+    
     public void recordBillUser(BillModel billModel) throws ClassNotFoundException{
         String sql = """
                      INSERT INTO CollectMoney (CollectMoneyId, EmployCollectId, UserId, PrevIndex, CurrentIndex, TimeCollect, MoneyToPay, AddressCollectId, StatusCollect)
@@ -344,7 +389,7 @@ public class WorkerController {
                     from CollectMoney as cm
                     join DetailAddress as da
                     on cm.AddressCollectId = da.DetailAddressId
-                    where da.NameDetailAddress like ? and cm.StatusCollect = 1 and YEAR(cm.TimeCollect) = YEAR(GETDATE())
+                    where da.NameDetailAddress like ? and cm.StatusCollect = 1 and YEAR(cm.TimeCollect) = YEAR(GETDATE()) and da.StatusService = 1
                     group by MONTH(cm.TimeCollect)
                      """;
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
@@ -360,17 +405,20 @@ public class WorkerController {
         }
         return null;
     }
-    public Map<String, Double> getPayDone(String area){
+    public Map<String, Double> getPayDone(String area, int month){
         Map<String, Double> payDoneMap = new HashMap<>();
         String sql = """
-                     select COUNT(cm.StatusCollect) as DonePay
-                     from CollectMoney as cm
-                     join DetailAddress as da
-                     on cm.AddressCollectId = da.DetailAddressId
-                     where da.NameDetailAddress like ? and cm.StatusCollect = 1
+                    select COUNT(cm.StatusCollect) as DonePay
+                    from CollectMoney as cm
+                    join DetailAddress as da
+                    on cm.AddressCollectId = da.DetailAddressId
+                    where da.NameDetailAddress like ? and cm.StatusCollect = 1 
+                    and YEAR(cm.TimeCollect) = YEAR(GETDATE()) 
+                    and MONTH(cm.TimeCollect) = ?
                      """;
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, "%"+area +"%");
+            statement.setInt(2, month);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {        
                 payDoneMap.put("DonePay", resultSet.getDouble("DonePay"));
@@ -383,17 +431,20 @@ public class WorkerController {
         return null;
     }
     
-    public Map<String, Double> getPayPending(String area){
+    public Map<String, Double> getPayPending(String area, int month){
         Map<String, Double> payDoneMap = new HashMap<>();
         String sql = """
-                     select COUNT(cm.StatusCollect) as PendingPay
-                     from CollectMoney as cm
-                     join DetailAddress as da
-                     on cm.AddressCollectId = da.DetailAddressId
-                     where da.NameDetailAddress like ? and cm.StatusCollect = 0
+                    select COUNT(cm.StatusCollect) as PendingPay
+                    from CollectMoney as cm
+                    join DetailAddress as da
+                    on cm.AddressCollectId = da.DetailAddressId
+                    where da.NameDetailAddress like ? and cm.StatusCollect = 0 
+                    and YEAR(cm.TimeCollect) = YEAR(GETDATE()) 
+                    and MONTH(cm.TimeCollect) = ?
                      """;
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, "%"+area +"%");
+            statement.setInt(2, month);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {        
                 payDoneMap.put("PendingPay", resultSet.getDouble("PendingPay"));
@@ -448,5 +499,35 @@ public class WorkerController {
             Logger.getLogger(WorkerController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return -1.0;
+    }
+    
+    public int setUserHadPayDone(String id_user, String timeCollect, String nameDetailAddress){
+        String sql = """
+                     update CollectMoney
+                     set TimePay = GETDATE(), StatusCollect = 1
+                     where UserId = ? and TimeCollect = ? and AddressCollectId = (
+                     	select da.DetailAddressId
+                     	from CollectMoney as cm
+                     	join DetailAddress as da
+                     	on cm.AddressCollectId = da.DetailAddressId
+                     	where da.NameDetailAddress like ?
+                     	and cm.UserId = ? and cm.TimeCollect = ?
+                     )
+                     """;
+        try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, id_user);
+            statement.setString(2, timeCollect);
+            statement.setString(3, nameDetailAddress);
+            statement.setString(4, id_user);
+            statement.setString(5, timeCollect);
+
+
+            int rs = statement.executeUpdate();
+            return rs;
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(WorkerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
     }
 }

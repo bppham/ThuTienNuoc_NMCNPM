@@ -4,9 +4,12 @@
  */
 package models;
 
+import java.util.Date;
+
 public class PersonModel {
     private String PersonId, RoleValue;
     private String PassworrdAcc, RolePerson, NamePerson, Email, PhoneNumber, AddressPerson;
+    private Date TimeCollect, TimePay;
     
     public PersonModel( String NamePerson, String Email,String AddressPerson,String PhoneNumber){
         this.NamePerson = NamePerson;
@@ -52,6 +55,34 @@ public class PersonModel {
         this.AddressPerson = AddressPerson;
         this.PhoneNumber = PhoneNumberPerson;
     }
+
+    public String getPassworrdAcc() {
+        return PassworrdAcc;
+    }
+
+    public void setPassworrdAcc(String PassworrdAcc) {
+        this.PassworrdAcc = PassworrdAcc;
+    }
+
+    public Date getTimeCollect() {
+        return TimeCollect;
+    }
+
+    public void setTimeCollect(Date TimeCollect) {
+        this.TimeCollect = TimeCollect;
+    }
+
+    public Date getTimePay() {
+        return TimePay;
+    }
+
+    public void setTimePay(Date TimePay) {
+        this.TimePay = TimePay;
+    }
+
+    
+    
+    
     
     public PersonModel () {
         

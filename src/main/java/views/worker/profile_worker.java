@@ -305,6 +305,7 @@ public class profile_worker extends javax.swing.JPanel {
 
     private void button_changePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_changePasswordActionPerformed
         wMain.setVisibleAllFalse();
+        PersonData.getInstance().setStack("INFOR");
         wMain.setVisibleEditPassword();
         
     }//GEN-LAST:event_button_changePasswordActionPerformed

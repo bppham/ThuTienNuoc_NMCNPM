@@ -44,7 +44,7 @@ public class managerUser_worker extends javax.swing.JPanel {
         
     }
 
-    private void setDefault(){
+    public void setDefault(){
         // table
         initTable();
         fillTableInforUser("");
@@ -61,10 +61,12 @@ public class managerUser_worker extends javax.swing.JPanel {
                 txt_search.setHint("Tìm kiếm theo " + option.getName() + "...");
             }
         });
+        txt_search.removeAllOption();
         txt_search.addOption(new SearchOption("Tên Chủ Hộ", new ImageIcon(("src\\main\\java\\images\\Worker\\user_1.png"))));
         txt_search.addOption(new SearchOption("Số điện thoại", new ImageIcon(("src\\main\\java\\images\\Worker\\tel.png"))));
         txt_search.addOption(new SearchOption("Email", new ImageIcon(("src\\main\\java\\images\\Worker\\email.png"))));
         txt_search.addOption(new SearchOption("Địa chỉ", new ImageIcon(("src\\main\\java\\images\\Worker\\address.png"))));
+        txt_search.addOption(new SearchOption("Nhóm", new ImageIcon(("src\\main\\java\\images\\Worker\\icons8-group-24.png"))));
     }
     
     private void setingUITable(){
@@ -117,6 +119,8 @@ public class managerUser_worker extends javax.swing.JPanel {
                 for(PersonModel pm: PersonData.getInstance().getLsPersonInfor()){
                     if(pm.getPersonId().equals(idUserSelected)){
                         wMain.setUserInfor_DienSoNuoc(pm);
+                        PersonData.getInstance().setStack("QLUSERS");
+                        System.out.println(row);
                         break;
                     }
                 }
@@ -139,6 +143,8 @@ public class managerUser_worker extends javax.swing.JPanel {
                 for(PersonModel pm: PersonData.getInstance().getLsPersonInfor()){
                     if(pm.getPersonId().equals(idUserSelected)){
                         wMain.setBillsUser_DienSoNuoc(pm);
+                        PersonData.getInstance().setStack("QLUSERS");
+                        System.out.println(row);
                         break;
                     }
                 }
@@ -235,6 +241,7 @@ public class managerUser_worker extends javax.swing.JPanel {
         jPanel3.setBackground(new java.awt.Color(235, 239, 254));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 204));
         jLabel4.setText("Chi tiết chủ hộ");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -242,13 +249,16 @@ public class managerUser_worker extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel4)
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
@@ -292,9 +302,8 @@ public class managerUser_worker extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -307,6 +316,7 @@ public class managerUser_worker extends javax.swing.JPanel {
                 case 1 -> fillTableInforUser("and PhoneNumber like ?", text);
                 case 2 -> fillTableInforUser("and Email like ?", text);
                 case 3 -> fillTableInforUser("and NameDetailAddress like ?", text);
+                case 4 -> fillTableInforUser("and ValueRole like ?", text);
                 default -> {
                 }
             }
