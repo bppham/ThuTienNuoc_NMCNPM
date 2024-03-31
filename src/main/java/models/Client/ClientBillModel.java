@@ -3,6 +3,7 @@ package models.Client;
 import java.sql.Date;
 
 
+
 public class ClientBillModel {
     private String collectMoneyId, employCollectID, userID, moneyCategoryID, addressCollectID, nameAddressCollect, nameEmployee, nameMoneyCategory;
     private int preIndex, currentIndex, moneyToPay;

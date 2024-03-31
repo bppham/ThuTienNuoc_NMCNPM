@@ -4,7 +4,54 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e829a75f-9565-454f-b196-f3ae67451bb3" name="Changes" comment="" />
+    <list default="true" id="e829a75f-9565-454f-b196-f3ae67451bb3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nb-configuration.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nbactions.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/Manager/AssignmentCtrl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/Manager/ChuyenManHinhCtrl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/Manager/DetailAssignmentCtrl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/Manager/MangaerCtrl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/Manager/UpdateAssignmentEmployDetailCtrl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/AssignmentEmpoylerModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/RoleCodeModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/Assignment.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/Assignment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/AssignmentPanel.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/AssignmentPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/DetailAssignment.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/DetailAssignment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/ManagerHome.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/ManagerHome.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/ManagerHomePanel.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/ManagerHomePanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/ManagerMain.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/ManagerMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/ManagerWorkerPanel.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/ManagerWorkerPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/UpdateAssignmentEmployDetail.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/UpdateAssignmentEmployDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Client/ChuyenManHinhCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Client/ChuyenManHinhCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Client/ClientCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Client/ClientCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Manager/WorkerCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Manager/WorkerCtrl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Client/ClientBillModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Client/ClientBillModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Client/ClientInfoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Client/ClientInfoModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Client/DanhMucModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Client/DanhMucModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/DataGlobal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/DataGlobal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/PersonModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/PersonModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/SendEmail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/SendEmail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/main/Manager/AddWorker.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/AddWorker.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/main/Manager/AddWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/AddWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/main/Manager/ManagerProfile.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/ManagerProfile.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/main/Manager/ManagerProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/ManagerProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/main/Manager/ManagerWorker.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/ManagerWorker.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/main/Manager/ManagerWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/ManagerWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/main/Manager/UpdateWorker.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/UpdateWorker.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/main/Manager/UpdateWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/main/Manager/UpdateWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/main/client/ClientInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/main/client/ClientInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/main/client/ClientLogin.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/main/client/ClientLogin.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/views/main/client/ClientLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/views/main/client/ClientLogin.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,9 +60,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2eBFNixrXGxxfnnVeqPvo3gVnxZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -25,7 +72,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Giang",
+    "git-widget-placeholder": "Merging master",
     "last_opened_file_path": "D:/Dev Java/QLTN"
   }
 }]]></component>

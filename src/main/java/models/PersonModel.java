@@ -5,6 +5,7 @@
 package models;
 
 public class PersonModel {
+<<<<<<< HEAD
     private String PersonId, RoleValue;
     private String PassworrdAcc, RolePerson, NamePerson, Email, PhoneNumber, AddressPerson;
     
@@ -18,6 +19,12 @@ public class PersonModel {
     
     public PersonModel(String PersonId, String PasswordAcc, String RolePerson, String NamePerson, String Email, String PhoneNumber, String AddressPerson) {
 
+=======
+
+    private String PersonId,PassworrdAcc, RolePerson, NamePerson, Email, PhoneNumber, AddressPerson;
+    
+    public PersonModel(String PersonId, String PasswordAcc, String RolePerson, String NamePerson, String Email, String PhoneNumber, String AddressPerson) {
+>>>>>>> cd0e407ab47b902f5cbcab54ce6d5f537c94fab8
         this.PersonId = PersonId;
         this.PassworrdAcc = PasswordAcc;
         this.RolePerson = RolePerson;
@@ -25,6 +32,10 @@ public class PersonModel {
         this.Email = Email;
         this.PhoneNumber = PhoneNumber;
         this.AddressPerson = AddressPerson;
+<<<<<<< HEAD
+=======
+
+>>>>>>> cd0e407ab47b902f5cbcab54ce6d5f537c94fab8
     }
     
     public PersonModel (String NamePerson, String RolePeson, String EmailPerson, String AddressPerson, String PhoneNumberPerson, String PasswordAcc)  {
@@ -44,13 +55,23 @@ public class PersonModel {
 //        this.AddressPerson = AddressPerson;
 //        this.PhoneNumber = PhoneNumberPerson;
 //    }
+<<<<<<< HEAD
     
+=======
+//    
+>>>>>>> cd0e407ab47b902f5cbcab54ce6d5f537c94fab8
     public  PersonModel (String NamePerson, String RolePeson, String EmailPerson, String AddressPerson, String PhoneNumberPerson)  {
         this.NamePerson = NamePerson;
         this.RolePerson = RolePeson;
         this.Email = EmailPerson;
         this.AddressPerson = AddressPerson;
         this.PhoneNumber = PhoneNumberPerson;
+    }
+    
+    public PersonModel(String PersonId, String NamePerson, String AddressPerson) {
+        this.PersonId = PersonId;
+        this.NamePerson = NamePerson;
+        this.AddressPerson = AddressPerson;
     }
     
     public PersonModel () {
@@ -96,7 +117,10 @@ public class PersonModel {
         this.PassworrdAcc = PasswordAcc;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cd0e407ab47b902f5cbcab54ce6d5f537c94fab8
     public void setRolePerson(String rolePerson) {
         this.RolePerson = rolePerson;
     }

@@ -1,4 +1,8 @@
-package controllers.Client;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package controllers.Manager;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,15 +12,19 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import models.Client.DanhMucModel;
+import views.main.Manager.AssignmentPanel;
+import views.main.Manager.ManagerHomePanel;
 import views.main.client.ClientBill;
 import views.main.client.ClientChangePassword;
-import views.main.client.ClientChart;
 import views.main.client.ClientHome;
 import views.main.client.ClientInfo;
-import views.main.client.ClientLogin;
+import views.main.Manager.ManagerProfile;
+import views.main.Manager.ManagerWorker;
+import views.main.Manager.ManagerWorkerPanel;
+
 /**
  *
- * @author Phu Bao
+ * @author GIANG
  */
 public class ChuyenManHinhCtrl {
 
@@ -64,26 +72,14 @@ public class ChuyenManHinhCtrl {
         @Override
         public void mouseClicked(MouseEvent e) {
             switch (kind) {
-                case "Home":
-                    node = new ClientHome();
+                case "Nhân viên":
+                    node = new ManagerWorkerPanel();
                     break;
-                case "Bill":
-                    node = new ClientBill();
+                case "Phân công":
+                    node = new AssignmentPanel();
                     break;
-                case "Info":
-                    node = new ClientInfo();
-                    break;
-                case "ChangePassword":
-                    node = new ClientChangePassword();
-                    break;
-                case "LogOut":
-                    node = new ClientHome();
-                    break;
-                case "Chart":
-                    node = new ClientChart();
-                    break;                 
                 default:
-                    node = new ClientHome();
+                    node = new ManagerHomePanel();
                     break;
             }
             root.removeAll();

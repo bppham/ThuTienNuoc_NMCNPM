@@ -10,27 +10,62 @@ import models.PersonModel;
 
 import controllers.Manager.WorkerCtrl;
 
-
 import javax.swing.SwingUtilities;
 import java.awt.Component;
 import java.awt.Window;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import models.RoleCodeModel;
 
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  *
  * @author GIANG
  */
-public class AddWorker extends javax.swing.JFrame{
+public class AddWorker extends javax.swing.JFrame {
 
     /**
      * Creates new form AddWorker
      */
-    
+    Map<String, String> mapRole = new HashMap<String, String>();
 
-        public AddWorker() {
+    public AddWorker() {
+        try {
             initComponents();
+            roleUser.addItem("Quản lí");
+            roleUser.addItem("Nhân viên");
+
+            List<RoleCodeModel> allAreas = WorkerCtrl.timTatCaKhuvuc();
+
+// Create a list to hold the string representations of the areas
+            List<String> areaNames = new ArrayList<>();
+
+// Extract area names from RoleCodeModel objects
+            for (RoleCodeModel area : allAreas) {
+                areaNames.add(area.getValuecode()); // Assuming there's a method to get the area name
+                mapRole.put( area.getValuecode(), area.getKeyCode());
+            }
+
+// Convert the list of area names to an array of strings
+            String[] areaArray = areaNames.toArray(new String[0]);
+
+// Now you can use areaArray to populate your JComboBox
+            for (String item : areaArray) {
+                areaEmploy.addItem(item);
+            }
+
+            System.out.println(mapRole);
+            System.out.println(areaEmploy.getSelectedItem());
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddWorker.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,85 +88,112 @@ public class AddWorker extends javax.swing.JFrame{
         jLabel7 = new javax.swing.JLabel();
         DetailAddressUser = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        RoleCodeUser = new javax.swing.JTextField();
         AddUserBtn = new javax.swing.JButton();
+        roleUser = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        PasswordPerson = new javax.swing.JTextField();
+        areaEmploy = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(134, 140, 255));
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("Thêm nhân viên");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Tên nhân viên");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Email");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Số điện thoại");
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("Địa chỉ");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setText("Chức vụ");
 
-        AddUserBtn.setText("Hoan thanh");
+        AddUserBtn.setBackground(new java.awt.Color(51, 153, 255));
+        AddUserBtn.setForeground(new java.awt.Color(255, 255, 255));
+        AddUserBtn.setText("Hoàn thành");
         AddUserBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddUserBtnActionPerformed(evt);
             }
         });
 
-        jLabel9.setText("Mật khẩu");
+        roleUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
+        roleUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roleUserActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setText("Chọn khu vực làm việc");
+
+        areaEmploy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(NameUser)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EmailUser)
-                    .addComponent(jLabel6)
-                    .addComponent(PhoneNumberUser, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
-                .addGap(102, 102, 102)
+                .addGap(63, 63, 63)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(AddUserBtn)
-                        .addComponent(DetailAddressUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(RoleCodeUser, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(PasswordPerson, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(115, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(NameUser)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(EmailUser)
+                                .addComponent(jLabel6)
+                                .addComponent(PhoneNumberUser, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(127, 127, 127)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(roleUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(areaEmploy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AddUserBtn)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(129, 129, 129)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DetailAddressUser, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel3)
-                .addGap(36, 36, 36)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NameUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RoleCodeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DetailAddressUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel8))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DetailAddressUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(roleUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -139,14 +201,18 @@ public class AddWorker extends javax.swing.JFrame{
                 .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PhoneNumberUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PasswordPerson, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                    .addComponent(areaEmploy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(AddUserBtn)
-                .addGap(28, 28, 28))
+                .addGap(47, 47, 47))
         );
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Quản lí nhân viên");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Quản lí tiền nước công ti dịch vụ nước đô thị");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -162,7 +228,7 @@ public class AddWorker extends javax.swing.JFrame{
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(405, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,9 +237,9 @@ public class AddWorker extends javax.swing.JFrame{
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(54, 54, 54)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -195,34 +261,51 @@ public class AddWorker extends javax.swing.JFrame{
 
     private void AddUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserBtnActionPerformed
         // TODO add your handling code here:
-    String nameUser = NameUser.getText();
-    String roleUser = RoleCodeUser.getText();
-    String emailUser = EmailUser.getText();
-    String addressUser = DetailAddressUser.getText();
-    String phoneNumber = PhoneNumberUser.getText();
-    String passwordUser = PasswordPerson.getText();
-    
-    
-    if (nameUser.isEmpty() || roleUser.isEmpty() || emailUser.isEmpty() || addressUser.isEmpty() || phoneNumber.isEmpty() || passwordUser.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Trường dữ liệu không được để trống", "Thông báo", JOptionPane.WARNING_MESSAGE);
-    } else {
-        try {
-            PersonModel person = new PersonModel(nameUser, roleUser, emailUser, addressUser, phoneNumber, passwordUser);
-        
-            WorkerCtrl.themNhanVien(person);
-        
-            JOptionPane.showMessageDialog(null, "Tạo nhân viên thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        String nameUser = NameUser.getText();
+        String emailUser = EmailUser.getText();
+        String addressUser = DetailAddressUser.getText();
+        String phoneNumber = PhoneNumberUser.getText();
 
-             // Đóng cửa sổ hiện tại
-            Window window = SwingUtilities.getWindowAncestor((Component)evt.getSource());
-            window.dispose();
-            
-        } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "Xảy ra lỗi khi tạo nhân viên", "Lỗi", JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
+        String rolePerson;
+
+        if (String.valueOf(roleUser.getSelectedItem()).equals("Quản lí")) {
+            rolePerson = "R1";
+        } else {
+            rolePerson = "R2";
         }
-    }
+
+        System.out.println();
+
+        if (nameUser.isEmpty() || emailUser.isEmpty() || addressUser.isEmpty() || phoneNumber.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Trường dữ liệu không được để trống", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                PersonModel person = new PersonModel(nameUser, rolePerson, emailUser, addressUser, phoneNumber);
+                
+                String keyCode = mapRole.get(String.valueOf(areaEmploy.getSelectedItem()));
+                
+                System.out.println(String.valueOf(areaEmploy.getSelectedItem()));
+
+                System.out.println(keyCode);
+
+                WorkerCtrl.themNhanVien(person, keyCode);
+
+                JOptionPane.showMessageDialog(null, "Tạo nhân viên thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+
+                // Đóng cửa sổ hiện tại
+                Window window = SwingUtilities.getWindowAncestor((Component) evt.getSource());
+                window.dispose();
+
+            } catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(null, "Xảy ra lỗi khi tạo nhân viên", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_AddUserBtnActionPerformed
+
+    private void roleUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roleUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,9 +347,8 @@ public class AddWorker extends javax.swing.JFrame{
     private javax.swing.JTextField DetailAddressUser;
     private javax.swing.JTextField EmailUser;
     private javax.swing.JTextField NameUser;
-    private javax.swing.JTextField PasswordPerson;
     private javax.swing.JTextField PhoneNumberUser;
-    private javax.swing.JTextField RoleCodeUser;
+    private javax.swing.JComboBox<String> areaEmploy;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -278,5 +360,6 @@ public class AddWorker extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JComboBox<String> roleUser;
     // End of variables declaration//GEN-END:variables
 }

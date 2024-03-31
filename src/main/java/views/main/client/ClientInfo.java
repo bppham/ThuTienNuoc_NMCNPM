@@ -40,6 +40,7 @@ public class ClientInfo extends javax.swing.JPanel {
         lblAddress.setText(client.getAddressPerson());
         lblContact.setText(client.getPhoneNumber());
         lblEmail.setText(client.getEmail());
+<<<<<<< HEAD
     }
     
     private void hienThiCacHoDangSuDungDichVu() throws ClassNotFoundException {
@@ -49,7 +50,10 @@ public class ClientInfo extends javax.swing.JPanel {
             tableModel.addRow(new Object[]{hh.getDetailAddressId(), hh.getNameDetailAddress(),
                 hh.getTypeWaterUsing(), hh.getRoleAreaId(), hh.getDetailArea()});
         });
+=======
+>>>>>>> cd0e407ab47b902f5cbcab54ce6d5f537c94fab8
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
