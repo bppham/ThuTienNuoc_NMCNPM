@@ -4,10 +4,21 @@
  */
 package models;
 
+import java.util.Date;
+
 public class PersonModel {
 
-    private String PersonId,PassworrdAcc, RolePerson, NamePerson, Email, PhoneNumber, AddressPerson;
+    private String PersonId, RoleValue;
+    private String PassworrdAcc, RolePerson, NamePerson, Email, PhoneNumber, AddressPerson;
+    private Date TimeCollect, TimePay;
     
+    public PersonModel( String NamePerson, String Email,String AddressPerson,String PhoneNumber){
+        this.NamePerson = NamePerson;
+        this.Email = Email;
+        this.AddressPerson = AddressPerson;
+        this.PhoneNumber = PhoneNumber;
+    }
+   
     public PersonModel(String PersonId, String PasswordAcc, String RolePerson, String NamePerson, String Email, String PhoneNumber, String AddressPerson) {
         this.PersonId = PersonId;
         this.PassworrdAcc = PasswordAcc;
@@ -54,6 +65,40 @@ public class PersonModel {
     public PersonModel () {
         
     }
+
+    public String getPassworrdAcc() {
+        return PassworrdAcc;
+    }
+
+    public void setPassworrdAcc(String PassworrdAcc) {
+        this.PassworrdAcc = PassworrdAcc;
+    }
+
+    public Date getTimeCollect() {
+        return TimeCollect;
+    }
+
+    public void setTimeCollect(Date TimeCollect) {
+        this.TimeCollect = TimeCollect;
+    }
+
+    public Date getTimePay() {
+        return TimePay;
+    }
+
+    public void setTimePay(Date TimePay) {
+        this.TimePay = TimePay;
+    }
+
+    public String getRoleValue() {
+        return RoleValue;
+    }
+
+    public void setRoleValue(String RoleValue) {
+        this.RoleValue = RoleValue;
+    }
+    
+    
     
     // Getter methods
     public String getPersonId() {

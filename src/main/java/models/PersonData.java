@@ -3,6 +3,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 
 public class PersonData {
@@ -10,7 +11,24 @@ public class PersonData {
     private PersonModel personModel;
     private List<PersonModel> lsPersonInfor;
     private String branch;
+    Stack<String> stackPosition = new Stack<>();
 
+    public String getStack() {
+        return stackPosition.pop();
+    }
+
+    public void setStack(String stack) {
+        this.stackPosition.push(stack);
+    }
+    
+    public void clearStack(){
+        this.stackPosition.clear();
+    }
+    
+    public int getLengthStack(){
+        return this.stackPosition.size();
+    }
+    
     private PersonData() {
         // Khởi tạo user ở đây
         personModel = new PersonModel();

@@ -136,6 +136,10 @@ public class TextFieldSearchOption extends JTextField {
             runEvent();
         }
     }
+    
+    public void removeAllOption(){
+        items.clear();
+    }
 
     public void addEventOptionSelected(SearchOptinEvent event) {
         events.add(event);
