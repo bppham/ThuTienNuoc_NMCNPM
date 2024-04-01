@@ -40,13 +40,13 @@ import org.jfree.data.category.DefaultCategoryDataset;
  */
 public class ClientCtrl {
 
-    public static String currentEmail ;
+    public static String currentEmail = "phubao180803@gmail.com";
 
     // Home
     public static List<ClientBillModel> hienThiCacHoaDonChuaTra() throws ClassNotFoundException {
         List<ClientBillModel> dsHoaDon = new ArrayList<>();
         String sql = "SELECT CM.CollectMoneyId, CM.UserId, CM.EmployCollectId, DA.RoleMoneyCategory, DA.DetailAddressId, "
-                + "DA.NameDetailAddress, EMP.NamePerson, RC.ValueRole, CM.PrevIndex, CM.CurrentIndex, CM.MoneyToPay, CM.TimeCollect "
+                + "DA.NameDetailAddress, EMP.NamePerson, RC.ValueRole, CM.PrevIndex, CM.CurrentIndex, CM.MoneyToPay, CM.TimeCollect, CM.TimePay "
                 + "FROM CollectMoney AS CM  "
                 + "JOIN Person AS USR ON CM.UserId = USR.PersonId "
                 + "JOIN Person AS EMP ON CM.EmployCollectId = EMP.PersonId "
@@ -71,7 +71,8 @@ public class ClientCtrl {
                         resultSet.getInt("PrevIndex"),
                         resultSet.getInt("CurrentIndex"),
                         resultSet.getInt("MoneyToPay"),
-                        resultSet.getDate("TimeCollect"));
+                        resultSet.getDate("TimeCollect"),
+                        resultSet.getDate("TimePay"));
                 dsHoaDon.add(bill);
             }
         } catch (SQLException ex) {
@@ -83,7 +84,7 @@ public class ClientCtrl {
     public static List<ClientBillModel> hienThiCacHoaDonChuaTraTheoDiaChi(String DetailAddressId) throws ClassNotFoundException {
         List<ClientBillModel> dsHoaDon = new ArrayList<>();
         String sql = "SELECT CM.CollectMoneyId, CM.UserId, CM.EmployCollectId, DA.RoleMoneyCategory, DA.DetailAddressId, "
-                + "DA.NameDetailAddress, EMP.NamePerson, RC.ValueRole, CM.PrevIndex, CM.CurrentIndex, CM.MoneyToPay, CM.TimeCollect "
+                + "DA.NameDetailAddress, EMP.NamePerson, RC.ValueRole, CM.PrevIndex, CM.CurrentIndex, CM.MoneyToPay, CM.TimeCollect, CM.TimePay  "
                 + "FROM CollectMoney AS CM  "
                 + "JOIN Person AS USR ON CM.UserId = USR.PersonId "
                 + "JOIN Person AS EMP ON CM.EmployCollectId = EMP.PersonId "
@@ -109,7 +110,8 @@ public class ClientCtrl {
                         resultSet.getInt("PrevIndex"),
                         resultSet.getInt("CurrentIndex"),
                         resultSet.getInt("MoneyToPay"),
-                        resultSet.getDate("TimeCollect"));
+                        resultSet.getDate("TimeCollect"),
+                        resultSet.getDate("TimePay"));
                 dsHoaDon.add(bill);
             }
         } catch (SQLException ex) {
@@ -128,10 +130,13 @@ public class ClientCtrl {
     }
 
     public static void thanhToan(String maHoaDon) throws ClassNotFoundException {
-        String sql = "UPDATE CollectMoney SET StatusCollect = ? WHERE CollectMoneyId = ?";
+        Date ngayHomNay = new Date();
+        java.sql.Date ngayHomNaySQL = new java.sql.Date(ngayHomNay.getTime());
+        String sql = "UPDATE CollectMoney SET StatusCollect = ?, TimePay = ? WHERE CollectMoneyId = ?";
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setBoolean(1, true);
-            statement.setString(2, maHoaDon);
+            statement.setDate(2, ngayHomNaySQL);
+            statement.setString(3, maHoaDon);
             statement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ClientCtrl.class.getName()).log(Level.SEVERE, null, ex);
@@ -244,7 +249,7 @@ public class ClientCtrl {
     public static List<ClientBillModel> hienThiHoaDon() throws ClassNotFoundException {
         List<ClientBillModel> dsHoaDon = new ArrayList<>();
         String sql = "SELECT CM.CollectMoneyId, CM.UserId, CM.EmployCollectId, DA.RoleMoneyCategory, DA.DetailAddressId, "
-                + "DA.NameDetailAddress, EMP.NamePerson, RC.ValueRole, CM.PrevIndex, CM.CurrentIndex, CM.MoneyToPay, CM.TimeCollect "
+                + "DA.NameDetailAddress, EMP.NamePerson, RC.ValueRole, CM.PrevIndex, CM.CurrentIndex, CM.MoneyToPay, CM.TimeCollect, CM.TimePay "
                 + "FROM CollectMoney AS CM  "
                 + "JOIN Person AS USR ON CM.UserId = USR.PersonId "
                 + "JOIN Person AS EMP ON CM.EmployCollectId = EMP.PersonId "
@@ -269,7 +274,8 @@ public class ClientCtrl {
                         resultSet.getInt("PrevIndex"),
                         resultSet.getInt("CurrentIndex"),
                         resultSet.getInt("MoneyToPay"),
-                        resultSet.getDate("TimeCollect"));
+                        resultSet.getDate("TimeCollect"),
+                        resultSet.getDate("TimePay"));
                 dsHoaDon.add(bill);
             }
         } catch (SQLException ex) {
@@ -277,11 +283,11 @@ public class ClientCtrl {
         }
         return dsHoaDon;
     }
-    
+
     public static List<ClientBillModel> hienThiHoaDonTheoDiaChi(String DetailAddressId) throws ClassNotFoundException {
         List<ClientBillModel> dsHoaDon = new ArrayList<>();
         String sql = "SELECT CM.CollectMoneyId, CM.UserId, CM.EmployCollectId, DA.RoleMoneyCategory, DA.DetailAddressId, "
-                + "DA.NameDetailAddress, EMP.NamePerson, RC.ValueRole, CM.PrevIndex, CM.CurrentIndex, CM.MoneyToPay, CM.TimeCollect "
+                + "DA.NameDetailAddress, EMP.NamePerson, RC.ValueRole, CM.PrevIndex, CM.CurrentIndex, CM.MoneyToPay, CM.TimeCollect, CM.TimePay "
                 + "FROM CollectMoney AS CM  "
                 + "JOIN Person AS USR ON CM.UserId = USR.PersonId "
                 + "JOIN Person AS EMP ON CM.EmployCollectId = EMP.PersonId "
@@ -307,7 +313,8 @@ public class ClientCtrl {
                         resultSet.getInt("PrevIndex"),
                         resultSet.getInt("CurrentIndex"),
                         resultSet.getInt("MoneyToPay"),
-                        resultSet.getDate("TimeCollect"));
+                        resultSet.getDate("TimeCollect"),
+                        resultSet.getDate("TimePay"));
                 dsHoaDon.add(bill);
             }
         } catch (SQLException ex) {
@@ -315,12 +322,12 @@ public class ClientCtrl {
         }
         return dsHoaDon;
     }
-    
+
     public static List<ClientBillModel> sapXepTheoTienTangDan(List<ClientBillModel> dsHoaDon) throws ClassNotFoundException {
         dsHoaDon.sort(Comparator.comparing(ClientBillModel::getMoneyToPay));
         return dsHoaDon;
     }
-    
+
     public static List<ClientBillModel> sapXepTheoTienGiamDan(List<ClientBillModel> dsHoaDon) throws ClassNotFoundException {
         dsHoaDon.sort(Comparator.comparing(ClientBillModel::getMoneyToPay).reversed());
         return dsHoaDon;

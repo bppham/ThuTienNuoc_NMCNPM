@@ -99,7 +99,7 @@ public class managerUser_worker extends javax.swing.JPanel {
             PersonData.getInstance().setLsPersonInfor(lsPesonInfor);
             for (PersonModel pm : lsPesonInfor) {
             tblModel.addRow(new String[]{String.valueOf(pm.getPersonId()),pm.getNamePerson(),pm.getAddressPerson(),
-                pm.getRoleValue(), pm.getEmail(),
+                pm.getRolePerson(), pm.getEmail(),
                 pm.getPhoneNumber()});
             }
         } catch (ClassNotFoundException ex) {

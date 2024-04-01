@@ -92,8 +92,14 @@ public class ManagerWorker extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(134, 140, 255));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Quản lí nhân viên");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Quản lí tiền nước công ti dịch vụ nước đô thị");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -117,8 +123,13 @@ public class ManagerWorker extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(134, 140, 255));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Danh sách nhân viên");
 
+        AddWorker.setBackground(new java.awt.Color(0, 153, 255));
+        AddWorker.setForeground(new java.awt.Color(255, 255, 255));
         AddWorker.setText("Thêm nhân viên");
         AddWorker.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +137,8 @@ public class ManagerWorker extends javax.swing.JFrame {
             }
         });
 
+        UpdateInfoWorker.setBackground(new java.awt.Color(0, 153, 255));
+        UpdateInfoWorker.setForeground(new java.awt.Color(255, 255, 255));
         UpdateInfoWorker.setText("Sửa thông tin");
         UpdateInfoWorker.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,6 +146,8 @@ public class ManagerWorker extends javax.swing.JFrame {
             }
         });
 
+        DeleteWorker.setBackground(new java.awt.Color(0, 153, 255));
+        DeleteWorker.setForeground(new java.awt.Color(255, 255, 255));
         DeleteWorker.setText("Xóa");
         DeleteWorker.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,6 +155,7 @@ public class ManagerWorker extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("Tìm kiếm");
 
         listWorkerTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -160,6 +176,8 @@ public class ManagerWorker extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(listWorkerTable);
 
+        ReloadPage.setBackground(new java.awt.Color(0, 153, 255));
+        ReloadPage.setForeground(new java.awt.Color(255, 255, 255));
         ReloadPage.setText("Làm mới");
         ReloadPage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,9 +227,8 @@ public class ManagerWorker extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -282,8 +299,8 @@ public class ManagerWorker extends javax.swing.JFrame {
                 try {
                     PersonModel person = listWorker.get(selectedIndex);
                     System.out.println(person);
-                    //WorkerCtrl.XoaNhanVien(person.getPersonId());
-                    WorkerCtrl.XoaNhanVien(person.getPersonId());
+
+                    WorkerCtrl.XoaNhanVien(person.getEmail());
                     hienThiDSNhanVien();
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(ManagerWorker.class.getName()).log(Level.SEVERE, null, ex);
@@ -304,7 +321,7 @@ public class ManagerWorker extends javax.swing.JFrame {
             // Lấy đối tượng PersonModel từ danh sách listWorker
             PersonModel person = listWorker.get(selectedIndex);
             
-            PersonModel personWorker = new PersonModel(person.getPersonId(),person.getNamePerson(), person.getRolePerson(), person.getEmail(), person.getAddressPerson(), person.getPhoneNumber());
+            PersonModel personWorker = new PersonModel(person.getNamePerson(),person.getRolePerson(), person.getEmail(), person.getAddressPerson(), person.getPhoneNumber(), person.getPasswordAcc());
             
             DataGlobal.getDataGLobal.dataGlobal.setCurrentEditPerson(personWorker);
             

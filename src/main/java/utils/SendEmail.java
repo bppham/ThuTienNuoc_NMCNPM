@@ -7,6 +7,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Properties;
 
+ 
+
 public class SendEmail {
     public static void sendEmail(String code, String email) throws MessagingException, UnsupportedEncodingException {
         final String fromEmail = "n21dccn007@student.ptithcm.edu.vn";

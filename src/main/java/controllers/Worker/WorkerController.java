@@ -132,7 +132,7 @@ public class WorkerController {
                         resultSet.getString("Email"), 
                         resultSet.getString("PhoneNumber"), 
                         resultSet.getString("NameDetailAddress")); 
-                personModel.setRoleValue(resultSet.getString("ValueRole"));
+                personModel.setRolePerson(resultSet.getString("ValueRole"));
                 lsPersons.add(personModel);
                               
             }

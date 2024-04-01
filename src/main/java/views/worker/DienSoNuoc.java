@@ -55,7 +55,7 @@ public class DienSoNuoc extends javax.swing.JPanel {
         lb_branch.setText("Chi nhánh "+PersonData.getInstance().getBranch());
         if(personModel != null){
             lb_name.setText(personModel.getNamePerson());
-            lb_group.setText(personModel.getRoleValue());
+            lb_group.setText(personModel.getRolePerson());
         }
         fillTableBillUser();
         setingUITable();
