@@ -157,10 +157,6 @@ public class WorkerCtrl {
 
         return dsNhanvien;
     }
-<<<<<<< HEAD
-    
-      public static void XoaNhanVien(String PersonId) throws ClassNotFoundException {
-=======
 
     public static List<RoleCodeModel> timTatCaKhuvuc() throws ClassNotFoundException {
         List<RoleCodeModel> dsKhuvuc = new ArrayList<>();
@@ -204,7 +200,6 @@ public class WorkerCtrl {
     }
 
     public static void XoaNhanVien(String Email) throws ClassNotFoundException {
->>>>>>> cd0e407ab47b902f5cbcab54ce6d5f537c94fab8
         Connection connection = null;
         PreparedStatement statement = null;
         try {
@@ -213,12 +208,8 @@ public class WorkerCtrl {
 
             statement = connection.prepareStatement(sql);
 
-<<<<<<< HEAD
-            statement.setString(1, PersonId);
-=======
             statement.setString(1, "False");
             statement.setString(2, Email);
->>>>>>> cd0e407ab47b902f5cbcab54ce6d5f537c94fab8
 
             statement.executeUpdate();
 
@@ -283,9 +274,5 @@ public class WorkerCtrl {
             }
         }
     }
-<<<<<<< HEAD
-}
-=======
 
 }
->>>>>>> cd0e407ab47b902f5cbcab54ce6d5f537c94fab8
