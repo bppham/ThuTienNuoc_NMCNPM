@@ -189,7 +189,10 @@ public class home_worker extends javax.swing.JPanel {
         tblModel_userPendingPay.setRowCount(0);
         List<PersonModel> lsPesonInfor;
         try {
-            lsPesonInfor = workerController.getInforUsersPendingByBranch(PersonData.getInstance().getBranch(),where,text);
+            lsPesonInfor = workerController.getInforUsersPendingByBranch(PersonData.getInstance().getBranch(),
+                    PersonData.getInstance().getPersonInfo().getPersonId(),
+                    where,
+                    text);
             PersonData.getInstance().setLsPersonInfor(lsPesonInfor);
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
             for (PersonModel pm : lsPesonInfor) {

@@ -145,7 +145,7 @@ public class WorkerController {
         return null;
     }
     
-    public List<PersonModel> getInforUsersPendingByBranch(String branch, String where, Object ... search) throws ClassNotFoundException{
+    public List<PersonModel> getInforUsersPendingByBranch(String branch,String id_employee, String where, Object ... search) throws ClassNotFoundException{
         List<PersonModel> lsPersons = new ArrayList<>();
         branch = "%" + branch +"%";
         String sql = """
@@ -158,10 +158,11 @@ public class WorkerController {
                     join CollectMoney as cm
                     on cm.UserId = p.PersonId
                     where da.NameDetailAddress like ?
-                    and da.StatusService = 1 and cm.StatusCollect = 0
+                    and da.StatusService = 1 and cm.StatusCollect = 0 and cm.EmployCollectId = ?
                      """ + where;
         try (Connection connection = ConnectDB.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, branch);
+            statement.setString(2, id_employee);
             for(int i = 0; i< search.length; i++){
                 statement.setObject(i+2, search[i]);
             }

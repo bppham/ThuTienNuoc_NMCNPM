@@ -55,6 +55,16 @@ public class PersonModel {
         this.AddressPerson = AddressPerson;
         this.PhoneNumber = PhoneNumberPerson;
     }
+    
+    public PersonModel(String PersonId, String NamePerson, String AddressPerson) {
+        this.PersonId = PersonId;
+        this.NamePerson = NamePerson;
+        this.AddressPerson = AddressPerson;
+    }
+    
+    public PersonModel () {
+        
+    }
 
     public String getPassworrdAcc() {
         return PassworrdAcc;
@@ -80,13 +90,6 @@ public class PersonModel {
         this.TimePay = TimePay;
     }
 
-    
-    
-    
-    
-    public PersonModel () {
-        
-    }
     
     // Getter methods
     public String getPersonId() {
