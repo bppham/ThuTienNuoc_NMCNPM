@@ -9,8 +9,10 @@ import java.util.Date;
 public class PersonModel {
 
     private String PersonId, RoleValue;
-    private String PassworrdAcc, RolePerson, NamePerson, Email, PhoneNumber, AddressPerson;
+    private String PassworrdAcc, PasswordAcc, RolePerson, NamePerson, Email, PhoneNumber, AddressPerson;
     private Date TimeCollect, TimePay;
+    private boolean StatusAcc; // Trạng thái của tài khoản
+
     
     public PersonModel( String NamePerson, String Email,String AddressPerson,String PhoneNumber){
         this.NamePerson = NamePerson;
@@ -19,14 +21,17 @@ public class PersonModel {
         this.PhoneNumber = PhoneNumber;
     }
    
-    public PersonModel(String PersonId, String PasswordAcc, String RolePerson, String NamePerson, String Email, String PhoneNumber, String AddressPerson) {
+
+    public PersonModel(String PersonId, String PasswordAcc, String RolePerson, String NamePerson, String Email, String PhoneNumber, String AddressPerson, boolean StatusAcc) {
+
         this.PersonId = PersonId;
-        this.PassworrdAcc = PasswordAcc;
+        this.PasswordAcc = PasswordAcc;
         this.RolePerson = RolePerson;
         this.NamePerson = NamePerson;
         this.Email = Email;
         this.PhoneNumber = PhoneNumber;
         this.AddressPerson = AddressPerson;
+        this.StatusAcc = StatusAcc;
 
     }
     
@@ -56,6 +61,18 @@ public class PersonModel {
         this.PhoneNumber = PhoneNumberPerson;
     }
     
+
+    // Constructor chấp nhận 7 tham số
+    public PersonModel(String personId, String passwordAcc, String rolePerson, String namePerson, String email, String phoneNumber, String addressPerson) {
+        this.PersonId = personId;
+        this.PasswordAcc = passwordAcc;
+        this.RolePerson = rolePerson;
+        this.NamePerson = namePerson;
+        this.Email = email;
+        this.PhoneNumber = phoneNumber;
+        this.AddressPerson = addressPerson;
+    }
+
     public PersonModel(String PersonId, String NamePerson, String AddressPerson) {
         this.PersonId = PersonId;
         this.NamePerson = NamePerson;
@@ -130,6 +147,10 @@ public class PersonModel {
         return AddressPerson;
     }
     
+    public boolean getStatusAcc() {
+        return StatusAcc;
+    }
+    
     // Setter methods
     public void setPersonId(String personId) {
         this.PersonId = personId;
@@ -158,5 +179,10 @@ public class PersonModel {
     public void setAddressPerson(String addressPerson) {
         this.AddressPerson = addressPerson;
     }
+    
+    public void setStatusAcc(boolean StatusAcc) {
+        this.StatusAcc = StatusAcc;
+    }
+
 }
 
