@@ -309,7 +309,7 @@ public class GhiDienSoNuoc extends javax.swing.JPanel {
 
     private void button_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_backActionPerformed
         wMain.setVisibleAllFalse();
-        wMain.setVisibleManagerUser();
+        wMain.setVisibleStack();
     }//GEN-LAST:event_button_backActionPerformed
     
     private String renderIdBill(){
@@ -363,13 +363,21 @@ public class GhiDienSoNuoc extends javax.swing.JPanel {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(GhiDienSoNuoc.class.getName()).log(Level.SEVERE, null, ex);
         }
+        double sum_money = 0.0;
         int soGia = Integer.parseInt(String.valueOf(text_currentIndex.getText())) - Integer.parseInt(String.valueOf(text_preIndex.getText()));
         for(DetailPrice dp: lsDetailPrices){
-            if(dp.getStartIndex() <= (soGia) && dp.getEndIndex() > (soGia)){
-                return (int)(soGia * (dp.getPrice()));
+            int differenceIndex = (dp.getEndIndex() - dp.getStartIndex());
+            if(soGia > 0){
+                if(soGia > differenceIndex){
+                    
+                    sum_money += (differenceIndex * dp.getPrice());
+                }else{
+                    sum_money += soGia * dp.getPrice();
+                }
+                soGia -= differenceIndex;
             }
         }
-        return -1;
+        return (int)(sum_money);
     }
     
     private void button_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_saveActionPerformed
@@ -397,6 +405,10 @@ public class GhiDienSoNuoc extends javax.swing.JPanel {
                 setDefault();
                 wMain.setBillsUser_DienSoNuoc(personModel);
                 wMain.setVisibleAllFalse();
+                
+                if(PersonData.getInstance().getLengthStack() != 1){
+                    PersonData.getInstance().getStack();
+                }
                 wMain.setVisibleDienSoNuoc(true);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(GhiDienSoNuoc.class.getName()).log(Level.SEVERE, null, ex);

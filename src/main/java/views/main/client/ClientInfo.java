@@ -33,13 +33,14 @@ public class ClientInfo extends javax.swing.JPanel {
 
     }
 
-   private void hienThiThongTinCaNhanChuHo() throws ClassNotFoundException {
+    private void hienThiThongTinCaNhanChuHo() throws ClassNotFoundException {
         ClientInfoModel client = ClientCtrl.hienThiChuHo();
         lblId.setText(client.getPersonId());
         lblName.setText(client.getNamePerson());
         lblAddress.setText(client.getAddressPerson());
         lblContact.setText(client.getPhoneNumber());
         lblEmail.setText(client.getEmail());
+
     }
     
     private void hienThiCacHoDangSuDungDichVu() throws ClassNotFoundException {
@@ -50,7 +51,6 @@ public class ClientInfo extends javax.swing.JPanel {
                 hh.getTypeWaterUsing(), hh.getRoleAreaId(), hh.getDetailArea()});
         });
     }
-
 
 
     /**

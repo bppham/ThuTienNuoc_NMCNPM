@@ -55,7 +55,7 @@ public class DienSoNuoc extends javax.swing.JPanel {
         lb_branch.setText("Chi nhánh "+PersonData.getInstance().getBranch());
         if(personModel != null){
             lb_name.setText(personModel.getNamePerson());
-            lb_group.setText(personModel.getRolePerson());
+            lb_group.setText(personModel.getRoleValue());
         }
         fillTableBillUser();
         setingUITable();
@@ -103,9 +103,9 @@ public class DienSoNuoc extends javax.swing.JPanel {
                     }
                     String thanhToan = "";
                     if(bm.isStatusCollect()){
-                        thanhToan = "Rồi";
+                        thanhToan = "Đã Thanh Toán";
                     }else{
-                        thanhToan = "Chưa";
+                        thanhToan = "Chưa Thanh Toán";
                     }
                     String timePay = "";
                     if(bm.getTimePay() != null){
@@ -200,7 +200,7 @@ public class DienSoNuoc extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(button_back)
@@ -210,12 +210,11 @@ public class DienSoNuoc extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(button_back)))
-                .addContainerGap())
+                .addComponent(button_back)
+                .addGap(29, 29, 29))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 7, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(235, 239, 254));
@@ -311,15 +310,17 @@ public class DienSoNuoc extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 994, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -328,11 +329,13 @@ public class DienSoNuoc extends javax.swing.JPanel {
 
     private void button_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_backActionPerformed
         wMain.setVisibleAllFalse();
-        wMain.setVisibleManagerUser();
+        wMain.setVisibleStack();
+        
     }//GEN-LAST:event_button_backActionPerformed
 
     private void button_rendarBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_rendarBillActionPerformed
         wMain.setVisibleAllFalse();
+        PersonData.getInstance().setStack("DIENSONUOC");
         wMain.setUserInfor_DienSoNuoc(personModel);
         wMain.setVisibleGhiDienSoNuoc(true);
     }//GEN-LAST:event_button_rendarBillActionPerformed

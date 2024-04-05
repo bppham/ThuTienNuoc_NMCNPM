@@ -7,6 +7,7 @@ package models.Client;
 public class ClientInfoModel {
     private String personId, rolePerson, namePerson, email, phoneNumber, addressPerson; //Person
 
+
     public ClientInfoModel() {
     }
         
@@ -74,5 +75,4 @@ public class ClientInfoModel {
     public void setAddressPerson(String addressPerson) {
         this.addressPerson = addressPerson;
     }
-    
 }

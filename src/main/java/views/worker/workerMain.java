@@ -2,6 +2,8 @@
 package views.worker;
 
 import java.awt.Color;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import models.DataGlobal;
 import models.PersonData;
@@ -12,7 +14,7 @@ import views.main.client.ClientLogin;
 public class workerMain extends javax.swing.JFrame {
     
     private final editPassword_worker editPassword_worker1 = new views.worker.editPassword_worker(this);
-    private home_worker home_worker2 = new home_worker();
+    private home_worker home_worker2 = new home_worker(this);
     private final managerUser_worker managerUser_worker1 = new managerUser_worker(this);
     private final profile_worker profile_worker1 = new  views.worker.profile_worker(this);
     private GhiDienSoNuoc ghiDienSoNuoc = new views.worker.GhiDienSoNuoc(this);
@@ -20,12 +22,15 @@ public class workerMain extends javax.swing.JFrame {
 
     public workerMain() {
         initComponents();
+        setSize(Toolkit.getDefaultToolkit().getScreenSize());
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         jLayeredPane1.add(home_worker2);
         jLayeredPane1.add(managerUser_worker1);
         jLayeredPane1.add(profile_worker1);
         jLayeredPane1.add(editPassword_worker1);
         jLayeredPane1.add(ghiDienSoNuoc);
         jLayeredPane1.add(dienSoNuoc);
+        home_worker2.setVisible(true);
     }
 
     public void setVisibleAllFalse(){
@@ -36,6 +41,23 @@ public class workerMain extends javax.swing.JFrame {
         ghiDienSoNuoc.setVisible(false);
         dienSoNuoc.setVisible(false);
     }
+    
+    public void setVisibleHome(boolean check){
+        if(check == true){
+            button_home.setBackground(new Color(67, 24, 255));
+            button_managerUser.setBackground(new Color(123,150,212));
+            button_profile.setBackground(new Color(123,150,212));
+            setVisibleAllFalse();
+            jLayeredPane1.repaint();
+            jLayeredPane1.revalidate();
+            home_worker2.setDefault();
+            home_worker2.setVisible(true);
+            
+        }else{
+            home_worker2.setVisible(false);
+        }
+    }
+    
     public void setVisibleEditPassword(){
         editPassword_worker1.setVisible(true);
     }
@@ -68,6 +90,21 @@ public class workerMain extends javax.swing.JFrame {
     
     public void setVisibleManagerUser(){
         managerUser_worker1.setVisible(true);
+    }
+    
+    public void setVisibleStack(){
+        setVisibleAllFalse();
+        switch (PersonData.getInstance().getStack()) {
+            case "TRANGCHU" -> setVisibleHome(true);
+            case "QLUSERS" -> setVisibleManagerUser();
+            case "INFOR" -> setVisibleProfileUser();
+            case "DIENSONUOC" -> setVisibleDienSoNuoc(true);
+            case "GHIDIENSONUOC" -> setVisibleGhiDienSoNuoc(true);
+            case "CHANGEINFOR" -> setVisibleEditPassword();
+            default -> {
+                return;
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -216,27 +253,27 @@ public class workerMain extends javax.swing.JFrame {
     }//GEN-LAST:event_button_logoutActionPerformed
 
     private void button_homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_homeActionPerformed
-        button_home.setBackground(new Color(67, 24, 255));
-        button_managerUser.setBackground(new Color(123,150,212));
-        button_profile.setBackground(new Color(123,150,212));
-        setVisibleAllFalse();
-        home_worker2.setDefault();
-        home_worker2.setVisible(true);
+        PersonData.getInstance().clearStack();
+        setVisibleHome(true);
     }//GEN-LAST:event_button_homeActionPerformed
 
     private void button_managerUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_managerUserActionPerformed
+        PersonData.getInstance().clearStack();
         button_home.setBackground(new Color(123,150,212));
         button_managerUser.setBackground(new Color(67, 24, 255));
         button_profile.setBackground(new Color(123,150,212));
         setVisibleAllFalse();
+        managerUser_worker1.setDefault();
         managerUser_worker1.setVisible(true);
     }//GEN-LAST:event_button_managerUserActionPerformed
 
     private void button_profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_profileActionPerformed
+        PersonData.getInstance().clearStack();
         button_home.setBackground(new Color(123,150,212));
         button_managerUser.setBackground(new Color(123,150,212));
         button_profile.setBackground(new Color(67, 24, 255));
         setVisibleAllFalse();
+        profile_worker1.setDefault();
         profile_worker1.setVisible(true);
     }//GEN-LAST:event_button_profileActionPerformed
 
