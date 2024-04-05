@@ -12,6 +12,7 @@ public class PersonModel {
     private String PassworrdAcc, PasswordAcc, RolePerson, NamePerson, Email, PhoneNumber, AddressPerson;
     private Date TimeCollect, TimePay;
     private boolean StatusAcc; // Trạng thái của tài khoản
+
     
     public PersonModel( String NamePerson, String Email,String AddressPerson,String PhoneNumber){
         this.NamePerson = NamePerson;
@@ -20,7 +21,9 @@ public class PersonModel {
         this.PhoneNumber = PhoneNumber;
     }
    
+
     public PersonModel(String PersonId, String PasswordAcc, String RolePerson, String NamePerson, String Email, String PhoneNumber, String AddressPerson, boolean StatusAcc) {
+
         this.PersonId = PersonId;
         this.PasswordAcc = PasswordAcc;
         this.RolePerson = RolePerson;
@@ -29,6 +32,7 @@ public class PersonModel {
         this.PhoneNumber = PhoneNumber;
         this.AddressPerson = AddressPerson;
         this.StatusAcc = StatusAcc;
+
     }
     
     public PersonModel (String NamePerson, String RolePeson, String EmailPerson, String AddressPerson, String PhoneNumberPerson, String PasswordAcc)  {
@@ -57,6 +61,7 @@ public class PersonModel {
         this.PhoneNumber = PhoneNumberPerson;
     }
     
+
     // Constructor chấp nhận 7 tham số
     public PersonModel(String personId, String passwordAcc, String rolePerson, String namePerson, String email, String phoneNumber, String addressPerson) {
         this.PersonId = personId;
@@ -67,7 +72,7 @@ public class PersonModel {
         this.PhoneNumber = phoneNumber;
         this.AddressPerson = addressPerson;
     }
-    
+
     public PersonModel(String PersonId, String NamePerson, String AddressPerson) {
         this.PersonId = PersonId;
         this.NamePerson = NamePerson;
