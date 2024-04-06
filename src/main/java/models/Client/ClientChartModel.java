@@ -1,39 +1,40 @@
 package models.Client;
 
 public class ClientChartModel {
-    private String month;
-    private int waterConsumption, moneyToPay;
+    private String ki;
+    private int soNuocTieuThu, soTienPhaiTra;
 
     public ClientChartModel() {
     }
 
-    public ClientChartModel(String month, int waterConsumption, int moneyToPay) {
-        this.month = month;
-        this.waterConsumption = waterConsumption;
-        this.moneyToPay = moneyToPay;
+    public ClientChartModel(String ki, int soNuocTieuThu, int soTienPhaiTra) {
+        this.ki = ki;
+        this.soNuocTieuThu = soNuocTieuThu;
+        this.soTienPhaiTra = soTienPhaiTra;
     }
 
-    public String getMonth() {
-        return month;
+    public String getKi() {
+        return ki;
     }
 
-    public void setMonth(String month) {
-        this.month = month;
+    public void setKi(String ki) {
+        this.ki = ki;
     }
 
-    public double getWaterConsumption() {
-        return waterConsumption;
+    public int getSoNuocTieuThu() {
+        return soNuocTieuThu;
     }
 
-    public void setWaterConsumption(int waterConsumption) {
-        this.waterConsumption = waterConsumption;
+    public void setSoNuocTieuThu(int soNuocTieuThu) {
+        this.soNuocTieuThu = soNuocTieuThu;
     }
 
-    public double getMoneyToPay() {
-        return moneyToPay;
+    public int getSoTienPhaiTra() {
+        return soTienPhaiTra;
     }
 
-    public void setMoneyToPay(int moneyToPay) {
-        this.moneyToPay = moneyToPay;
-    }  
+    public void setSoTienPhaiTra(int soTienPhaiTra) {
+        this.soTienPhaiTra = soTienPhaiTra;
+    }
+  
 }

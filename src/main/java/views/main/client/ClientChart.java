@@ -29,7 +29,7 @@ public class ClientChart extends javax.swing.JPanel {
             dsCacHo = ClientCtrl.hienThiCacHoDangSuDungDichVu();
             cboDSCacHo.removeAllItems();
             dsCacHo.forEach(ho -> {
-                String diaChi = ho.getNameDetailAddress();
+                String diaChi = ho.getTenChiTiet();
                 cboDSCacHo.addItem(diaChi);
             });
         } catch (ClassNotFoundException ex) {
@@ -170,7 +170,7 @@ public class ClientChart extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (!dsCacHo.isEmpty()) {
             int index = cboDSCacHo.getSelectedIndex();
-            maHo = dsCacHo.get(index).getDetailAddressId();
+            maHo = dsCacHo.get(index).getMaCTKV();
             System.out.println(maHo);
         }
         showChart();

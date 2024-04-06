@@ -1,57 +1,84 @@
 package models.Client;
 
 public class ClientHouseholdModel {
-    private String detailAddressId, nameDetailAddress, typeWaterUsing, roleAreaId, detailArea;
+    private String maCTKV, tenChiTiet, maKhuVuc, tenKhuVuc, maDH, tenDH, maLoai, tenLoai;
 
     public ClientHouseholdModel() {
     }
 
-    public ClientHouseholdModel(String detailAddressId, String nameDetailAddress, String typeWaterUsing, String roleAreaId, String detailArea) {
-        this.detailAddressId = detailAddressId;
-        this.nameDetailAddress = nameDetailAddress;
-        this.typeWaterUsing = typeWaterUsing;
-        this.roleAreaId = roleAreaId;
-        this.detailArea = detailArea;
+    public ClientHouseholdModel(String maCTKV, String tenChiTiet, String maKhuVuc, String tenKhuVuc, String maDH, String tenDH, String maLoai, String tenLoai) {
+        this.maCTKV = maCTKV;
+        this.tenChiTiet = tenChiTiet;
+        this.maKhuVuc = maKhuVuc;
+        this.tenKhuVuc = tenKhuVuc;
+        this.maDH = maDH;
+        this.tenDH = tenDH;
+        this.maLoai = maLoai;
+        this.tenLoai = tenLoai;
     }
 
-    public String getDetailAddressId() {
-        return detailAddressId;
+    public String getMaCTKV() {
+        return maCTKV;
     }
 
-    public void setDetailAddressId(String detailAddressId) {
-        this.detailAddressId = detailAddressId;
+    public void setMaCTKV(String maCTKV) {
+        this.maCTKV = maCTKV;
     }
 
-    public String getNameDetailAddress() {
-        return nameDetailAddress;
+    public String getTenChiTiet() {
+        return tenChiTiet;
     }
 
-    public void setNameDetailAddress(String nameDetailAddress) {
-        this.nameDetailAddress = nameDetailAddress;
+    public void setTenChiTiet(String tenChiTiet) {
+        this.tenChiTiet = tenChiTiet;
     }
 
-    public String getTypeWaterUsing() {
-        return typeWaterUsing;
+    public String getMaKhuVuc() {
+        return maKhuVuc;
     }
 
-    public void setTypeWaterUsing(String typeWaterUsing) {
-        this.typeWaterUsing = typeWaterUsing;
+    public void setMaKhuVuc(String maKhuVuc) {
+        this.maKhuVuc = maKhuVuc;
     }
 
-    public String getRoleAreaId() {
-        return roleAreaId;
+    public String getTenKhuVuc() {
+        return tenKhuVuc;
     }
 
-    public void setRoleAreaId(String roleAreaId) {
-        this.roleAreaId = roleAreaId;
+    public void setTenKhuVuc(String tenKhuVuc) {
+        this.tenKhuVuc = tenKhuVuc;
     }
 
-    public String getDetailArea() {
-        return detailArea;
+    public String getMaDH() {
+        return maDH;
     }
 
-    public void setDetailArea(String detailArea) {
-        this.detailArea = detailArea;
+    public void setMaDH(String maDH) {
+        this.maDH = maDH;
+    }
+
+    public String getTenDH() {
+        return tenDH;
+    }
+
+    public void setTenDH(String tenDH) {
+        this.tenDH = tenDH;
+    }
+
+    public String getMaLoai() {
+        return maLoai;
+    }
+
+    public void setMaLoai(String maLoai) {
+        this.maLoai = maLoai;
+    }
+
+    public String getTenLoai() {
+        return tenLoai;
+    }
+
+    public void setTenLoai(String tenLoai) {
+        this.tenLoai = tenLoai;
     }
     
 }

@@ -5,51 +5,67 @@ package models.Client;
  * @author Phu Bao
  */
 public class ClientInfoModel {
-    private String personId, rolePerson, namePerson, email, phoneNumber, addressPerson; //Person
-
+    private String maCH, hoTen, sdt, cccd, diaChi, gioiTinh, email;
 
     public ClientInfoModel() {
     }
-        
-    public ClientInfoModel(String personId, String rolePerson, String namePerson, String email, String phoneNumber, String addressPerson) {
-        this.personId = personId;
-        this.rolePerson = rolePerson;
-        this.namePerson = namePerson;
+
+    public ClientInfoModel(String maCH, String hoTen, String sdt, String cccd, String diaChi, String gioiTinh, String email) {
+        this.maCH = maCH;
+        this.hoTen = hoTen;
+        this.sdt = sdt;
+        this.cccd = cccd;
+        this.diaChi = diaChi;
+        this.gioiTinh = gioiTinh;
         this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.addressPerson = addressPerson;
     }
 
-    public ClientInfoModel(String personId, String namePerson, String email, String phoneNumber, String addressPerson) {
-        this.personId = personId;
-        this.namePerson = namePerson;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.addressPerson = addressPerson;
-    }
-    
-    public String getPersonId() {
-        return personId;
+    public String getMaCH() {
+        return maCH;
     }
 
-    public void setPersonId(String personId) {
-        this.personId = personId;
+    public void setMaCH(String maCH) {
+        this.maCH = maCH;
     }
 
-    public String getRolePerson() {
-        return rolePerson;
+    public String getHoTen() {
+        return hoTen;
     }
 
-    public void setRolePerson(String rolePerson) {
-        this.rolePerson = rolePerson;
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
     }
 
-    public String getNamePerson() {
-        return namePerson;
+    public String getSdt() {
+        return sdt;
     }
 
-    public void setNamePerson(String namePerson) {
-        this.namePerson = namePerson;
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
+    public String getCccd() {
+        return cccd;
+    }
+
+    public void setCccd(String cccd) {
+        this.cccd = cccd;
+    }
+
+    public String getDiaChi() {
+        return diaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+
+    public String getGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(String gioiTinh) {
+        this.gioiTinh = gioiTinh;
     }
 
     public String getEmail() {
@@ -59,20 +75,5 @@ public class ClientInfoModel {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getAddressPerson() {
-        return addressPerson;
-    }
-
-    public void setAddressPerson(String addressPerson) {
-        this.addressPerson = addressPerson;
-    }
+    
 }

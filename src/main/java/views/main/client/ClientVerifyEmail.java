@@ -32,7 +32,7 @@ public class ClientVerifyEmail extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtVerifyCode = new javax.swing.JTextField();
+        txtMaXacNhan = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         btnContinue = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
@@ -50,10 +50,10 @@ public class ClientVerifyEmail extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Mã xác nhận");
 
-        txtVerifyCode.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtVerifyCode.addActionListener(new java.awt.event.ActionListener() {
+        txtMaXacNhan.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtMaXacNhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtVerifyCodeActionPerformed(evt);
+                txtMaXacNhanActionPerformed(evt);
             }
         });
 
@@ -91,7 +91,7 @@ public class ClientVerifyEmail extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtVerifyCode, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtMaXacNhan, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(63, 63, 63))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -111,7 +111,7 @@ public class ClientVerifyEmail extends javax.swing.JFrame {
                 .addGap(74, 74, 74)
                 .addComponent(jLabel4)
                 .addGap(25, 25, 25)
-                .addComponent(txtVerifyCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMaXacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnContinue, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,15 +128,15 @@ public class ClientVerifyEmail extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtVerifyCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVerifyCodeActionPerformed
+    private void txtMaXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaXacNhanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtVerifyCodeActionPerformed
+    }//GEN-LAST:event_txtMaXacNhanActionPerformed
 
     private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
         // TODO add your handling code here:
-        String theCode = ClientLogin.verifyCode;
-        String inputCode = txtVerifyCode.getText();
-        if (theCode.equals(inputCode)) {
+        String maXacNhan = ClientLogin.verifyCode;
+        String maNhap = txtMaXacNhan.getText();
+        if (maXacNhan.equals(maNhap)) {
             this.setVisible(false);
             new ClientCreateNewPassword().setVisible(true);
         } else {
@@ -193,6 +193,6 @@ public class ClientVerifyEmail extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtVerifyCode;
+    private javax.swing.JTextField txtMaXacNhan;
     // End of variables declaration//GEN-END:variables
 }
