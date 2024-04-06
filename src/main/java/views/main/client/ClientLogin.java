@@ -33,14 +33,14 @@ public class ClientLogin extends javax.swing.JFrame {
         txtEmail.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                btnLoginActionPerformed(e);
+                btnDangNhapActionPerformed(e);
             }
         });
 
-        txtPassword.addActionListener(new ActionListener() {
+        txtMatKhau.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                btnLoginActionPerformed(e);
+                btnDangNhapActionPerformed(e);
             }
         });
     }
@@ -60,10 +60,10 @@ public class ClientLogin extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cbShowPassword = new javax.swing.JCheckBox();
-        lblForgetPassword = new javax.swing.JLabel();
-        btnLogin = new javax.swing.JButton();
-        txtPassword = new javax.swing.JPasswordField();
+        cboHienThiMatKhau = new javax.swing.JCheckBox();
+        lblQuenMatKhau = new javax.swing.JLabel();
+        btnDangNhap = new javax.swing.JButton();
+        txtMatKhau = new javax.swing.JPasswordField();
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -91,38 +91,38 @@ public class ClientLogin extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Nhập email và mật khẩu để đăng nhập!");
 
-        cbShowPassword.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        cbShowPassword.setText("Hiện mật khẩu");
-        cbShowPassword.addActionListener(new java.awt.event.ActionListener() {
+        cboHienThiMatKhau.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        cboHienThiMatKhau.setText("Hiện mật khẩu");
+        cboHienThiMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbShowPasswordActionPerformed(evt);
+                cboHienThiMatKhauActionPerformed(evt);
             }
         });
 
-        lblForgetPassword.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        lblForgetPassword.setForeground(new java.awt.Color(102, 102, 255));
-        lblForgetPassword.setText("Quên mật khẩu?");
-        lblForgetPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblQuenMatKhau.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lblQuenMatKhau.setForeground(new java.awt.Color(102, 102, 255));
+        lblQuenMatKhau.setText("Quên mật khẩu?");
+        lblQuenMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblForgetPasswordMouseClicked(evt);
+                lblQuenMatKhauMouseClicked(evt);
             }
         });
 
-        btnLogin.setBackground(new java.awt.Color(0, 153, 255));
-        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogin.setText("Đăng nhập");
-        btnLogin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+        btnDangNhap.setBackground(new java.awt.Color(0, 153, 255));
+        btnDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnDangNhap.setForeground(new java.awt.Color(255, 255, 255));
+        btnDangNhap.setText("Đăng nhập");
+        btnDangNhap.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
+                btnDangNhapActionPerformed(evt);
             }
         });
 
-        txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+        txtMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
+                txtMatKhauActionPerformed(evt);
             }
         });
 
@@ -132,22 +132,22 @@ public class ClientLogin extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(87, 87, 87)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 52, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtMatKhau, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(cbShowPassword)
+                            .addComponent(cboHienThiMatKhau)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
-                            .addComponent(lblForgetPassword))))
+                            .addComponent(lblQuenMatKhau))))
                 .addGap(63, 63, 63))
         );
         jPanel1Layout.setVerticalGroup(
@@ -164,13 +164,13 @@ public class ClientLogin extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel3)
                 .addGap(25, 25, 25)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbShowPassword)
-                    .addComponent(lblForgetPassword))
+                    .addComponent(cboHienThiMatKhau)
+                    .addComponent(lblQuenMatKhau))
                 .addGap(37, 37, 37)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -187,60 +187,61 @@ public class ClientLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void cbShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbShowPasswordActionPerformed
+    private void cboHienThiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboHienThiMatKhauActionPerformed
         // TODO add your handling code here:
-        if (cbShowPassword.isSelected()) {
-            txtPassword.setEchoChar((char) 0);
+        if (cboHienThiMatKhau.isSelected()) {
+            txtMatKhau.setEchoChar((char) 0);
         } else {
-            txtPassword.setEchoChar('*');
+            txtMatKhau.setEchoChar('*');
         }
-    }//GEN-LAST:event_cbShowPasswordActionPerformed
+    }//GEN-LAST:event_cboHienThiMatKhauActionPerformed
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
-        currentEmail = txtEmail.getText();
-        ClientCtrl.currentEmail = currentEmail;
-        char[] passwordChars = txtPassword.getPassword();
+        String email = txtEmail.getText();
+        char[] passwordChars = txtMatKhau.getPassword();
         String password = String.valueOf(passwordChars);
-        if (currentEmail.isEmpty() || password.isEmpty()) {
+        if (email.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không được để trống!", "Thông báo", JOptionPane.ERROR_MESSAGE);
         } else try {
-            if (!ClientCtrl.kiemTraEmailCoTonTai(currentEmail)) {
+            if (!ClientCtrl.kiemTraEmailCoTonTai(email)) {
                 JOptionPane.showMessageDialog(this, "Email không có trong hệ thống!", "Thông báo", JOptionPane.ERROR_MESSAGE);
-            } else if (!ClientCtrl.kiemTraMatKhauHienTai(password)){
-                JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không đúng!!", "Thông báo", JOptionPane.ERROR_MESSAGE);
-            } else {              
-                String flag = ClientCtrl.dangNhap(password);
+            } else if (!ClientCtrl.kiemTraMatKhauCoChinhXac(email, password)) {
+                JOptionPane.showMessageDialog(this, "Email hoặc mật khẩu không đúng!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            } else {
+                String flag = ClientCtrl.dangNhap(email, password);
                 switch (flag) {
                     case "R3" -> {
                         //Đăng nhập cho Chủ hộ
+                        ClientCtrl.ganMaChuHo(email);
                         new ClientMain().setVisible(true);
                         this.dispose();
                     }
                     case "R2" -> {
                         // Đăng nhập cho Nhân viên
-                        PersonData.getInstance().setPersonInfo(ClientCtrl.getInforPersonbyEmail(currentEmail));
+                        PersonData.getInstance().setPersonInfo(ClientCtrl.getInforPersonbyEmail(email));
                         new workerMain().setVisible(true);
                         this.dispose();
                     }
                     case "R1" -> {
                         // đăng nhập cho Quản Lý
                     }
-                    default -> JOptionPane.showMessageDialog(this, "Lỗi đăng nhập!", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                    default ->
+                        JOptionPane.showMessageDialog(this, "Lỗi đăng nhập!", "Thông báo", JOptionPane.ERROR_MESSAGE);
                 }
-                
+
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClientLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_btnLoginActionPerformed
+    }//GEN-LAST:event_btnDangNhapActionPerformed
 
-    private void lblForgetPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblForgetPasswordMouseClicked
+    private void lblQuenMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblQuenMatKhauMouseClicked
         // TODO add your handling code here:
         verifyCode = GenerateVerifyCode.generateRandomCode();
         String email = txtEmail.getText();
-        
+        System.out.println(email);
         if (email.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Email không được để trống!", "Thông báo", JOptionPane.ERROR_MESSAGE);
         } else try {
@@ -250,22 +251,23 @@ public class ClientLogin extends javax.swing.JFrame {
                 try {
                     currentEmail = email;
                     SendEmail.sendEmail(verifyCode, email);
+                    System.out.println(verifyCode);
+                    new ClientVerifyEmail().setVisible(true);
+                    this.setVisible(false);
                 } catch (MessagingException | UnsupportedEncodingException ex) {
                     Logger.getLogger(ClientLogin.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                new ClientVerifyEmail().setVisible(true);
-                this.setVisible(false);
-                System.out.println(verifyCode);
+
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClientLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    }//GEN-LAST:event_lblForgetPasswordMouseClicked
 
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+    }//GEN-LAST:event_lblQuenMatKhauMouseClicked
+
+    private void txtMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatKhauActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordActionPerformed
+    }//GEN-LAST:event_txtMatKhauActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,15 +306,15 @@ public class ClientLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background;
-    private javax.swing.JButton btnLogin;
-    private javax.swing.JCheckBox cbShowPassword;
+    private javax.swing.JButton btnDangNhap;
+    private javax.swing.JCheckBox cboHienThiMatKhau;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblForgetPassword;
+    private javax.swing.JLabel lblQuenMatKhau;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JPasswordField txtMatKhau;
     // End of variables declaration//GEN-END:variables
 }

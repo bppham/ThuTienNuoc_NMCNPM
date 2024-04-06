@@ -5,131 +5,233 @@ import java.sql.Date;
 
 
 public class ClientBillModel {
-    private String collectMoneyId, employCollectID, userID, moneyCategoryID, addressCollectID, nameAddressCollect, nameEmployee, nameMoneyCategory;
-    private int preIndex, currentIndex, moneyToPay;
-    private Date timeCollect, timePay;
+    private String maHoaDon, maNhanVienLapHoaDon, maGhi, maDongHo, maNhanVienGhiNuoc, tenNhanVienLapHoaDon, tenNhanVienGhiNuoc, tenDongHo, maLoai, tenLoai, ki, maCTKV, tenChiTiet, maKhuVuc, tenKhuVuc;
+    private int tieuThu, tongTien, chiSoCu, chiSoMoi;
+    private Date ngayDenHan, ngayTra, ngayTao, ngayGhi;
+    private boolean thanhToan;
 
     public ClientBillModel() {
     }
 
-    public ClientBillModel(String collectMoneyId, String employCollectID, String userID, String moneyCategoryID, String addressCollectID, String nameAddressCollect, String nameEmployee, String nameMoneyCategory, int preIndex, int currentIndex, int moneyToPay, Date timeCollect, Date timePay) {
-        this.collectMoneyId = collectMoneyId;
-        this.employCollectID = employCollectID;
-        this.userID = userID;
-        this.moneyCategoryID = moneyCategoryID;
-        this.addressCollectID = addressCollectID;
-        this.nameAddressCollect = nameAddressCollect;
-        this.nameEmployee = nameEmployee;
-        this.nameMoneyCategory = nameMoneyCategory;
-        this.preIndex = preIndex;
-        this.currentIndex = currentIndex;
-        this.moneyToPay = moneyToPay;
-        this.timeCollect = timeCollect;
-        this.timePay = timePay;
+    public ClientBillModel(String maHoaDon, String maNhanVienLapHoaDon, String maGhi, String maDongHo, String maNhanVienGhiNuoc, String tenNhanVienLapHoaDon, String tenNhanVienGhiNuoc, String tenDongHo, String maLoai, String tenLoai, String ki, String maCTKV, String tenChiTiet, String maKhuVuc, String tenKhuVuc, int tieuThu, int tongTien, boolean thanhToan, int chiSoCu, int chiSoMoi, Date ngayDenHan, Date ngayTra, Date ngayTao, Date ngayGhi) {
+        this.maHoaDon = maHoaDon;
+        this.maNhanVienLapHoaDon = maNhanVienLapHoaDon;
+        this.maGhi = maGhi;
+        this.maDongHo = maDongHo;
+        this.maNhanVienGhiNuoc = maNhanVienGhiNuoc;
+        this.tenNhanVienLapHoaDon = tenNhanVienLapHoaDon;
+        this.tenNhanVienGhiNuoc = tenNhanVienGhiNuoc;
+        this.tenDongHo = tenDongHo;
+        this.maLoai = maLoai;
+        this.tenLoai = tenLoai;
+        this.ki = ki;
+        this.maCTKV = maCTKV;
+        this.tenChiTiet = tenChiTiet;
+        this.maKhuVuc = maKhuVuc;
+        this.tenKhuVuc = tenKhuVuc;
+        this.tieuThu = tieuThu;
+        this.tongTien = tongTien;
+        this.thanhToan = thanhToan;
+        this.chiSoCu = chiSoCu;
+        this.chiSoMoi = chiSoMoi;
+        this.ngayDenHan = ngayDenHan;
+        this.ngayTra = ngayTra;
+        this.ngayTao = ngayTao;
+        this.ngayGhi = ngayGhi;
     }
 
-    public String getCollectMoneyId() {
-        return collectMoneyId;
-    }
-
-    public void setCollectMoneyId(String collectMoneyId) {
-        this.collectMoneyId = collectMoneyId;
-    }
-
-    public String getEmployCollectID() {
-        return employCollectID;
-    }
-
-    public void setEmployCollectID(String employCollectID) {
-        this.employCollectID = employCollectID;
-    }
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
-    public String getMoneyCategoryID() {
-        return moneyCategoryID;
-    }
-
-    public void setMoneyCategoryID(String moneyCategoryID) {
-        this.moneyCategoryID = moneyCategoryID;
-    }
-
-    public String getAddressCollectID() {
-        return addressCollectID;
-    }
-
-    public void setAddressCollectID(String addressCollectID) {
-        this.addressCollectID = addressCollectID;
-    }
-
-    public String getNameAddressCollect() {
-        return nameAddressCollect;
-    }
-
-    public void setNameAddressCollect(String nameAddressCollect) {
-        this.nameAddressCollect = nameAddressCollect;
-    }
-
-    public String getNameEmployee() {
-        return nameEmployee;
-    }
-
-    public void setNameEmployee(String nameEmployee) {
-        this.nameEmployee = nameEmployee;
-    }
-
-    public String getNameMoneyCategory() {
-        return nameMoneyCategory;
-    }
-
-    public void setNameMoneyCategory(String nameMoneyCategory) {
-        this.nameMoneyCategory = nameMoneyCategory;
-    }
     
-    public int getPreIndex() {
-        return preIndex;
+
+    public String getMaHoaDon() {
+        return maHoaDon;
     }
 
-    public void setPreIndex(int preIndex) {
-        this.preIndex = preIndex;
+    public void setMaHoaDon(String maHoaDon) {
+        this.maHoaDon = maHoaDon;
     }
 
-    public int getCurrentIndex() {
-        return currentIndex;
+    public String getMaNhanVienLapHoaDon() {
+        return maNhanVienLapHoaDon;
     }
 
-    public void setCurrentIndex(int currentIndex) {
-        this.currentIndex = currentIndex;
+    public void setMaNhanVienLapHoaDon(String maNhanVienLapHoaDon) {
+        this.maNhanVienLapHoaDon = maNhanVienLapHoaDon;
     }
 
-    public int getMoneyToPay() {
-        return moneyToPay;
+    public String getMaGhi() {
+        return maGhi;
     }
 
-    public void setMoneyToPay(int moneyToPay) {
-        this.moneyToPay = moneyToPay;
+    public void setMaGhi(String maGhi) {
+        this.maGhi = maGhi;
     }
 
-    public Date getTimeCollect() {
-        return timeCollect;
+    public String getMaDongHo() {
+        return maDongHo;
     }
 
-    public void setTimeCollect(Date timeCollect) {
-        this.timeCollect = timeCollect;
+    public void setMaDongHo(String maDongHo) {
+        this.maDongHo = maDongHo;
     }
 
-    public Date getTimePay() {
-        return timePay;
+    public String getMaNhanVienGhiNuoc() {
+        return maNhanVienGhiNuoc;
     }
 
-    public void setTimePay(Date timePay) {
-        this.timePay = timePay;
+    public void setMaNhanVienGhiNuoc(String maNhanVienGhiNuoc) {
+        this.maNhanVienGhiNuoc = maNhanVienGhiNuoc;
+    }
+
+    public String getTenNhanVienLapHoaDon() {
+        return tenNhanVienLapHoaDon;
+    }
+
+    public void setTenNhanVienLapHoaDon(String tenNhanVienLapHoaDon) {
+        this.tenNhanVienLapHoaDon = tenNhanVienLapHoaDon;
+    }
+
+    public String getTenNhanVienGhiNuoc() {
+        return tenNhanVienGhiNuoc;
+    }
+
+    public void setTenNhanVienGhiNuoc(String tenNhanVienGhiNuoc) {
+        this.tenNhanVienGhiNuoc = tenNhanVienGhiNuoc;
+    }
+
+    public String getTenDongHo() {
+        return tenDongHo;
+    }
+
+    public void setTenDongHo(String tenDongHo) {
+        this.tenDongHo = tenDongHo;
+    }
+
+    public String getMaLoai() {
+        return maLoai;
+    }
+
+    public void setMaLoai(String maLoai) {
+        this.maLoai = maLoai;
+    }
+
+    public String getTenLoai() {
+        return tenLoai;
+    }
+
+    public void setTenLoai(String tenLoai) {
+        this.tenLoai = tenLoai;
+    }
+
+    public String getKi() {
+        return ki;
+    }
+
+    public void setKi(String ki) {
+        this.ki = ki;
+    }
+
+    public int getTieuThu() {
+        return tieuThu;
+    }
+
+    public void setTieuThu(int tieuThu) {
+        this.tieuThu = tieuThu;
+    }
+
+    public int getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(int tongTien) {
+        this.tongTien = tongTien;
+    }
+
+    public boolean isThanhToan() {
+        return thanhToan;
+    }
+
+    public void setThanhToan(boolean thanhToan) {
+        this.thanhToan = thanhToan;
+    }
+
+    public int getChiSoCu() {
+        return chiSoCu;
+    }
+
+    public void setChiSoCu(int chiSoCu) {
+        this.chiSoCu = chiSoCu;
+    }
+
+    public int getChiSoMoi() {
+        return chiSoMoi;
+    }
+
+    public void setChiSoMoi(int chiSoMoi) {
+        this.chiSoMoi = chiSoMoi;
+    }
+
+    public Date getNgayDenHan() {
+        return ngayDenHan;
+    }
+
+    public void setNgayDenHan(Date ngayDenHan) {
+        this.ngayDenHan = ngayDenHan;
+    }
+
+    public Date getNgayTra() {
+        return ngayTra;
+    }
+
+    public void setNgayTra(Date ngayTra) {
+        this.ngayTra = ngayTra;
+    }
+
+    public Date getNgayTao() {
+        return ngayTao;
+    }
+
+    public void setNgayTao(Date ngayTao) {
+        this.ngayTao = ngayTao;
+    }
+
+    public Date getNgayGhi() {
+        return ngayGhi;
+    }
+
+    public void setNgayGhi(Date ngayGhi) {
+        this.ngayGhi = ngayGhi;
+    }
+
+    public String getMaCTKV() {
+        return maCTKV;
+    }
+
+    public void setMaCTKV(String maCTKV) {
+        this.maCTKV = maCTKV;
+    }
+
+    public String getTenChiTiet() {
+        return tenChiTiet;
+    }
+
+    public void setTenChiTiet(String tenChiTiet) {
+        this.tenChiTiet = tenChiTiet;
+    }
+
+    public String getMaKhuVuc() {
+        return maKhuVuc;
+    }
+
+    public void setMaKhuVuc(String maKhuVuc) {
+        this.maKhuVuc = maKhuVuc;
+    }
+
+    public String getTenKhuVuc() {
+        return tenKhuVuc;
+    }
+
+    public void setTenKhuVuc(String tenKhuVuc) {
+        this.tenKhuVuc = tenKhuVuc;
     }
   
 }

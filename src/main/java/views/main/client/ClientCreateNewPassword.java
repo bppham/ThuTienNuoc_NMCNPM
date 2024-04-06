@@ -33,10 +33,10 @@ public class ClientCreateNewPassword extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        cbShowPassword = new javax.swing.JCheckBox();
+        cbHienThiMatKhau = new javax.swing.JCheckBox();
         btnConfirm = new javax.swing.JButton();
-        txtNewPassword = new javax.swing.JPasswordField();
-        txtRetypePassword = new javax.swing.JPasswordField();
+        txtMatKhauMoi = new javax.swing.JPasswordField();
+        txtMatKhauHienTai = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,11 +57,11 @@ public class ClientCreateNewPassword extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setText("Nhập mật khẩu mới cho tài khoản của bạn!");
 
-        cbShowPassword.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        cbShowPassword.setText("Hiện mật khẩu");
-        cbShowPassword.addActionListener(new java.awt.event.ActionListener() {
+        cbHienThiMatKhau.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        cbHienThiMatKhau.setText("Hiện mật khẩu");
+        cbHienThiMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbShowPasswordActionPerformed(evt);
+                cbHienThiMatKhauActionPerformed(evt);
             }
         });
 
@@ -76,9 +76,9 @@ public class ClientCreateNewPassword extends javax.swing.JFrame {
             }
         });
 
-        txtNewPassword.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtMatKhauMoi.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
-        txtRetypePassword.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        txtMatKhauHienTai.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -92,18 +92,18 @@ public class ClientCreateNewPassword extends javax.swing.JFrame {
                 .addGap(0, 52, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtMatKhauMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(txtRetypePassword)
+                            .addComponent(txtMatKhauHienTai)
                             .addContainerGap())
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel2)
                                 .addComponent(jLabel4)
-                                .addComponent(cbShowPassword)
+                                .addComponent(cbHienThiMatKhau)
                                 .addComponent(jLabel5))
                             .addGap(65, 65, 65)))))
         );
@@ -117,13 +117,13 @@ public class ClientCreateNewPassword extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jLabel4)
                 .addGap(31, 31, 31)
-                .addComponent(txtNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMatKhauMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(39, 39, 39)
-                .addComponent(txtRetypePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMatKhauHienTai, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbShowPassword)
+                .addComponent(cbHienThiMatKhau)
                 .addGap(37, 37, 37)
                 .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
@@ -138,40 +138,40 @@ public class ClientCreateNewPassword extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbShowPasswordActionPerformed
+    private void cbHienThiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbHienThiMatKhauActionPerformed
         // TODO add your handling code here:
-        if (cbShowPassword.isSelected()) {
-            txtNewPassword.setEchoChar((char) 0);
-            txtRetypePassword.setEchoChar((char) 0);
+        if (cbHienThiMatKhau.isSelected()) {
+            txtMatKhauMoi.setEchoChar((char) 0);
+            txtMatKhauHienTai.setEchoChar((char) 0);
         } else {
-            txtNewPassword.setEchoChar('*');
-            txtRetypePassword.setEchoChar('*');
+            txtMatKhauMoi.setEchoChar('*');
+            txtMatKhauHienTai.setEchoChar('*');
         }
-    }//GEN-LAST:event_cbShowPasswordActionPerformed
+    }//GEN-LAST:event_cbHienThiMatKhauActionPerformed
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         // TODO add your handling code here:
         String email = ClientLogin.currentEmail;
-        System.out.println(email);
-        ClientCtrl.currentEmail = email;
-        char[] newPasswordChars = txtNewPassword.getPassword();
-        String newPassword = String.valueOf(newPasswordChars);
+        try {
+            ClientCtrl.ganMaChuHo(email);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ClientCreateNewPassword.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        char[] matKhauMoiChars = txtMatKhauMoi.getPassword();
+        String matKhauMoi = String.valueOf(matKhauMoiChars);
 
-        char[] retypePasswordChars = txtRetypePassword.getPassword();
-        String retypePassword = String.valueOf(retypePasswordChars);
+        char[] matKhauNhapLaiChars = txtMatKhauHienTai.getPassword();
+        String matKhauNhapLai = String.valueOf(matKhauNhapLaiChars);
 
-        if (newPassword.isEmpty() || retypePassword.isEmpty()) {
+        if (matKhauMoi.isEmpty() || matKhauNhapLai.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Mật khẩu và mật khẩu nhập lại không được để trống", "Thông báo", JOptionPane.ERROR_MESSAGE);
         } else {
-            if (retypePassword.equals(newPassword)) {
+            if (matKhauNhapLai.equals(matKhauMoi)) {
                 try {
-                    System.out.println(ClientCtrl.currentEmail);
-                    ClientCtrl.doiMatKhau(newPassword);
+                    ClientCtrl.doiMatKhau(matKhauMoi);
                     JOptionPane.showMessageDialog(this, "Đổi mật khẩu thành công, đăng nhập lại vào hệ thống!");
                     this.setVisible(false);
                     new ClientLogin().setVisible(true);
-                    System.out.println(newPassword);
-                    System.out.println(email);
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(ClientCreateNewPassword.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -218,14 +218,14 @@ public class ClientCreateNewPassword extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirm;
-    private javax.swing.JCheckBox cbShowPassword;
+    private javax.swing.JCheckBox cbHienThiMatKhau;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField txtNewPassword;
-    private javax.swing.JPasswordField txtRetypePassword;
+    private javax.swing.JPasswordField txtMatKhauHienTai;
+    private javax.swing.JPasswordField txtMatKhauMoi;
     // End of variables declaration//GEN-END:variables
 }

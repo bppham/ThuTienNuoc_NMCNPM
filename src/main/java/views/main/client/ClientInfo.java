@@ -30,28 +30,28 @@ public class ClientInfo extends javax.swing.JPanel {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ClientInfo.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
-
+    
     private void hienThiThongTinCaNhanChuHo() throws ClassNotFoundException {
-        ClientInfoModel client = ClientCtrl.hienThiChuHo();
-        lblId.setText(client.getPersonId());
-        lblName.setText(client.getNamePerson());
-        lblAddress.setText(client.getAddressPerson());
-        lblContact.setText(client.getPhoneNumber());
-        lblEmail.setText(client.getEmail());
-
+        ClientInfoModel chuHo = ClientCtrl.hienThiChuHo();
+        lblMaChuHo.setText(chuHo.getMaCH());
+        lblHoTen.setText(chuHo.getHoTen());
+        lblDiaChi.setText(chuHo.getDiaChi());
+        lblSDT.setText(chuHo.getSdt());
+        lblCCCD.setText(chuHo.getCccd());
+        lblEmail.setText(chuHo.getEmail());
+        lblGioiTinh.setText(chuHo.getGioiTinh());
     }
     
     private void hienThiCacHoDangSuDungDichVu() throws ClassNotFoundException {
         dsCacHo = ClientCtrl.hienThiCacHoDangSuDungDichVu();
         tableModel.setRowCount(0);
         dsCacHo.forEach(hh -> {
-            tableModel.addRow(new Object[]{hh.getDetailAddressId(), hh.getNameDetailAddress(),
-                hh.getTypeWaterUsing(), hh.getRoleAreaId(), hh.getDetailArea()});
+            tableModel.addRow(new Object[]{hh.getMaCTKV(), hh.getTenChiTiet(), hh.getTenKhuVuc(),
+                hh.getMaDH(), hh.getTenDH(), hh.getTenLoai()});
         });
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,15 +67,19 @@ public class ClientInfo extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        lblId = new javax.swing.JLabel();
+        lblMaChuHo = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lblName = new javax.swing.JLabel();
+        lblHoTen = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        lblAddress = new javax.swing.JLabel();
+        lblDiaChi = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        lblCCCD = new javax.swing.JLabel();
+        lblSDT = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lblGioiTinh = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         lblEmail = new javax.swing.JLabel();
-        lblContact = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -95,32 +99,44 @@ public class ClientInfo extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("Mã chủ hộ:");
 
-        lblId.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblId.setText("_________");
+        lblMaChuHo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblMaChuHo.setText("_________");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("Tên chủ hộ:");
 
-        lblName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblName.setText("_________");
+        lblHoTen.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblHoTen.setText("_________");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Địa chỉ sinh sống:");
 
-        lblAddress.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblAddress.setText("_________");
+        lblDiaChi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblDiaChi.setText("_________");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setText("Email:");
+        jLabel7.setText("CCCD:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Số điện thoại:");
 
+        lblCCCD.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblCCCD.setText("_________");
+
+        lblSDT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblSDT.setText("_________");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel8.setText("Giới tính:");
+
+        lblGioiTinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblGioiTinh.setText("_________");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel10.setText("Email:");
+
         lblEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblEmail.setText("_________");
-
-        lblContact.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblContact.setText("_________");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -131,21 +147,29 @@ public class ClientInfo extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblName)
-                    .addComponent(lblId)
-                    .addComponent(lblAddress))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblGioiTinh)
+                    .addComponent(lblHoTen)
+                    .addComponent(lblMaChuHo)
+                    .addComponent(lblDiaChi))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel10))
+                        .addGap(84, 84, 84)))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblContact)
+                    .addComponent(lblSDT)
+                    .addComponent(lblCCCD)
                     .addComponent(lblEmail))
-                .addGap(107, 107, 107))
+                .addGap(194, 194, 194))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,20 +177,29 @@ public class ClientInfo extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(lblId)
+                    .addComponent(lblMaChuHo)
                     .addComponent(jLabel5)
-                    .addComponent(lblContact))
+                    .addComponent(lblSDT))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(lblName)
+                    .addComponent(lblHoTen)
                     .addComponent(jLabel7)
-                    .addComponent(lblEmail))
+                    .addComponent(lblCCCD))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(0, 12, Short.MAX_VALUE)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(lblGioiTinh)
+                            .addComponent(jLabel10)))
+                    .addComponent(lblEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(lblAddress))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(lblDiaChi))
+                .addContainerGap())
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -177,13 +210,13 @@ public class ClientInfo extends javax.swing.JPanel {
         tblListOfHouseholds.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tblListOfHouseholds.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã địa chỉ", "Địa chỉ chi tiết", "Loại tiền nước", "Mã khu vực", "Tên khu vực"
+                "Mã địa chỉ", "Địa chỉ chi tiết", "Tên khu vực", "Mã đồng hồ", "Tên đồng hồ", "Loại nước"
             }
         ));
         jScrollPane1.setViewportView(tblListOfHouseholds);
@@ -193,14 +226,15 @@ public class ClientInfo extends javax.swing.JPanel {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 956, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 93, Short.MAX_VALUE))
+                .addGap(0, 43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -214,22 +248,22 @@ public class ClientInfo extends javax.swing.JPanel {
                         .addComponent(jLabel2))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(46, 46, 46))
+                .addGap(0, 0, 0))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -239,7 +273,7 @@ public class ClientInfo extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(83, 83, 83))
+                .addGap(0, 0, 0))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,11 +340,13 @@ public class ClientInfo extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -319,11 +355,13 @@ public class ClientInfo extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblAddress;
-    private javax.swing.JLabel lblContact;
+    private javax.swing.JLabel lblCCCD;
+    private javax.swing.JLabel lblDiaChi;
     private javax.swing.JLabel lblEmail;
-    private javax.swing.JLabel lblId;
-    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblGioiTinh;
+    private javax.swing.JLabel lblHoTen;
+    private javax.swing.JLabel lblMaChuHo;
+    private javax.swing.JLabel lblSDT;
     private javax.swing.JTable tblListOfHouseholds;
     // End of variables declaration//GEN-END:variables
 }
